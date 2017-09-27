@@ -1,7 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
 * Студент: [Евгений Закурдаев](https://up.htmlacademy.ru/ecmascript/3/user/25657).
-* Наставник: `Неизвестно`.
+* Наставник: [Алексей Балесный](https://up.htmlacademy.ru/ecmascript/3/user/221665).
 
 ---
 

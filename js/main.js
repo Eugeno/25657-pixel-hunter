@@ -8,7 +8,7 @@ const screens = [
 ];
 
 const main = document.querySelector(`main`);
-let currentScreen;
+let currentScreen = 0;
 
 const changeScreen = (i) => {
   let screenTemplate = screens[i];

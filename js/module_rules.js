@@ -1,4 +1,7 @@
 import getElementFromTemplate from './get-element';
+import renderBlock from './render-block';
+import moduleGame1 from './module_game-1';
+import moduleIntro from './module_intro';
 
 const moduleRules = getElementFromTemplate(`<header class="header">
     <div class="header__back">
@@ -21,17 +24,26 @@ const moduleRules = getElementFromTemplate(`<header class="header">
     </p>
     <form class="rules__form">
       <input class="rules__input" type="text" placeholder="Ваше Имя">
-      <button class="rules__button  continue" type="submit" disabled>Go!</button>
+      <button class="rules__button continue" type="submit" disabled>Go!</button>
     </form>
   </div>
   <footer class="footer">
     <a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
-    <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> &copy; 2016</span>
+    <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> © 2016</span>
     <div class="footer__social-links">
-      <a href="https://twitter.com/htmlacademy_ru" class="social-link  social-link--tw">Твиттер</a>
-      <a href="https://www.instagram.com/htmlacademy/" class="social-link  social-link--ins">Инстаграм</a>
-      <a href="https://www.facebook.com/htmlacademy" class="social-link  social-link--fb">Фэйсбук</a>
-      <a href="https://vk.com/htmlacademy" class="social-link  social-link--vk">Вконтакте</a>
+      <a href="https://twitter.com/htmlacademy_ru" class="social-link social-link--tw">Твиттер</a>
+      <a href="https://www.instagram.com/htmlacademy/" class="social-link social-link--ins">Инстаграм</a>
+      <a href="https://www.facebook.com/htmlacademy" class="social-link social-link--fb">Фэйсбук</a>
+      <a href="https://vk.com/htmlacademy" class="social-link social-link--vk">Вконтакте</a>
     </div>
   </footer>`);
+
+const input = moduleRules.querySelector(`.rules__input`);
+const rulesBtn = moduleRules.querySelector(`.rules__button`);
+input.addEventListener(`input`, ({target}) => {
+  rulesBtn.disabled = !target.value.trim();
+});
+rulesBtn.addEventListener(`click`, () => renderBlock(moduleGame1));
+moduleRules.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
+
 export default moduleRules;

@@ -1,4 +1,7 @@
 import getElementFromTemplate from './get-element';
+import renderBlock from './render-block';
+import moduleGame2 from './module_game-2';
+import moduleIntro from './module_intro';
 
 const moduleGame1 = getElementFromTemplate(`<header class="header">
     <div class="header__back">
@@ -30,11 +33,11 @@ const moduleGame1 = getElementFromTemplate(`<header class="header">
       </div>
       <div class="game__option">
         <img src="http://placehold.it/468x458" alt="Option 2" width="468" height="458">
-        <label class="game__answer  game__answer--photo">
+        <label class="game__answer game__answer--photo">
           <input name="question2" type="radio" value="photo">
           <span>Фото</span>
         </label>
-        <label class="game__answer  game__answer--paint">
+        <label class="game__answer game__answer--paint">
           <input name="question2" type="radio" value="paint">
           <span>Рисунок</span>
         </label>
@@ -57,12 +60,27 @@ const moduleGame1 = getElementFromTemplate(`<header class="header">
   </div>
   <footer class="footer">
     <a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
-    <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> &copy; 2016</span>
+    <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> © 2016</span>
     <div class="footer__social-links">
-      <a href="https://twitter.com/htmlacademy_ru" class="social-link  social-link--tw">Твиттер</a>
-      <a href="https://www.instagram.com/htmlacademy/" class="social-link  social-link--ins">Инстаграм</a>
-      <a href="https://www.facebook.com/htmlacademy" class="social-link  social-link--fb">Фэйсбук</a>
-      <a href="https://vk.com/htmlacademy" class="social-link  social-link--vk">Вконтакте</a>
+      <a href="https://twitter.com/htmlacademy_ru" class="social-link social-link--tw">Твиттер</a>
+      <a href="https://www.instagram.com/htmlacademy/" class="social-link social-link--ins">Инстаграм</a>
+      <a href="https://www.facebook.com/htmlacademy" class="social-link social-link--fb">Фэйсбук</a>
+      <a href="https://vk.com/htmlacademy" class="social-link social-link--vk">Вконтакте</a>
     </div>
   </footer>`);
+
+const inputs = [...moduleGame1.querySelectorAll(`input[type="radio"]`)];
+const countChecked = () => {
+  return [...moduleGame1.querySelectorAll(`input[type="radio"]:checked`)].length;
+};
+
+inputs.map((input) => {
+  input.addEventListener(`change`, () => {
+    if (countChecked() === 2) {
+      renderBlock(moduleGame2);
+    }
+  });
+});
+moduleGame1.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
+
 export default moduleGame1;

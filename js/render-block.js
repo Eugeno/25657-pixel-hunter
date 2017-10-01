@@ -3,4 +3,5 @@ const renderBlock = (blockElement) => {
   main.innerHTML = ``;
   main.appendChild(blockElement);
 };
+
 export default renderBlock;

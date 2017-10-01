@@ -74,7 +74,7 @@ const countChecked = () => {
   return [...moduleGame1.querySelectorAll(`input[type="radio"]:checked`)].length;
 };
 
-inputs.map((input) => {
+inputs.forEach((input) => {
   input.addEventListener(`change`, () => {
     if (countChecked() === 2) {
       renderBlock(moduleGame2);

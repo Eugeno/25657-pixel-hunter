@@ -57,7 +57,7 @@ const moduleGame3 = getElementFromTemplate(`<header class="header">
   </footer>`);
 
 const options = [...moduleGame3.querySelectorAll(`.game__option`)];
-options.map((option) => {
+options.forEach((option) => {
   option.addEventListener(`click`, () => renderBlock(moduleStats));
 });
 moduleGame3.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));

@@ -59,7 +59,7 @@ const moduleGame2 = getElementFromTemplate(`<header class="header">
   </footer>`);
 
 const inputs = [...moduleGame2.querySelectorAll(`.game__answer`)];
-inputs.map((input) => {
+inputs.forEach((input) => {
   input.addEventListener(`click`, () => renderBlock(moduleGame3));
 });
 moduleGame2.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));

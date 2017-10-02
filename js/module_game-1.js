@@ -69,17 +69,16 @@ const moduleGame1 = getElementFromTemplate(`<header class="header">
     </div>
   </footer>`);
 
-const inputs = [...moduleGame1.querySelectorAll(`input[type="radio"]`)];
+const form = moduleGame1.querySelector(`.game__content`);
 const countChecked = () => {
-  return [...moduleGame1.querySelectorAll(`input[type="radio"]:checked`)].length;
+  return moduleGame1.querySelectorAll(`input[type="radio"]:checked`).length;
 };
 
-inputs.forEach((input) => {
-  input.addEventListener(`change`, () => {
-    if (countChecked() === 2) {
-      renderBlock(moduleGame2);
-    }
-  });
+const tasks = 2;
+form.addEventListener(`change`, () => {
+  if (countChecked() === tasks) {
+    renderBlock(moduleGame2);
+  }
 });
 moduleGame1.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
 

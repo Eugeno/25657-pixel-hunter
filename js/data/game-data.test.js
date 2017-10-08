@@ -59,3 +59,28 @@ describe(`Counting right answers`, () => {
     assert.equal(1650, countScores(answers, lives));
   });
 });
+
+const createTimer = (duration) => {
+  return {
+    tick: () => {
+      let currentTime = duration;
+      if (currentTime > 0) {
+        return currentTime - 1;
+      } else {
+        return `timer is over`;
+      }
+    }
+  };
+};
+
+describe(`Timer`, () => {
+  it(`should create object`, () => {
+    assert.equal(typeof createTimer(10), `object`);
+  });
+  it(`should decrease time by 1 when tick`, () => {
+    assert.equal(createTimer(10).tick(), 9);
+  });
+  it(`should say something, when it's over`, () => {
+    assert.equal(typeof createTimer(0).tick(), `string`);
+  });
+});

@@ -40,8 +40,8 @@ const countScores = (answers, lives) => {
 
 describe(`Counting right answers`, () => {
   it(`should return -1 when user didsn't answer to all questions`, () => {
-    const answers = [`normal`];
-    const lives = 1;
+    const answers = [`normal`, `wrong`, `wrong`, `normal`, `slow`, `wrong`];
+    const lives = 0;
     assert.equal(-1, countScores(answers, lives));
   });
   it(`should return 1150 when user answered to all questions in normal speed, and got all lives`, () => {

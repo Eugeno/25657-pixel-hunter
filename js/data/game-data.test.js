@@ -44,8 +44,8 @@ const countScores = (answers, lives) => {
   return scores;
 };
 
-describe(`Counting right answers`, () => {
-  it(`should return -1 when user didsn't answer to all questions`, () => {
+describe(`Counting total scores`, () => {
+  it(`should return -1 when user didn't answer to all questions`, () => {
     const answers = [
       answer.NORMAL,
       answer.WRONG,

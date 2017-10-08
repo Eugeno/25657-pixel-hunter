@@ -45,7 +45,7 @@ describe(`Counting right answers`, () => {
     assert.equal(-1, countScores(answers, lives));
   });
   it(`should return 1150 when user answered to all questions in normal speed, and got all lives`, () => {
-    const answers = [`normal`, `normal`, `normal`, `normal`, `normal`, `normal`, `normal`, `normal`, `normal`, `normal`];
+    const answers = new Array(questionsLength).fill(`normal`);
     const lives = 3;
     assert.equal(1150, countScores(answers, lives));
   });
@@ -55,7 +55,7 @@ describe(`Counting right answers`, () => {
     assert.equal(750, countScores(answers, lives));
   });
   it(`should return 1650 when user answered fast for all questions`, () => {
-    const answers = [`fast`, `fast`, `fast`, `fast`, `fast`, `fast`, `fast`, `fast`, `fast`, `fast`];
+    const answers = new Array(questionsLength).fill(`fast`);
     const lives = 3;
     assert.equal(1650, countScores(answers, lives));
   });

@@ -18,23 +18,23 @@ const countAnswer = (answers, type) => {
   return count;
 };
 
+const questionsLength = 10;
+const reward = {
+  RIGHT_ANSWER: 100,
+  FAST_ANSWER: 150,
+  SLOW_ANSWER: 50,
+  LIVE: 50
+};
 const countScores = (answers, lives) => {
-  const questionsLength = 10;
+  let scores = -1;
   if (answers.length === questionsLength) {
-    const liveCost = 50;
-    const rightAnswerCost = 100;
-    const fastAnswerIncrement = 50;
-    const slowAnswerIncrement = -50;
-    let scores = lives * liveCost;
-    let wrongAnswersLength = countAnswer(answers, `wrong`);
-    let rightAnswersLength = questionsLength - wrongAnswersLength;
-    scores += rightAnswerCost * rightAnswersLength;
-    scores += fastAnswerIncrement * countAnswer(answers, `fast`);
-    scores += slowAnswerIncrement * countAnswer(answers, `slow`);
-    return scores;
-  } else {
-    return -1;
+    scores = 0;
+    scores += lives * reward.LIVE;
+    scores += reward.RIGHT_ANSWER * countAnswer(answers, `normal`);
+    scores += reward.FAST_ANSWER * countAnswer(answers, `fast`);
+    scores += reward.SLOW_ANSWER * countAnswer(answers, `slow`);
   }
+  return scores;
 };
 
 describe(`Counting right answers`, () => {

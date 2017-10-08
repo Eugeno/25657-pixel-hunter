@@ -8,30 +8,10 @@ describe(`Array`, () => {
   });
 });
 
-const countRightAnswer = (answers) => {
+const countAnswer = (answers, type) => {
   let count = 0;
   for (let i = 0; i < answers.length; i++) {
-    if (answers[i] !== `wrong`) {
-      count++;
-    }
-  }
-  return count;
-};
-
-const countFastAnswer = (answers) => {
-  let count = 0;
-  for (let i = 0; i < answers.length; i++) {
-    if (answers[i] === `fast`) {
-      count++;
-    }
-  }
-  return count;
-};
-
-const countSlowAnswer = (answers) => {
-  let count = 0;
-  for (let i = 0; i < answers.length; i++) {
-    if (answers[i] === `slow`) {
+    if (answers[i] === type) {
       count++;
     }
   }
@@ -46,9 +26,11 @@ const countScores = (answers, lives) => {
     const fastAnswerIncrement = 50;
     const slowAnswerIncrement = -50;
     let scores = lives * liveCost;
-    scores += rightAnswerCost * countRightAnswer(answers);
-    scores += fastAnswerIncrement * countFastAnswer(answers);
-    scores += slowAnswerIncrement * countSlowAnswer(answers);
+    let wrongAnswersLength = countAnswer(answers, `wrong`);
+    let rightAnswersLength = questionsLength - wrongAnswersLength;
+    scores += rightAnswerCost * rightAnswersLength;
+    scores += fastAnswerIncrement * countAnswer(answers, `fast`);
+    scores += slowAnswerIncrement * countAnswer(answers, `slow`);
     return scores;
   } else {
     return -1;
@@ -77,5 +59,3 @@ describe(`Counting right answers`, () => {
     assert.equal(1650, countScores(answers, lives));
   });
 });
-
-

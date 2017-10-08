@@ -10,8 +10,8 @@ describe(`Array`, () => {
 
 const countAnswer = (answers, type) => {
   let count = 0;
-  for (let i = 0; i < answers.length; i++) {
-    if (answers[i] === type) {
+  for (const answer of answers) {
+    if (answer === type) {
       count++;
     }
   }

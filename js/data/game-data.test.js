@@ -8,16 +8,6 @@ describe(`Array`, () => {
   });
 });
 
-const countAnswer = (answers, type) => {
-  let count = 0;
-  for (const answer of answers) {
-    if (answer === type) {
-      count++;
-    }
-  }
-  return count;
-};
-
 const questionsLength = 10;
 const reward = {
   RIGHT_ANSWER: 100,
@@ -28,11 +18,22 @@ const reward = {
 const countScores = (answers, lives) => {
   let scores = -1;
   if (answers.length === questionsLength) {
-    scores = 0;
+    scores = answers.reduce(function (sum, current) {
+      let increment = 0;
+      switch (current) {
+        case `normal`:
+          increment = reward.RIGHT_ANSWER;
+          break;
+        case `fast`:
+          increment = reward.FAST_ANSWER;
+          break;
+        case `slow`:
+          increment = reward.SLOW_ANSWER;
+          break;
+      }
+      return sum + increment;
+    }, 0);
     scores += lives * reward.LIVE;
-    scores += reward.RIGHT_ANSWER * countAnswer(answers, `normal`);
-    scores += reward.FAST_ANSWER * countAnswer(answers, `fast`);
-    scores += reward.SLOW_ANSWER * countAnswer(answers, `slow`);
   }
   return scores;
 };

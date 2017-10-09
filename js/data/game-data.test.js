@@ -82,6 +82,9 @@ describe(`Timer`, () => {
   it(`should create object`, () => {
     assert.equal(typeof gameData.createTimer(10), `object`);
   });
+  it(`should has initial value as duration`, () => {
+    assert.equal(gameData.createTimer(20).value, 20);
+  });
   it(`should decrease time by 1 when tick`, () => {
     assert.equal(gameData.createTimer(10).tick(), 9);
   });

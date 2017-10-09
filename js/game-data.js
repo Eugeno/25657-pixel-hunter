@@ -35,13 +35,12 @@ const gameData = {
   },
   createTimer(duration) {
     return {
+      value: duration,
       tick() {
-        const currentTime = duration;
-        if (currentTime > 0) {
-          return currentTime - 1;
-        } else {
-          return `timer is over`;
+        if (this.value > 0) {
+          this.value--;
         }
+        return this.value > 0 ? this.value : `timer is over`;
       }
     };
   }

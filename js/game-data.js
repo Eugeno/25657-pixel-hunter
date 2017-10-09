@@ -37,10 +37,7 @@ const gameData = {
     return {
       value: duration,
       tick() {
-        if (this.value > 0) {
-          this.value--;
-        }
-        return this.value > 0 ? this.value : `timer is over`;
+        return duration > 0 ? gameData.createTimer(duration - 1) : `timer is over`;
       }
     };
   }

@@ -13,13 +13,12 @@ const Reward = {
   LIVE: 50
 };
 const countScores = (answers, lives) => {
-  let scores = -1;
-  if (answers.length === QUESTIONS_LENGTH) {
-    scores = answers.reduce((sum, current) => {
+  const summary = () => {
+    return answers.reduce((sum, current) => {
       return sum + Reward[current];
     }, lives * Reward.LIVE);
-  }
-  return scores;
+  };
+  return answers.length === QUESTIONS_LENGTH ? summary() : -1;
 };
 const createTimer = (duration) => {
   return {

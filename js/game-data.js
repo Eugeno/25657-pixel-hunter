@@ -6,28 +6,17 @@ const answer = {
   WRONG: `wrong`
 };
 const reward = {
-  NORMAL: 100,
-  FAST: 150,
-  SLOW: 50,
+  [answer.NORMAL]: 100,
+  [answer.FAST]: 150,
+  [answer.SLOW]: 50,
+  [answer.WRONG]: 0,
   LIVE: 50
 };
 const countScores = (answers, lives) => {
   let scores = -1;
   if (answers.length === QUESTIONS_LENGTH) {
     scores = answers.reduce((sum, current) => {
-      let increment = 0;
-      switch (current) {
-        case answer.NORMAL:
-          increment = reward.NORMAL;
-          break;
-        case answer.FAST:
-          increment = reward.FAST;
-          break;
-        case answer.SLOW:
-          increment = reward.SLOW;
-          break;
-      }
-      return sum + increment;
+      return sum + reward[current];
     }, lives * reward.LIVE);
   }
   return scores;

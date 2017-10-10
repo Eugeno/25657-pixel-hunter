@@ -1,5 +1,5 @@
 import assert from 'assert';
-import {QUESTIONS_LENGTH, ANSWER, countScores, createTimer} from '../game-data';
+import {QUESTIONS_LENGTH, Answer, countScores, createTimer} from '../game-data';
 
 describe(`Array`, () => {
   describe(`#indexOf()`, () => {
@@ -12,66 +12,66 @@ describe(`Array`, () => {
 describe(`Counting total scores`, () => {
   it(`should return -1 when user didn't answer to all questions`, () => {
     const answers = [
-      ANSWER.NORMAL,
-      ANSWER.WRONG,
-      ANSWER.WRONG,
-      ANSWER.NORMAL,
-      ANSWER.NORMAL,
-      ANSWER.SLOW,
-      ANSWER.NORMAL,
-      ANSWER.NORMAL,
-      ANSWER.WRONG
+      Answer.NORMAL,
+      Answer.WRONG,
+      Answer.WRONG,
+      Answer.NORMAL,
+      Answer.NORMAL,
+      Answer.SLOW,
+      Answer.NORMAL,
+      Answer.NORMAL,
+      Answer.WRONG
     ];
     const lives = 0;
     assert.equal(-1, countScores(answers, lives));
   });
   it(`should return -1 when user didn't answer to all questions`, () => {
     const answers = [
-      ANSWER.WRONG,
-      ANSWER.WRONG,
-      ANSWER.WRONG
+      Answer.WRONG,
+      Answer.WRONG,
+      Answer.WRONG
     ];
     const lives = 0;
     assert.equal(-1, countScores(answers, lives));
   });
   it(`should return 1150 when user answered to all questions in normal speed, and got all lives`, () => {
-    const answers = new Array(QUESTIONS_LENGTH).fill(ANSWER.NORMAL);
+    const answers = new Array(QUESTIONS_LENGTH).fill(Answer.NORMAL);
     const lives = 3;
     assert.equal(1150, countScores(answers, lives));
   });
   it(`should return 750 when user answered 2 times right, 3 times wrong, 3 times fast and 2 times slow`, () => {
     const answers = [
-      ANSWER.FAST,
-      ANSWER.WRONG,
-      ANSWER.NORMAL,
-      ANSWER.SLOW,
-      ANSWER.FAST,
-      ANSWER.WRONG,
-      ANSWER.NORMAL,
-      ANSWER.SLOW,
-      ANSWER.FAST,
-      ANSWER.WRONG
+      Answer.FAST,
+      Answer.WRONG,
+      Answer.NORMAL,
+      Answer.SLOW,
+      Answer.FAST,
+      Answer.WRONG,
+      Answer.NORMAL,
+      Answer.SLOW,
+      Answer.FAST,
+      Answer.WRONG
     ];
     const lives = 0;
     assert.equal(750, countScores(answers, lives));
   });
   it(`should return 1650 when user answered fast for all questions`, () => {
-    const answers = new Array(QUESTIONS_LENGTH).fill(ANSWER.FAST);
+    const answers = new Array(QUESTIONS_LENGTH).fill(Answer.FAST);
     const lives = 3;
     assert.equal(1650, countScores(answers, lives));
   });
   it(`should return 350 when user answered slow 7 times and had 3 mistakes`, () => {
     const answers = [
-      ANSWER.SLOW,
-      ANSWER.SLOW,
-      ANSWER.SLOW,
-      ANSWER.SLOW,
-      ANSWER.SLOW,
-      ANSWER.SLOW,
-      ANSWER.SLOW,
-      ANSWER.WRONG,
-      ANSWER.WRONG,
-      ANSWER.WRONG
+      Answer.SLOW,
+      Answer.SLOW,
+      Answer.SLOW,
+      Answer.SLOW,
+      Answer.SLOW,
+      Answer.SLOW,
+      Answer.SLOW,
+      Answer.WRONG,
+      Answer.WRONG,
+      Answer.WRONG
     ];
     const lives = 0;
     assert.equal(350, countScores(answers, lives));

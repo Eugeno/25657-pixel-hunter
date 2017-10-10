@@ -1,23 +1,23 @@
 const QUESTIONS_LENGTH = 10;
-const ANSWER = {
+const Answer = {
   NORMAL: `normal`,
   FAST: `fast`,
   SLOW: `slow`,
   WRONG: `wrong`
 };
-const REWARD = {
-  [ANSWER.NORMAL]: 100,
-  [ANSWER.FAST]: 150,
-  [ANSWER.SLOW]: 50,
-  [ANSWER.WRONG]: 0,
+const Reward = {
+  [Answer.NORMAL]: 100,
+  [Answer.FAST]: 150,
+  [Answer.SLOW]: 50,
+  [Answer.WRONG]: 0,
   LIVE: 50
 };
 const countScores = (answers, lives) => {
   let scores = -1;
   if (answers.length === QUESTIONS_LENGTH) {
     scores = answers.reduce((sum, current) => {
-      return sum + REWARD[current];
-    }, lives * REWARD.LIVE);
+      return sum + Reward[current];
+    }, lives * Reward.LIVE);
   }
   return scores;
 };
@@ -30,4 +30,4 @@ const createTimer = (duration) => {
   };
 };
 
-export {QUESTIONS_LENGTH, ANSWER, countScores, createTimer};
+export {QUESTIONS_LENGTH, Answer, countScores, createTimer};

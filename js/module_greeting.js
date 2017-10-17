@@ -1,6 +1,7 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
 import moduleRules from './module_rules';
+import footerTemplate from './footer';
 
 const moduleGreeting = getElementFromTemplate(`<div class="greeting central--blur">
     <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
@@ -14,8 +15,9 @@ const moduleGreeting = getElementFromTemplate(`<div class="greeting central--blu
         Помни, главное — смотреть очень внимательно.</p>
     </div>
     <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
-  </div>`);
+  </div>
+${footerTemplate}`);
 
-moduleGreeting.querySelector(`.greeting__continue`).addEventListener(`click`, () => renderBlock(moduleRules, `hasFooter`, `hasHeader`));
+moduleGreeting.querySelector(`.greeting__continue`).addEventListener(`click`, () => renderBlock(moduleRules));
 
 export default moduleGreeting;

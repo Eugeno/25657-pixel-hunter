@@ -1,6 +1,11 @@
 import getElementFromTemplate from './get-element';
+import renderBlock from './render-block';
+import moduleIntro from './module_intro';
+import footerTemplate from './footer';
+import headerTemplate from './header';
 
-const moduleStats = getElementFromTemplate(`<div class="result">
+const moduleStats = getElementFromTemplate(`${headerTemplate}
+  <div class="result">
     <h1>Победа!</h1>
     <table class="result__table">
       <tr>
@@ -99,6 +104,8 @@ const moduleStats = getElementFromTemplate(`<div class="result">
         <td colspan="5" class="result__total result__total--final">950</td>
       </tr>
     </table>
-  </div>`);
+  </div>
+${footerTemplate}`);
+moduleStats.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
 
 export default moduleStats;

@@ -1,8 +1,12 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
 import moduleStats from './module_stats';
+import moduleIntro from './module_intro';
+import footerTemplate from './footer';
+import headerTemplate from './header';
 
-const moduleGame3 = getElementFromTemplate(`<div class="game">
+const moduleGame3 = getElementFromTemplate(`${headerTemplate}
+  <div class="game">
     <p class="game__task">Найдите рисунок среди изображений</p>
     <form class="game__content game__content--triple">
       <div class="game__option">
@@ -29,11 +33,13 @@ const moduleGame3 = getElementFromTemplate(`<div class="game">
         <li class="stats__result stats__result--unknown"></li>
       </ul>
     </div>
-  </div>`);
+  </div>
+${footerTemplate}`);
 
 const options = [...moduleGame3.querySelectorAll(`.game__option`)];
 options.forEach((option) => {
   option.addEventListener(`click`, () => renderBlock(moduleStats, `hasFooter`, `hasHeader`));
 });
+moduleGame3.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
 
 export default moduleGame3;

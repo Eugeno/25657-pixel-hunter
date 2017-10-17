@@ -1,8 +1,12 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
+import moduleIntro from './module_intro';
 import moduleGame2 from './module_game-2';
+import footerTemplate from './footer';
+import headerTemplate from './header';
 
-const moduleGame1 = getElementFromTemplate(`<div class="game">
+const moduleGame1 = getElementFromTemplate(`${headerTemplate}
+  <div class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
     <form class="game__content">
       <div class="game__option">
@@ -42,7 +46,8 @@ const moduleGame1 = getElementFromTemplate(`<div class="game">
         <li class="stats__result stats__result--unknown"></li>
       </ul>
     </div>
-  </div>`);
+  </div>
+${footerTemplate}`);
 
 const form = moduleGame1.querySelector(`.game__content`);
 const countChecked = () => {
@@ -52,8 +57,9 @@ const countChecked = () => {
 const tasks = 2;
 form.addEventListener(`change`, () => {
   if (countChecked() === tasks) {
-    renderBlock(moduleGame2, `hasFooter`, `hasHeader`);
+    renderBlock(moduleGame2);
   }
 });
+moduleGame1.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
 
 export default moduleGame1;

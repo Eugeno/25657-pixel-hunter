@@ -46,22 +46,12 @@ const moduleGame2 = getElementFromTemplate(`<header class="header">
         <li class="stats__result stats__result--unknown"></li>
       </ul>
     </div>
-  </div>
-  <footer class="footer">
-    <a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
-    <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> © 2016</span>
-    <div class="footer__social-links">
-      <a href="https://twitter.com/htmlacademy_ru" class="social-link social-link--tw">Твиттер</a>
-      <a href="https://www.instagram.com/htmlacademy/" class="social-link social-link--ins">Инстаграм</a>
-      <a href="https://www.facebook.com/htmlacademy" class="social-link social-link--fb">Фэйсбук</a>
-      <a href="https://vk.com/htmlacademy" class="social-link social-link--vk">Вконтакте</a>
-    </div>
-  </footer>`);
+  </div>`);
 
 const inputs = [...moduleGame2.querySelectorAll(`.game__answer`)];
 inputs.forEach((input) => {
-  input.addEventListener(`click`, () => renderBlock(moduleGame3));
+  input.addEventListener(`click`, () => renderBlock(moduleGame3, `hasFooter`));
 });
-moduleGame2.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
+moduleGame2.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro, `hasFooter`));
 
 export default moduleGame2;

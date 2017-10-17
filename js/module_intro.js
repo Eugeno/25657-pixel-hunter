@@ -9,8 +9,6 @@ const moduleIntro = getElementFromTemplate(`<div id="main" class="central__conte
     </div>
   </div>`);
 
-moduleIntro.querySelector(`.intro__asterisk`).addEventListener(`click`, () => renderBlock(moduleGreeting));
+moduleIntro.querySelector(`.intro__asterisk`).addEventListener(`click`, () => renderBlock(moduleGreeting, `hasFooter`));
 
 export default moduleIntro;
-
-

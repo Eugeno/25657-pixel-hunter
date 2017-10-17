@@ -1,23 +1,8 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
 import moduleGame2 from './module_game-2';
-import moduleIntro from './module_intro';
 
-const moduleGame1 = getElementFromTemplate(`<header class="header">
-    <div class="header__back">
-      <button class="back">
-        <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
-        <img src="img/logo_small.svg" width="101" height="44">
-      </button>
-    </div>
-    <h1 class="game__timer">NN</h1>
-    <div class="game__lives">
-      <img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">
-      <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
-      <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
-    </div>
-  </header>
-  <div class="game">
+const moduleGame1 = getElementFromTemplate(`<div class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
     <form class="game__content">
       <div class="game__option">
@@ -67,9 +52,8 @@ const countChecked = () => {
 const tasks = 2;
 form.addEventListener(`change`, () => {
   if (countChecked() === tasks) {
-    renderBlock(moduleGame2, `hasFooter`);
+    renderBlock(moduleGame2, `hasFooter`, `hasHeader`);
   }
 });
-moduleGame1.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro, `hasFooter`));
 
 export default moduleGame1;

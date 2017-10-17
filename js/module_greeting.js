@@ -16,6 +16,6 @@ const moduleGreeting = getElementFromTemplate(`<div class="greeting central--blu
     <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
   </div>`);
 
-moduleGreeting.querySelector(`.greeting__continue`).addEventListener(`click`, () => renderBlock(moduleRules, `hasFooter`));
+moduleGreeting.querySelector(`.greeting__continue`).addEventListener(`click`, () => renderBlock(moduleRules, `hasFooter`, `hasHeader`));
 
 export default moduleGreeting;

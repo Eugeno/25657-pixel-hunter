@@ -1,12 +1,12 @@
 const QUESTIONS_LENGTH = 10;
 const Answer = {
-  NORMAL: `normal`,
+  CORRECT: `correct`,
   FAST: `fast`,
   SLOW: `slow`,
   WRONG: `wrong`
 };
 const Reward = {
-  [Answer.NORMAL]: 100,
+  [Answer.CORRECT]: 100,
   [Answer.FAST]: 150,
   [Answer.SLOW]: 50,
   [Answer.WRONG]: 0,

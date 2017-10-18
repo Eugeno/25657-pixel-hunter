@@ -4,8 +4,10 @@ import moduleIntro from './module_intro';
 import moduleGame2 from './module_game-2';
 import footerTemplate from './footer';
 import headerTemplate from './header';
+import statsTemplate from './stats';
+import initialState from './data';
 
-const moduleGame1 = getElementFromTemplate(`${headerTemplate}
+const moduleGame1 = getElementFromTemplate(`${headerTemplate(initialState)}
   <div class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
     <form class="game__content">
@@ -33,18 +35,7 @@ const moduleGame1 = getElementFromTemplate(`${headerTemplate}
       </div>
     </form>
     <div class="stats">
-      <ul class="stats">
-        <li class="stats__result stats__result--wrong"></li>
-        <li class="stats__result stats__result--slow"></li>
-        <li class="stats__result stats__result--fast"></li>
-        <li class="stats__result stats__result--correct"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-      </ul>
+      ${statsTemplate(initialState)}
     </div>
   </div>
 ${footerTemplate}`);

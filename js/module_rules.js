@@ -4,8 +4,9 @@ import moduleGame1 from './module_game-1';
 import moduleIntro from './module_intro';
 import footerTemplate from './footer';
 import headerTemplate from './header';
+import initialState from './data';
 
-const moduleRules = getElementFromTemplate(`${headerTemplate}
+const moduleRules = getElementFromTemplate(`${headerTemplate(initialState)}
   <div class="rules">
     <h1 class="rules__title">Правила</h1>
     <p class="rules__description">Угадай 10 раз для каждого изображения фото <img

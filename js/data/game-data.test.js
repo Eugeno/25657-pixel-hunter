@@ -12,14 +12,14 @@ describe(`Array`, () => {
 describe(`Counting total scores`, () => {
   it(`should return -1 when user didn't answer to all questions`, () => {
     const answers = [
-      Answer.NORMAL,
+      Answer.CORRECT,
       Answer.WRONG,
       Answer.WRONG,
-      Answer.NORMAL,
-      Answer.NORMAL,
+      Answer.CORRECT,
+      Answer.CORRECT,
       Answer.SLOW,
-      Answer.NORMAL,
-      Answer.NORMAL,
+      Answer.CORRECT,
+      Answer.CORRECT,
       Answer.WRONG
     ];
     const lives = 0;
@@ -35,7 +35,7 @@ describe(`Counting total scores`, () => {
     assert.equal(-1, countScores(answers, lives));
   });
   it(`should return 1150 when user answered to all questions in normal speed, and got all lives`, () => {
-    const answers = new Array(QUESTIONS_LENGTH).fill(Answer.NORMAL);
+    const answers = new Array(QUESTIONS_LENGTH).fill(Answer.CORRECT);
     const lives = 3;
     assert.equal(1150, countScores(answers, lives));
   });
@@ -43,11 +43,11 @@ describe(`Counting total scores`, () => {
     const answers = [
       Answer.FAST,
       Answer.WRONG,
-      Answer.NORMAL,
+      Answer.CORRECT,
       Answer.SLOW,
       Answer.FAST,
       Answer.WRONG,
-      Answer.NORMAL,
+      Answer.CORRECT,
       Answer.SLOW,
       Answer.FAST,
       Answer.WRONG

@@ -1,7 +1,6 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
-import moduleGame1 from './module_game-1';
-import moduleGame3 from './module_game-3';
+import getRandomGameModule from './get-random-game-module';
 import moduleIntro from './module_intro';
 import moduleStats from './module_stats';
 import footerTemplate from './footer';
@@ -31,26 +30,11 @@ const moduleGame2 = getElementFromTemplate(`${headerTemplate(initialState)}
   </div>
 ${footerTemplate}`);
 
-const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
-const renderRandomGame = () => {
-  const gameModule = parseInt(getRandomArbitrary(1, 4), 10);
-  switch (gameModule) {
-    case 1:
-      renderBlock(moduleGame1);
-      break;
-    case 2:
-      renderBlock(moduleGame2);
-      break;
-    case 3:
-      renderBlock(moduleGame3);
-      break;
-  }
-};
 const form = moduleGame2.querySelector(`.game__content`);
 form.addEventListener(`change`, () => {
   currentState.level++;
   if (currentState.level < 10) {
-    renderRandomGame();
+    getRandomGameModule();
   } else {
     renderBlock(moduleStats);
   }

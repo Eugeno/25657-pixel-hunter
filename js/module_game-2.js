@@ -1,11 +1,13 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
+import moduleGame1 from './module_game-1';
 import moduleGame3 from './module_game-3';
 import moduleIntro from './module_intro';
+import moduleStats from './module_stats';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
-import initialState from './data';
+import {initialState, currentState} from './data';
 
 const moduleGame2 = getElementFromTemplate(`${headerTemplate(initialState)}
   <div class="game">
@@ -29,9 +31,29 @@ const moduleGame2 = getElementFromTemplate(`${headerTemplate(initialState)}
   </div>
 ${footerTemplate}`);
 
-const inputs = [...moduleGame2.querySelectorAll(`.game__answer`)];
-inputs.forEach((input) => {
-  input.addEventListener(`click`, () => renderBlock(moduleGame3, `hasFooter`, `hasHeader`));
+const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
+const renderRandomGame = () => {
+  const gameModule = parseInt(getRandomArbitrary(1, 4), 10);
+  switch (gameModule) {
+    case 1:
+      renderBlock(moduleGame1);
+      break;
+    case 2:
+      renderBlock(moduleGame2);
+      break;
+    case 3:
+      renderBlock(moduleGame3);
+      break;
+  }
+};
+const form = moduleGame2.querySelector(`.game__content`);
+form.addEventListener(`change`, () => {
+  currentState.level++;
+  if (currentState.level < 10) {
+    renderRandomGame();
+  } else {
+    renderBlock(moduleStats);
+  }
 });
 moduleGame2.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
 

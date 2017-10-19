@@ -4,4 +4,11 @@ const initialState = {
   answers: new Array(10).fill(`unknown`)
 };
 
-export default initialState;
+let currentState = {
+  lives: 3,
+  time: 0,
+  answers: [],
+  level: 0
+};
+
+export {initialState, currentState};

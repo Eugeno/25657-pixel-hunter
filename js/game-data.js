@@ -22,4 +22,4 @@ const createTimer = (duration) => {
   };
 };
 
-export {QUESTIONS_LENGTH, Answer, countScores, createTimer};
+export {QUESTIONS_LENGTH, Answer, Reward, countScores, createTimer};

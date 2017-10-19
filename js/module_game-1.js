@@ -2,10 +2,12 @@ import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
 import moduleIntro from './module_intro';
 import moduleGame2 from './module_game-2';
+import moduleGame3 from './module_game-3';
+import moduleStats from './module_stats';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
-import initialState from './data';
+import {initialState, currentState} from './data';
 
 const moduleGame1 = getElementFromTemplate(`${headerTemplate(initialState)}
   <div class="game">
@@ -45,10 +47,31 @@ const countChecked = () => {
   return moduleGame1.querySelectorAll(`input[type="radio"]:checked`).length;
 };
 
+const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
+const renderRandomGame = () => {
+  const gameModule = parseInt(getRandomArbitrary(1, 4), 10);
+  switch (gameModule) {
+    case 1:
+      renderBlock(moduleGame1);
+      break;
+    case 2:
+      renderBlock(moduleGame2);
+      break;
+    case 3:
+      renderBlock(moduleGame3);
+      break;
+  }
+};
+
 const tasks = 2;
 form.addEventListener(`change`, () => {
   if (countChecked() === tasks) {
-    renderBlock(moduleGame2);
+    currentState.level++;
+    if (currentState.level < 10) {
+      renderRandomGame();
+    } else {
+      renderBlock(moduleStats);
+    }
   }
 });
 moduleGame1.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));

@@ -4,7 +4,8 @@ import moduleIntro from './module_intro';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
-import initialState from './data';
+import {initialState} from './data';
+import {countScores, Reward} from './game-data';
 
 const moduleStats = getElementFromTemplate(`${headerTemplate(initialState)}
   <div class="result">
@@ -15,28 +16,39 @@ const moduleStats = getElementFromTemplate(`${headerTemplate(initialState)}
         <td colspan="2">
           ${statsTemplate(initialState)}
         </td>
-        <td class="result__points">×&nbsp;100</td>
-        <td class="result__total">900</td>
+        <td class="result__points">×&nbsp;${Reward[`correct`]}</td>
+        <td class="result__total">${countScores([
+    `correct`,
+    `correct`,
+    `correct`,
+    `correct`,
+    `correct`,
+    `correct`,
+    `correct`,
+    `correct`,
+    `correct`,
+    `wrong`
+], 3)}</td>
       </tr>
       <tr>
         <td></td>
         <td class="result__extra">Бонус за скорость:</td>
         <td class="result__extra">1&nbsp;<span class="stats__result stats__result--fast"></span></td>
-        <td class="result__points">×&nbsp;50</td>
+        <td class="result__points">×&nbsp;${Reward[`fast`] - Reward[`correct`]}</td>
         <td class="result__total">50</td>
       </tr>
       <tr>
         <td></td>
         <td class="result__extra">Бонус за жизни:</td>
         <td class="result__extra">2&nbsp;<span class="stats__result stats__result--alive"></span></td>
-        <td class="result__points">×&nbsp;50</td>
+        <td class="result__points">×&nbsp;${Reward[`LIVE`]}</td>
         <td class="result__total">100</td>
       </tr>
       <tr>
         <td></td>
         <td class="result__extra">Штраф за медлительность:</td>
         <td class="result__extra">2&nbsp;<span class="stats__result stats__result--slow"></span></td>
-        <td class="result__points">×&nbsp;50</td>
+        <td class="result__points">×&nbsp;${Reward[`correct`] - Reward[`slow`]}</td>
         <td class="result__total">-100</td>
       </tr>
       <tr>
@@ -59,14 +71,14 @@ const moduleStats = getElementFromTemplate(`${headerTemplate(initialState)}
         <td colspan="2">
           ${statsTemplate(initialState)}
         </td>
-        <td class="result__points">×&nbsp;100</td>
+        <td class="result__points">×&nbsp;${Reward[`correct`]}</td>
         <td class="result__total">900</td>
       </tr>
       <tr>
         <td></td>
         <td class="result__extra">Бонус за жизни:</td>
         <td class="result__extra">2&nbsp;<span class="stats__result stats__result--alive"></span></td>
-        <td class="result__points">×&nbsp;50</td>
+        <td class="result__points">×&nbsp;${Reward[`LIVE`]}</td>
         <td class="result__total">100</td>
       </tr>
       <tr>

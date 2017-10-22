@@ -17,31 +17,31 @@ const moduleStats = () => getElementFromTemplate(`${headerTemplate(currentState)
           ${statsTemplate(currentState)}
         </td>
         <td class="result__points">×&nbsp;${Reward[`correct`]}</td>
-        <td class="result__total">${countScores(currentState.answers, currentState.lives)}</td>
+        <td class="result__total">${countScores(currentState)[`correct`]}</td>
       </tr>
       <tr>
         <td></td>
         <td class="result__extra">Бонус за скорость:</td>
-        <td class="result__extra">1&nbsp;<span class="stats__result stats__result--fast"></span></td>
-        <td class="result__points">×&nbsp;${Reward[`fast`] - Reward[`correct`]}</td>
-        <td class="result__total">50</td>
+        <td class="result__extra">${countScores(currentState)[`fast`] / Reward[`fast`]}&nbsp;<span class="stats__result stats__result--fast"></span></td>
+        <td class="result__points">×&nbsp;${Reward[`fast`]}</td>
+        <td class="result__total">${countScores(currentState)[`fast`]}</td>
       </tr>
       <tr>
         <td></td>
         <td class="result__extra">Бонус за жизни:</td>
-        <td class="result__extra">${currentState.lives}&nbsp;<span class="stats__result stats__result--alive"></span></td>
+        <td class="result__extra">${countScores(currentState)[`live`] / Reward[`LIVE`]}&nbsp;<span class="stats__result stats__result--alive"></span></td>
         <td class="result__points">×&nbsp;${Reward[`LIVE`]}</td>
-        <td class="result__total">100</td>
+        <td class="result__total">${countScores(currentState)[`live`]}</td>
       </tr>
       <tr>
         <td></td>
         <td class="result__extra">Штраф за медлительность:</td>
-        <td class="result__extra">2&nbsp;<span class="stats__result stats__result--slow"></span></td>
-        <td class="result__points">×&nbsp;${Reward[`correct`] - Reward[`slow`]}</td>
-        <td class="result__total">-100</td>
+        <td class="result__extra">${countScores(currentState)[`slow`] / Reward[`slow`]}&nbsp;<span class="stats__result stats__result--slow"></span></td>
+        <td class="result__points">×&nbsp;${Reward[`slow`]}</td>
+        <td class="result__total">${countScores(currentState)[`slow`]}</td>
       </tr>
       <tr>
-        <td colspan="5" class="result__total result__total--final">950</td>
+        <td colspan="5" class="result__total result__total--final">${countScores(currentState)[`correct`] + countScores(currentState)[`fast`] + countScores(currentState)[`live`] + countScores(currentState)[`slow`]}</td>
       </tr>
     </table>
     <table class="result__table">

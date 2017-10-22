@@ -59,9 +59,11 @@ const getGame1 = () => {
       gameOptions.forEach((t) => {
         if (t.querySelector(`img`).dataset.type !== t.querySelector(`input[type="radio"]:checked`).value) {
           answer = `wrong`;
-          currentState.lives--;
         }
       });
+      if (answer === `wrong`) {
+        currentState.lives--;
+      }
       currentState.answers[currentState.level - 1] = answer;
       if (currentState.level < 10 && currentState.lives > 0) {
         currentState.level++;

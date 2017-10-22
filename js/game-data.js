@@ -3,18 +3,18 @@ const Answer = {
   CORRECT: `correct`,
   FAST: `fast`,
   SLOW: `slow`,
-  WRONG: `wrong`,
-  UNKNOWN: `unknown`
+  WRONG: `wrong`
 };
 const Reward = {
   [Answer.CORRECT]: 100,
   [Answer.FAST]: 150,
   [Answer.SLOW]: 50,
   [Answer.WRONG]: 0,
-  [Answer.UNKNOWN]: 0,
   LIVE: 50
 };
-const countScores = (answers, lives) => answers.length === QUESTIONS_LENGTH ? answers.reduce((sum, current) => sum + Reward[current], lives * Reward.LIVE) : -1;
+const countScores = (answers, lives) => {
+  return answers.length === QUESTIONS_LENGTH ? answers.reduce((sum, current) => sum + Reward[current], lives * Reward.LIVE) : -1;
+};
 const createTimer = (duration) => {
   return {
     value: duration,

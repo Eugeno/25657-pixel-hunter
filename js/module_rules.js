@@ -8,7 +8,7 @@ import footerTemplate from './footer';
 import headerTemplate from './header';
 import {initialState, currentState} from './data';
 
-const moduleRules = getElementFromTemplate(`${headerTemplate(initialState)}
+const moduleRules = getElementFromTemplate(`${headerTemplate(currentState)}
   <div class="rules">
     <h1 class="rules__title">Правила</h1>
     <p class="rules__description">Угадай 10 раз для каждого изображения фото <img

@@ -6,9 +6,10 @@ import moduleStats from './module_stats';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
-import {initialState, currentState} from './data';
+import getRandomImage from './get-random-image';
+import {currentState} from './data';
 
-const moduleGame1 = getElementFromTemplate(`${headerTemplate(initialState)}
+const moduleGame1 = getElementFromTemplate(`${headerTemplate(currentState)}
   <div class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
     <form class="game__content">
@@ -36,7 +37,7 @@ const moduleGame1 = getElementFromTemplate(`${headerTemplate(initialState)}
       </div>
     </form>
     <div class="stats">
-      ${statsTemplate(initialState)}
+      ${statsTemplate(currentState)}
     </div>
   </div>
 ${footerTemplate}`);
@@ -46,7 +47,15 @@ const countChecked = () => {
   return moduleGame1.querySelectorAll(`input[type="radio"]:checked`).length;
 };
 
-const tasks = 2;
+const gameOptions = [...moduleGame1.querySelectorAll(`.game__option`)];
+gameOptions.forEach((t) => {
+  const imgData = getRandomImage();
+  const img = t.querySelector(`img`);
+  img.src = imgData.imageUrl;
+  img.dataset.type = imgData.type;
+});
+
+const tasks = gameOptions.length;
 form.addEventListener(`change`, () => {
   if (countChecked() === tasks) {
     currentState.level++;

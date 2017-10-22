@@ -8,7 +8,7 @@ import headerTemplate from './header';
 import statsTemplate from './stats';
 import {initialState, currentState} from './data';
 
-const moduleGame3 = getElementFromTemplate(`${headerTemplate(initialState)}
+const moduleGame3 = getElementFromTemplate(`${headerTemplate(currentState)}
   <div class="game">
     <p class="game__task">Найдите рисунок среди изображений</p>
     <form class="game__content game__content--triple">
@@ -23,7 +23,7 @@ const moduleGame3 = getElementFromTemplate(`${headerTemplate(initialState)}
       </div>
     </form>
     <div class="stats">
-      ${statsTemplate(initialState)}
+      ${statsTemplate(currentState)}
     </div>
   </div>
 ${footerTemplate}`);

@@ -4,17 +4,17 @@ import moduleIntro from './module_intro';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
-import {initialState} from './data';
+import {initialState, currentState} from './data';
 import {countScores, Reward} from './game-data';
 
-const moduleStats = getElementFromTemplate(`${headerTemplate(initialState)}
+const moduleStats = getElementFromTemplate(`${headerTemplate(currentState)}
   <div class="result">
     <h1>Победа!</h1>
     <table class="result__table">
       <tr>
         <td class="result__number">1.</td>
         <td colspan="2">
-          ${statsTemplate(initialState)}
+          ${statsTemplate(currentState)}
         </td>
         <td class="result__points">×&nbsp;${Reward[`correct`]}</td>
         <td class="result__total">${countScores([

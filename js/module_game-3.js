@@ -9,7 +9,7 @@ import statsTemplate from './stats';
 import getRandomImage from './get-random-image';
 import {currentState} from './data';
 
-const moduleGame3 = getElementFromTemplate(`${headerTemplate(currentState)}
+const moduleGame3 = () => getElementFromTemplate(`${headerTemplate(currentState)}
   <div class="game">
     <p class="game__task">Найдите рисунок среди изображений</p>
     <form class="game__content game__content--triple">
@@ -29,33 +29,34 @@ const moduleGame3 = getElementFromTemplate(`${headerTemplate(currentState)}
   </div>
 ${footerTemplate}`);
 
-const options = [...moduleGame3.querySelectorAll(`.game__option`)];
-options.forEach((option) => {
-  option.addEventListener(`click`, () => {
-    let answer = `correct`;
-    if (option.querySelector(`img`).dataset.type !== `paint`) {
-      answer = `wrong`;
-      currentState.lives--;
-    }
-    currentState.answers[currentState.level - 1] = answer;
-    currentState.level++;
-    if (currentState.level < 10 && currentState.lives > 0) {
-      getRandomGameModule();
-    } else {
-      renderBlock(moduleStats);
-    }
-  });
-});
-moduleGame3.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
-
 const getGame3 = () => {
+  renderBlock(moduleGame3());
+
+  const options = [...document.querySelectorAll(`.game__option`)];
+  options.forEach((option) => {
+    option.addEventListener(`click`, () => {
+      let answer = `correct`;
+      if (option.querySelector(`img`).dataset.type !== `paint`) {
+        answer = `wrong`;
+        currentState.lives--;
+      }
+      currentState.answers[currentState.level - 1] = answer;
+      currentState.level++;
+      if (currentState.level < 10 && currentState.lives > 0) {
+        getRandomGameModule();
+      } else {
+        renderBlock(moduleStats);
+      }
+    });
+  });
+  document.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
+
   options.forEach((t) => {
     const imgData = getRandomImage();
     const img = t.querySelector(`img`);
     img.src = imgData.imageUrl;
     img.dataset.type = imgData.type;
   });
-  renderBlock(moduleGame3);
 };
 
 export default getGame3;

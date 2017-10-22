@@ -9,7 +9,7 @@ import statsTemplate from './stats';
 import getRandomImage from './get-random-image';
 import {currentState} from './data';
 
-const moduleGame2 = getElementFromTemplate(`${headerTemplate(currentState)}
+const moduleGame2 = () => getElementFromTemplate(`${headerTemplate(currentState)}
   <div class="game">
     <p class="game__task">Угадай, фото или рисунок?</p>
     <form class="game__content game__content--wide">
@@ -31,38 +31,36 @@ const moduleGame2 = getElementFromTemplate(`${headerTemplate(currentState)}
   </div>
 ${footerTemplate}`);
 
-const form = moduleGame2.querySelector(`.game__content`);
-const gameOptions = [...form.querySelectorAll(`.game__option`)];
+const getGame2 = () => {
+  renderBlock(moduleGame2());
 
-form.addEventListener(`change`, () => {
-  let answer = `correct`;
-  gameOptions.forEach((t) => {
-    if (t.querySelector(`img`).dataset.type !== t.querySelector(`input[type="radio"]:checked`).value) {
-      answer = `wrong`;
-      currentState.lives--;
+  const form = document.querySelector(`.game__content`);
+  const gameOptions = [...form.querySelectorAll(`.game__option`)];
+
+  form.addEventListener(`change`, () => {
+    let answer = `correct`;
+    gameOptions.forEach((t) => {
+      if (t.querySelector(`img`).dataset.type !== t.querySelector(`input[type="radio"]:checked`).value) {
+        answer = `wrong`;
+        currentState.lives--;
+      }
+    });
+    currentState.answers[currentState.level - 1] = answer;
+    currentState.level++;
+    if (currentState.level < 10 && currentState.lives > 0) {
+      getRandomGameModule();
+    } else {
+      renderBlock(moduleStats);
     }
   });
-  currentState.answers[currentState.level - 1] = answer;
-  currentState.level++;
-  if (currentState.level < 10 && currentState.lives > 0) {
-    getRandomGameModule();
-  } else {
-    renderBlock(moduleStats);
-  }
-});
-moduleGame2.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
+  document.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
 
-const getGame2 = () => {
-  [...moduleGame2.querySelectorAll(`input[type="radio"]`)].forEach((t) => {
-    t.checked = false;
-  });
   gameOptions.forEach((t) => {
     const imgData = getRandomImage();
     const img = t.querySelector(`img`);
     img.src = imgData.imageUrl;
     img.dataset.type = imgData.type;
   });
-  renderBlock(moduleGame2);
 };
 
 export default getGame2;

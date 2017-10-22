@@ -9,7 +9,7 @@ import statsTemplate from './stats';
 import getRandomImage from './get-random-image';
 import {currentState} from './data';
 
-const moduleGame1 = getElementFromTemplate(`${headerTemplate(currentState)}
+const moduleGame1 = () => getElementFromTemplate(`${headerTemplate(currentState)}
   <div class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
     <form class="game__content">
@@ -42,45 +42,43 @@ const moduleGame1 = getElementFromTemplate(`${headerTemplate(currentState)}
   </div>
 ${footerTemplate}`);
 
-const form = moduleGame1.querySelector(`.game__content`);
-const countChecked = () => {
-  return form.querySelectorAll(`input[type="radio"]:checked`).length;
-};
-
-const gameOptions = [...form.querySelectorAll(`.game__option`)];
-
-const tasks = gameOptions.length;
-form.addEventListener(`change`, () => {
-  if (countChecked() === tasks) {
-    let answer = `correct`;
-    gameOptions.forEach((t) => {
-      if (t.querySelector(`img`).dataset.type !== t.querySelector(`input[type="radio"]:checked`).value) {
-        answer = `wrong`;
-        currentState.lives--;
-      }
-    });
-    currentState.answers[currentState.level - 1] = answer;
-    currentState.level++;
-    if (currentState.level < 10 && currentState.lives > 0) {
-      getRandomGameModule();
-    } else {
-      renderBlock(moduleStats);
-    }
-  }
-});
-moduleGame1.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
-
 const getGame1 = () => {
-  [...moduleGame1.querySelectorAll(`input[type="radio"]`)].forEach((t) => {
-    t.checked = false;
+  renderBlock(moduleGame1());
+
+  const form = document.querySelector(`.game__content`);
+  const countChecked = () => {
+    return form.querySelectorAll(`input[type="radio"]:checked`).length;
+  };
+
+  const gameOptions = [...form.querySelectorAll(`.game__option`)];
+
+  const tasks = gameOptions.length;
+  form.addEventListener(`change`, () => {
+    if (countChecked() === tasks) {
+      let answer = `correct`;
+      gameOptions.forEach((t) => {
+        if (t.querySelector(`img`).dataset.type !== t.querySelector(`input[type="radio"]:checked`).value) {
+          answer = `wrong`;
+          currentState.lives--;
+        }
+      });
+      currentState.answers[currentState.level - 1] = answer;
+      currentState.level++;
+      if (currentState.level < 10 && currentState.lives > 0) {
+        getRandomGameModule();
+      } else {
+        renderBlock(moduleStats);
+      }
+    }
   });
+  document.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
+
   gameOptions.forEach((t) => {
     const imgData = getRandomImage();
     const img = t.querySelector(`img`);
     img.src = imgData.imageUrl;
     img.dataset.type = imgData.type;
   });
-  renderBlock(moduleGame1);
 };
 
 export default getGame1;

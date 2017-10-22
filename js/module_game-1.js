@@ -2,7 +2,7 @@ import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
 import moduleIntro from './module_intro';
 import getRandomGameModule from './get-random-game-module';
-import moduleStats from './module_stats';
+import getStats from './module_stats';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
@@ -63,11 +63,11 @@ const getGame1 = () => {
         }
       });
       currentState.answers[currentState.level - 1] = answer;
-      currentState.level++;
       if (currentState.level < 10 && currentState.lives > 0) {
+        currentState.level++;
         getRandomGameModule();
       } else {
-        renderBlock(moduleStats);
+        getStats();
       }
     }
   });

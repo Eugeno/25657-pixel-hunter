@@ -4,9 +4,9 @@ import moduleIntro from './module_intro';
 import getRandomGameModule from './get-random-game-module';
 import footerTemplate from './footer';
 import headerTemplate from './header';
-import {currentState} from './data';
+import {initialState, currentState} from './data';
 
-const moduleRules = getElementFromTemplate(`${headerTemplate(currentState)}
+const moduleRules = getElementFromTemplate(`${headerTemplate(initialState)}
   <div class="rules">
     <h1 class="rules__title">Правила</h1>
     <p class="rules__description">Угадай 10 раз для каждого изображения фото <img

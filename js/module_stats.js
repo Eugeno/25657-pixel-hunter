@@ -7,7 +7,7 @@ import statsTemplate from './stats';
 import {initialState, currentState} from './data';
 import {countScores, Reward} from './game-data';
 
-const moduleStats = getElementFromTemplate(`${headerTemplate(currentState)}
+const moduleStats = () => getElementFromTemplate(`${headerTemplate(currentState)}
   <div class="result">
     <h1>Победа!</h1>
     <table class="result__table">
@@ -76,6 +76,10 @@ const moduleStats = getElementFromTemplate(`${headerTemplate(currentState)}
     </table>
   </div>
 ${footerTemplate}`);
-moduleStats.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
 
-export default moduleStats;
+const getStats = () => {
+  renderBlock(moduleStats());
+  document.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
+};
+
+export default getStats;

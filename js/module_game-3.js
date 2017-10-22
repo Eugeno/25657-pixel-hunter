@@ -6,7 +6,8 @@ import moduleIntro from './module_intro';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
-import {initialState, currentState} from './data';
+import getRandomImage from './get-random-image';
+import {currentState} from './data';
 
 const moduleGame3 = getElementFromTemplate(`${headerTemplate(currentState)}
   <div class="game">
@@ -41,4 +42,14 @@ options.forEach((option) => {
 });
 moduleGame3.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
 
-export default moduleGame3;
+const getGame3 = () => {
+  options.forEach((t) => {
+    const imgData = getRandomImage();
+    const img = t.querySelector(`img`);
+    img.src = imgData.imageUrl;
+    img.dataset.type = imgData.type;
+  });
+  renderBlock(moduleGame3);
+};
+
+export default getGame3;

@@ -32,8 +32,14 @@ ${footerTemplate}`);
 const options = [...moduleGame3.querySelectorAll(`.game__option`)];
 options.forEach((option) => {
   option.addEventListener(`click`, () => {
+    let answer = `correct`;
+    if (option.querySelector(`img`).dataset.type !== `paint`) {
+      answer = `wrong`;
+      currentState.lives--;
+    }
+    currentState.answers[currentState.level - 1] = answer;
     currentState.level++;
-    if (currentState.level < 10) {
+    if (currentState.level < 10 && currentState.lives > 0) {
       getRandomGameModule();
     } else {
       renderBlock(moduleStats);

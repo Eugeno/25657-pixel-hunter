@@ -17,18 +17,7 @@ const moduleStats = getElementFromTemplate(`${headerTemplate(currentState)}
           ${statsTemplate(currentState)}
         </td>
         <td class="result__points">×&nbsp;${Reward[`correct`]}</td>
-        <td class="result__total">${countScores([
-    `correct`,
-    `correct`,
-    `correct`,
-    `correct`,
-    `correct`,
-    `correct`,
-    `correct`,
-    `correct`,
-    `correct`,
-    `wrong`
-], 3)}</td>
+        <td class="result__total">${countScores(currentState.answers, currentState.lives)}</td>
       </tr>
       <tr>
         <td></td>
@@ -40,7 +29,7 @@ const moduleStats = getElementFromTemplate(`${headerTemplate(currentState)}
       <tr>
         <td></td>
         <td class="result__extra">Бонус за жизни:</td>
-        <td class="result__extra">2&nbsp;<span class="stats__result stats__result--alive"></span></td>
+        <td class="result__extra">${currentState.lives}&nbsp;<span class="stats__result stats__result--alive"></span></td>
         <td class="result__points">×&nbsp;${Reward[`LIVE`]}</td>
         <td class="result__total">100</td>
       </tr>

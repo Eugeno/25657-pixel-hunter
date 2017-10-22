@@ -44,7 +44,7 @@ ${footerTemplate}`);
 
 const form = moduleGame1.querySelector(`.game__content`);
 const countChecked = () => {
-  return moduleGame1.querySelectorAll(`input[type="radio"]:checked`).length;
+  return form.querySelectorAll(`input[type="radio"]:checked`).length;
 };
 
 const gameOptions = [...form.querySelectorAll(`.game__option`)];
@@ -52,8 +52,16 @@ const gameOptions = [...form.querySelectorAll(`.game__option`)];
 const tasks = gameOptions.length;
 form.addEventListener(`change`, () => {
   if (countChecked() === tasks) {
+    let answer = `correct`;
+    gameOptions.forEach((t) => {
+      if (t.querySelector(`img`).dataset.type !== t.querySelector(`input[type="radio"]:checked`).value) {
+        answer = `wrong`;
+        currentState.lives--;
+      }
+    });
+    currentState.answers[currentState.level - 1] = answer;
     currentState.level++;
-    if (currentState.level < 10) {
+    if (currentState.level < 10 && currentState.lives > 0) {
       getRandomGameModule();
     } else {
       renderBlock(moduleStats);

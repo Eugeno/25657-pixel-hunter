@@ -35,8 +35,16 @@ const form = moduleGame2.querySelector(`.game__content`);
 const gameOptions = [...form.querySelectorAll(`.game__option`)];
 
 form.addEventListener(`change`, () => {
+  let answer = `correct`;
+  gameOptions.forEach((t) => {
+    if (t.querySelector(`img`).dataset.type !== t.querySelector(`input[type="radio"]:checked`).value) {
+      answer = `wrong`;
+      currentState.lives--;
+    }
+  });
+  currentState.answers[currentState.level - 1] = answer;
   currentState.level++;
-  if (currentState.level < 10) {
+  if (currentState.level < 10 && currentState.lives > 0) {
     getRandomGameModule();
   } else {
     renderBlock(moduleStats);

@@ -75,12 +75,17 @@ const getGame1 = () => {
   });
   document.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
 
-  gameOptions.forEach((t) => {
-    const imgData = getRandomImage();
-    const img = t.querySelector(`img`);
-    img.src = imgData.imageUrl;
-    img.dataset.type = imgData.type;
-  });
+  const img1 = gameOptions[0].querySelector(`img`);
+  const img2 = gameOptions[1].querySelector(`img`);
+  const imgData1 = getRandomImage();
+  let imgData2 = getRandomImage();
+  img1.src = imgData1.imageUrl;
+  img1.dataset.type = imgData1.type;
+  while (imgData1.imageUrl === imgData2.imageUrl) {
+    imgData2 = getRandomImage();
+  }
+  img2.src = imgData2.imageUrl;
+  img2.dataset.type = imgData2.type;
 };
 
 export default getGame1;

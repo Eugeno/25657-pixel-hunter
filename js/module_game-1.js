@@ -68,7 +68,6 @@ const getGame1 = () => {
   });
   gameOptions.forEach((t) => {
     const imgData = getRandomImage();
-    console.log(imgData);
     const img = t.querySelector(`img`);
     img.src = imgData.imageUrl;
     img.dataset.type = imgData.type;

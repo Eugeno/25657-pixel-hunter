@@ -6,7 +6,8 @@ import moduleStats from './module_stats';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
-import {initialState, currentState} from './data';
+import getRandomImage from './get-random-image';
+import {currentState} from './data';
 
 const moduleGame2 = getElementFromTemplate(`${headerTemplate(currentState)}
   <div class="game">
@@ -31,6 +32,8 @@ const moduleGame2 = getElementFromTemplate(`${headerTemplate(currentState)}
 ${footerTemplate}`);
 
 const form = moduleGame2.querySelector(`.game__content`);
+const gameOptions = [...form.querySelectorAll(`.game__option`)];
+
 form.addEventListener(`change`, () => {
   currentState.level++;
   if (currentState.level < 10) {
@@ -41,4 +44,17 @@ form.addEventListener(`change`, () => {
 });
 moduleGame2.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
 
-export default moduleGame2;
+const getGame2 = () => {
+  [...moduleGame2.querySelectorAll(`input[type="radio"]`)].forEach((t) => {
+    t.checked = false;
+  });
+  gameOptions.forEach((t) => {
+    const imgData = getRandomImage();
+    const img = t.querySelector(`img`);
+    img.src = imgData.imageUrl;
+    img.dataset.type = imgData.type;
+  });
+  renderBlock(moduleGame2);
+};
+
+export default getGame2;

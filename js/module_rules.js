@@ -1,9 +1,7 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
-import moduleGame1 from './module_game-1';
-import moduleGame2 from './module_game-2';
-import moduleGame3 from './module_game-3';
 import moduleIntro from './module_intro';
+import getRandomGameModule from './get-random-game-module';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import {initialState, currentState} from './data';
@@ -34,23 +32,8 @@ input.addEventListener(`input`, ({target}) => {
 });
 moduleRules.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
 
-const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
-const renderRandomGame = () => {
-  const gameModule = parseInt(getRandomArbitrary(1, 4), 10);
-  switch (gameModule) {
-    case 1:
-      renderBlock(moduleGame1);
-      break;
-    case 2:
-      renderBlock(moduleGame2);
-      break;
-    case 3:
-      renderBlock(moduleGame3);
-      break;
-  }
-};
 rulesBtn.addEventListener(`click`, () => {
-  renderRandomGame();
+  getRandomGameModule();
   currentState.level = 1;
 });
 

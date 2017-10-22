@@ -47,13 +47,7 @@ const countChecked = () => {
   return moduleGame1.querySelectorAll(`input[type="radio"]:checked`).length;
 };
 
-const gameOptions = [...moduleGame1.querySelectorAll(`.game__option`)];
-gameOptions.forEach((t) => {
-  const imgData = getRandomImage();
-  const img = t.querySelector(`img`);
-  img.src = imgData.imageUrl;
-  img.dataset.type = imgData.type;
-});
+const gameOptions = [...form.querySelectorAll(`.game__option`)];
 
 const tasks = gameOptions.length;
 form.addEventListener(`change`, () => {
@@ -68,4 +62,18 @@ form.addEventListener(`change`, () => {
 });
 moduleGame1.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
 
-export default moduleGame1;
+const getGame1 = () => {
+  [...moduleGame1.querySelectorAll(`input[type="radio"]`)].forEach((t) => {
+    t.checked = false;
+  });
+  gameOptions.forEach((t) => {
+    const imgData = getRandomImage();
+    console.log(imgData);
+    const img = t.querySelector(`img`);
+    img.src = imgData.imageUrl;
+    img.dataset.type = imgData.type;
+  });
+  renderBlock(moduleGame1);
+};
+
+export default getGame1;

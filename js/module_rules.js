@@ -1,7 +1,7 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
 import moduleIntro from './module_intro';
-import getRandomGameModule from './get-random-game-module';
+import getRandomGameModule from './render-random-game';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import {initialState, currentState} from './data';

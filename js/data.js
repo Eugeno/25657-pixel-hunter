@@ -5,12 +5,7 @@ const initialState = {
   level: 0
 };
 
-let currentState = {
-  lives: initialState.lives,
-  time: initialState.time,
-  answers: initialState.answers,
-  level: initialState.level
-};
+const currentState = Object.assign({}, initialState);
 
 const images = {
   paint: [

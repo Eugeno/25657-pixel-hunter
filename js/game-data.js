@@ -15,10 +15,10 @@ const countScores = (state) => {
   const reward = {};
   const answers = state.answers;
   const lives = state.lives;
-  reward.correct = answers.filter((t) => t !== `wrong`).length * Reward[`correct`];
-  reward.fast = answers.filter((t) => t === `fast`).length * Reward[`fast`];
-  reward.slow = answers.filter((t) => t === `slow`).length * Reward[`slow`];
-  reward.live = lives * Reward[`LIVE`];
+  reward.correct = answers.filter((t) => t !== Answer.WRONG).length * Reward[Answer.CORRECT];
+  reward.fast = answers.filter((t) => t === Answer.FAST).length * Reward[Answer.FAST];
+  reward.slow = answers.filter((t) => t === Answer.SLOW).length * Reward[Answer.SLOW];
+  reward.live = lives * Reward.LIVE;
   return reward;
 };
 const createTimer = (duration) => {

@@ -1,6 +1,6 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
-import getRandomGameModule from './get-random-game-module';
+import getRandomGameModule from './render-random-game';
 import getStats from './module_stats';
 import moduleIntro from './module_intro';
 import footerTemplate from './footer';
@@ -42,7 +42,7 @@ const getGame3 = () => {
         answer = `wrong`;
         currentState.lives--;
       }
-      currentState.answers[currentState.level - 1] = answer;
+      currentState.answers.push(answer);
       if (currentState.level < 10 && currentState.lives > 0) {
         currentState.level++;
         getRandomGameModule();

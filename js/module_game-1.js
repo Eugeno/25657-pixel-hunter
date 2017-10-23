@@ -57,12 +57,8 @@ const getGame1 = () => {
   form.addEventListener(`change`, () => {
     if (countChecked() === tasks) {
       let answer = Answer.CORRECT;
-      gameOptions.forEach((t) => {
-        if (t.querySelector(`img`).dataset.type !== t.querySelector(`input[type="radio"]:checked`).value) {
-          answer = Answer.WRONG;
-        }
-      });
-      if (answer === Answer.WRONG) {
+      if (gameOptions.every((t) => t.querySelector(`img`).dataset.type !== t.querySelector(`input[type="radio"]:checked`).value)) {
+        answer = Answer.WRONG;
         currentState.lives--;
       }
       currentState.answers.push(answer);

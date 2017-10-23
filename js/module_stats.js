@@ -41,7 +41,7 @@ const moduleStats = () => getElementFromTemplate(`${headerTemplate(currentState)
         <td class="result__total">${countScores(currentState)[`slow`]}</td>
       </tr>
       <tr>
-        <td colspan="5" class="result__total result__total--final">${countScores(currentState)[`correct`] + countScores(currentState)[`fast`] + countScores(currentState)[`live`] + countScores(currentState)[`slow`]}</td>
+        <td colspan="5" class="result__total result__total--final">${Object.keys(countScores(currentState)).reduce((sum, key) => sum + parseInt(countScores(currentState)[key], 10), 0)}</td>
       </tr>
     </table>
     <table class="result__table">

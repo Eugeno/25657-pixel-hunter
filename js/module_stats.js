@@ -79,7 +79,13 @@ ${footerTemplate}`);
 
 const getStats = () => {
   renderBlock(moduleStats());
-  document.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
+  document.querySelector(`.back`).addEventListener(`click`, () => {
+    currentState.lives = initialState.lives;
+    currentState.time = initialState.time;
+    currentState.answers = [];
+    currentState.level = initialState.level;
+    renderBlock(moduleIntro);
+  });
 };
 
 export default getStats;

@@ -7,7 +7,7 @@ import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
 import getRandomImage from './get-random-image';
-import {currentState} from './data';
+import {initialState, currentState} from './data';
 
 const moduleGame3 = () => getElementFromTemplate(`${headerTemplate(currentState)}
   <div class="game">
@@ -51,7 +51,6 @@ const getGame3 = () => {
       }
     });
   });
-  document.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
 
   const img1 = options[0].querySelector(`img`);
   const img2 = options[1].querySelector(`img`);
@@ -77,6 +76,14 @@ const getGame3 = () => {
     imgX.src = imgDataX.imageUrl;
     imgX.dataset.type = imgDataX.type;
   }
+
+  document.querySelector(`.back`).addEventListener(`click`, () => {
+    currentState.lives = initialState.lives;
+    currentState.time = initialState.time;
+    currentState.answers = [];
+    currentState.level = initialState.level;
+    renderBlock(moduleIntro);
+  });
 };
 
 export default getGame3;

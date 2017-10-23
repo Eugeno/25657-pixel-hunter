@@ -1,14 +1,15 @@
 const initialState = {
   lives: 3,
   time: 0,
-  answers: []
+  answers: [],
+  level: 0
 };
 
 let currentState = {
   lives: initialState.lives,
   time: initialState.time,
   answers: initialState.answers,
-  level: 0
+  level: initialState.level
 };
 
 const images = {

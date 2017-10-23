@@ -2,6 +2,7 @@ import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
 import moduleIntro from './module_intro';
 import getRandomGameModule from './render-random-game';
+import {Answer} from './game-data';
 import getStats from './module_stats';
 import footerTemplate from './footer';
 import headerTemplate from './header';
@@ -55,13 +56,13 @@ const getGame1 = () => {
   const tasks = gameOptions.length;
   form.addEventListener(`change`, () => {
     if (countChecked() === tasks) {
-      let answer = `correct`;
+      let answer = Answer.CORRECT;
       gameOptions.forEach((t) => {
         if (t.querySelector(`img`).dataset.type !== t.querySelector(`input[type="radio"]:checked`).value) {
-          answer = `wrong`;
+          answer = Answer.WRONG;
         }
       });
-      if (answer === `wrong`) {
+      if (answer === Answer.WRONG) {
         currentState.lives--;
       }
       currentState.answers.push(answer);

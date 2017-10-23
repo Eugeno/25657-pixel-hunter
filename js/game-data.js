@@ -19,7 +19,7 @@ const countScores = (state) => {
   reward.fast = answers.filter((t) => t === Answer.FAST).length * Reward[Answer.FAST];
   reward.slow = answers.filter((t) => t === Answer.SLOW).length * Reward[Answer.SLOW];
   reward.live = lives * Reward.LIVE;
-  return reward;
+  return answers.length === 10 ? reward : -1;
 };
 const createTimer = (duration) => {
   return {

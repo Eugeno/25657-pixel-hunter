@@ -1,6 +1,5 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
-import moduleIntro from './module_intro';
 import getRandomGameModule from './render-random-game';
 import {Answer} from './game-data';
 import getStats from './module_stats';
@@ -8,7 +7,8 @@ import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
 import getRandomImage from './get-random-image';
-import {initialState, currentState} from './data';
+import {currentState} from './data';
+import startNewGame from './start-new-game';
 
 const moduleGame1 = () => getElementFromTemplate(`${headerTemplate(currentState)}
   <div class="game">
@@ -57,7 +57,7 @@ const getGame1 = () => {
   form.addEventListener(`change`, () => {
     if (countChecked() === tasks) {
       let answer = Answer.CORRECT;
-      if (gameOptions.every((t) => t.querySelector(`img`).dataset.type !== t.querySelector(`input[type="radio"]:checked`).value)) {
+      if (gameOptions.some((t) => t.querySelector(`img`).dataset.type !== t.querySelector(`input[type="radio"]:checked`).value)) {
         answer = Answer.WRONG;
         currentState.lives--;
       }
@@ -70,13 +70,7 @@ const getGame1 = () => {
       }
     }
   });
-  document.querySelector(`.back`).addEventListener(`click`, () => {
-    currentState.lives = initialState.lives;
-    currentState.time = initialState.time;
-    currentState.answers = [];
-    currentState.level = initialState.level;
-    renderBlock(moduleIntro);
-  });
+  document.querySelector(`.back`).addEventListener(`click`, () => startNewGame);
 
   const img1 = gameOptions[0].querySelector(`img`);
   const img2 = gameOptions[1].querySelector(`img`);

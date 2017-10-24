@@ -2,12 +2,12 @@ import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
 import getRandomGameModule from './render-random-game';
 import getStats from './module_stats';
-import moduleIntro from './module_intro';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
 import getRandomImage from './get-random-image';
-import {initialState, currentState} from './data';
+import {currentState} from './data';
+import startNewGame from './start-new-game';
 
 const moduleGame3 = () => getElementFromTemplate(`${headerTemplate(currentState)}
   <div class="game">
@@ -77,13 +77,7 @@ const getGame3 = () => {
     imgX.dataset.type = imgDataX.type;
   }
 
-  document.querySelector(`.back`).addEventListener(`click`, () => {
-    currentState.lives = initialState.lives;
-    currentState.time = initialState.time;
-    currentState.answers = [];
-    currentState.level = initialState.level;
-    renderBlock(moduleIntro);
-  });
+  document.querySelector(`.back`).addEventListener(`click`, () => startNewGame);
 };
 
 export default getGame3;

@@ -11,6 +11,8 @@ const moduleIntro = getElementFromTemplate(`<div id="main" class="central__conte
   </div>
 ${footerTemplate}`);
 
+const getIntroBlock = renderBlock(moduleIntro);
+
 moduleIntro.querySelector(`.intro__asterisk`).addEventListener(`click`, () => renderBlock(moduleGreeting));
 
-export default moduleIntro;
+export default getIntroBlock;

@@ -1,6 +1,9 @@
-import renderBlock from './render-block';
-import moduleIntro from './module_intro';
+import getIntroBlock from './get-intro-block';
+import {generateQuestions} from './data/game-data';
 
-const ready = () => renderBlock(moduleIntro);
+const ready = () => {
+  generateQuestions();
+  getIntroBlock();
+};
 
 document.addEventListener(`DOMContentLoaded`, ready);

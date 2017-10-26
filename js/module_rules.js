@@ -1,6 +1,5 @@
 import getElementFromTemplate from './get-element';
-import renderBlock from './render-block';
-import moduleIntro from './module_intro';
+import getIntroBlock from './get-intro-block';
 import getRandomGameModule from './render-random-game';
 import footerTemplate from './footer';
 import headerTemplate from './header';
@@ -30,7 +29,7 @@ const rulesBtn = moduleRules.querySelector(`.rules__button`);
 input.addEventListener(`input`, ({target}) => {
   rulesBtn.disabled = !target.value.trim();
 });
-moduleRules.querySelector(`.back`).addEventListener(`click`, () => renderBlock(moduleIntro));
+moduleRules.querySelector(`.back`).addEventListener(`click`, () => getIntroBlock());
 
 rulesBtn.addEventListener(`click`, () => {
   getRandomGameModule();

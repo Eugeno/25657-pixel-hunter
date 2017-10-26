@@ -1,5 +1,4 @@
-import renderBlock from './render-block';
-import moduleIntro from './module_intro';
+import getIntroBlock from './get-intro-block';
 import {initialState, currentState} from './data/game-data';
 
 const startNewGame = () => {
@@ -7,7 +6,7 @@ const startNewGame = () => {
   currentState.time = initialState.time;
   currentState.answers = [];
   currentState.level = initialState.level;
-  renderBlock(moduleIntro);
+  getIntroBlock();
 };
 
 export default startNewGame;

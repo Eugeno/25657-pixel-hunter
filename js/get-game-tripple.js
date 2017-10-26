@@ -6,7 +6,7 @@ import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
 import getRandomImage from './get-random-image';
-import {currentState} from './data';
+import {currentState} from './data/game-data';
 import startNewGame from './start-new-game';
 
 const moduleGame3 = () => getElementFromTemplate(`${headerTemplate(currentState)}

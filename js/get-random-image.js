@@ -1,4 +1,4 @@
-import {images} from './data';
+import {images} from './data/game-data';
 
 const getRandomNumber = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
 const types = Object.keys(images);

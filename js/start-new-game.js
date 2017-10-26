@@ -1,6 +1,6 @@
 import renderBlock from './render-block';
 import moduleIntro from './module_intro';
-import {initialState, currentState} from './data';
+import {initialState, currentState} from './data/game-data';
 
 const startNewGame = () => {
   currentState.lives = initialState.lives;

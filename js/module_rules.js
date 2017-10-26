@@ -4,7 +4,7 @@ import moduleIntro from './module_intro';
 import getRandomGameModule from './render-random-game';
 import footerTemplate from './footer';
 import headerTemplate from './header';
-import {initialState, currentState} from './data';
+import {initialState, currentState} from './data/game-data';
 
 const moduleRules = getElementFromTemplate(`${headerTemplate(initialState)}
   <div class="rules">

@@ -1,5 +1,5 @@
 import assert from 'assert';
-import {QUESTIONS_LENGTH, Answer, countScores, createTimer} from '../game-data';
+import {QUESTIONS_LENGTH, Answer, countScores, createTimer} from './game-data';
 
 describe(`Array`, () => {
   describe(`#indexOf()`, () => {

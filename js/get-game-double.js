@@ -1,13 +1,12 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
 import getRandomGameModule from './render-random-game';
-import {Answer} from './game-data';
+import {Answer, currentState} from './data/game-data';
 import getStats from './module_stats';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
 import getRandomImage from './get-random-image';
-import {currentState} from './data';
 import startNewGame from './start-new-game';
 
 const moduleGame1 = () => getElementFromTemplate(`${headerTemplate(currentState)}

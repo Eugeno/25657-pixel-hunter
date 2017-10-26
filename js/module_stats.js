@@ -3,8 +3,7 @@ import renderBlock from './render-block';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
-import {initialState, currentState} from './data';
-import {countScores, Reward} from './game-data';
+import {countScores, Reward, initialState, currentState} from './data/game-data';
 import startNewGame from './start-new-game';
 
 const getStats = () => {

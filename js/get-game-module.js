@@ -10,7 +10,7 @@ const getGameModule = (state) => {
       getGameSingle(state);
       break;
     case `double`:
-      getGameDouble();
+      getGameDouble(state);
       break;
     case `triple`:
       getGameTriple();

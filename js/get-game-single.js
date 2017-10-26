@@ -4,7 +4,7 @@ import getStats from './module_stats';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
-import {QUESTIONS_LENGTH} from './data/game-data';
+import {Answer, QUESTIONS_LENGTH} from './data/game-data';
 import questions from './main';
 import startNewGame from './start-new-game';
 import getGameModule from './get-game-module';
@@ -38,9 +38,9 @@ const getGameSingle = (state) => {
   const gameOptions = [...form.querySelectorAll(`.game__option`)];
 
   form.addEventListener(`change`, () => {
-    let answer = `correct`;
+    let answer = Answer.CORRECT;
     if (questions[state.level].data[0].type !== gameOptions[0].querySelector(`input[type="radio"]:checked`).value) {
-      answer = `wrong`;
+      answer = Answer.WRONG;
       newState.lives--;
     }
     newState.answers.push(answer);

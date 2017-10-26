@@ -1,49 +1,47 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
-import getRandomGameModule from './render-random-game';
-import {Answer, currentState} from './data/game-data';
+import {Answer, QUESTIONS_LENGTH} from './data/game-data';
 import getStats from './module_stats';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
-import getRandomImage from './get-random-image';
+import questions from './main';
 import startNewGame from './start-new-game';
+import getGameModule from './get-game-module';
 
-const moduleGame1 = () => getElementFromTemplate(`${headerTemplate(currentState)}
+const gameOptionsTemplate = (state) => {
+  let options = ``;
+  for (let i = 0; i < 2; i++) {
+    options += `<div class="game__option">
+        <img src="${questions[state.level].data[i].src}" alt="Option ${i + 1}" width="468" height="458">
+        <label class="game__answer game__answer--photo">
+          <input name="question${i + 1}" type="radio" value="photo">
+          <span>Фото</span>
+        </label>
+        <label class="game__answer game__answer--paint">
+          <input name="question${i + 1}" type="radio" value="paint">
+          <span>Рисунок</span>
+        </label>
+      </div>`;
+  }
+  return options;
+};
+
+const moduleGameDouble = (state) => getElementFromTemplate(`${headerTemplate(state)}
   <div class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
-    <form class="game__content">
-      <div class="game__option">
-        <img src="http://placehold.it/468x458" alt="Option 1" width="468" height="458">
-        <label class="game__answer game__answer--photo">
-          <input name="question1" type="radio" value="photo">
-          <span>Фото</span>
-        </label>
-        <label class="game__answer game__answer--paint">
-          <input name="question1" type="radio" value="paint">
-          <span>Рисунок</span>
-        </label>
-      </div>
-      <div class="game__option">
-        <img src="http://placehold.it/468x458" alt="Option 2" width="468" height="458">
-        <label class="game__answer game__answer--photo">
-          <input name="question2" type="radio" value="photo">
-          <span>Фото</span>
-        </label>
-        <label class="game__answer game__answer--paint">
-          <input name="question2" type="radio" value="paint">
-          <span>Рисунок</span>
-        </label>
-      </div>
+    <form class="game__content">  
+      ${gameOptionsTemplate(state)}
     </form>
     <div class="stats">
-      ${statsTemplate(currentState)}
+      ${statsTemplate(state)}
     </div>
   </div>
 ${footerTemplate}`);
 
-const getGame1 = () => {
-  renderBlock(moduleGame1());
+const getGameDouble = (state) => {
+  renderBlock(moduleGameDouble(state));
+  const newState = Object.assign(state);
 
   const form = document.querySelector(`.game__content`);
   const countChecked = () => {
@@ -51,37 +49,24 @@ const getGame1 = () => {
   };
 
   const gameOptions = [...form.querySelectorAll(`.game__option`)];
-
   const tasks = gameOptions.length;
   form.addEventListener(`change`, () => {
     if (countChecked() === tasks) {
       let answer = Answer.CORRECT;
-      if (gameOptions.some((t) => t.querySelector(`img`).dataset.type !== t.querySelector(`input[type="radio"]:checked`).value)) {
+      if (gameOptions.some((el, i) => questions[state.level].data[i].type !== el.querySelector(`input[type="radio"]:checked`).value)) {
         answer = Answer.WRONG;
-        currentState.lives--;
+        newState.lives--;
       }
-      currentState.answers.push(answer);
-      if (currentState.level < 10 && currentState.lives > 0) {
-        currentState.level++;
-        getRandomGameModule();
+      newState.answers.push(answer);
+      if (newState.level < QUESTIONS_LENGTH && newState.lives > 0) {
+        newState.level++;
+        getGameModule(newState);
       } else {
         getStats();
       }
     }
   });
   document.querySelector(`.back`).addEventListener(`click`, () => startNewGame);
-
-  const img1 = gameOptions[0].querySelector(`img`);
-  const img2 = gameOptions[1].querySelector(`img`);
-  const imgData1 = getRandomImage();
-  let imgData2 = getRandomImage();
-  img1.src = imgData1.imageUrl;
-  img1.dataset.type = imgData1.type;
-  while (imgData1.imageUrl === imgData2.imageUrl) {
-    imgData2 = getRandomImage();
-  }
-  img2.src = imgData2.imageUrl;
-  img2.dataset.type = imgData2.type;
 };
 
-export default getGame1;
+export default getGameDouble;

@@ -1,6 +1,6 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
-import moduleGreeting from './module_greeting';
+import getGreetingBlock from './get-greeting-block';
 import footerTemplate from './footer';
 
 const moduleIntro = getElementFromTemplate(`<div id="main" class="central__content">
@@ -11,8 +11,8 @@ const moduleIntro = getElementFromTemplate(`<div id="main" class="central__conte
   </div>
 ${footerTemplate}`);
 
-const getIntroBlock = renderBlock(moduleIntro);
+moduleIntro.querySelector(`.intro__asterisk`).addEventListener(`click`, () => getGreetingBlock());
 
-moduleIntro.querySelector(`.intro__asterisk`).addEventListener(`click`, () => renderBlock(moduleGreeting));
+const getIntroBlock = () => renderBlock(moduleIntro);
 
 export default getIntroBlock;

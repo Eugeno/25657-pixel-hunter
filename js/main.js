@@ -1,9 +1,12 @@
 import getIntroBlock from './get-intro-block';
 import {generateQuestions} from './data/game-data';
 
+const questions = generateQuestions();
+
 const ready = () => {
-  generateQuestions();
   getIntroBlock();
 };
 
 document.addEventListener(`DOMContentLoaded`, ready);
+
+export default questions;

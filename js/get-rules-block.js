@@ -1,9 +1,10 @@
 import getElementFromTemplate from './get-element';
 import getIntroBlock from './get-intro-block';
-import getRandomGameModule from './render-random-game';
+import getGameModule from './get-game-module';
 import footerTemplate from './footer';
 import headerTemplate from './header';
-import {initialState, currentState} from './data/game-data';
+import {initialState} from './data/game-data';
+import renderBlock from './render-block';
 
 const moduleRules = getElementFromTemplate(`${headerTemplate(initialState)}
   <div class="rules">
@@ -32,8 +33,12 @@ input.addEventListener(`input`, ({target}) => {
 moduleRules.querySelector(`.back`).addEventListener(`click`, () => getIntroBlock());
 
 rulesBtn.addEventListener(`click`, () => {
-  getRandomGameModule();
-  currentState.level = 1;
+  console.log(`getGame!`);
+  getGameModule(initialState);
+  /*getRandomGameModule();
+  currentState.level = 1;*/
 });
 
-export default moduleRules;
+const getRulesBlock = () => renderBlock(moduleRules);
+
+export default getRulesBlock;

@@ -190,9 +190,9 @@ const generateQuestions = () => {
     return question;
   };
   for (let i = 0; i < QUESTIONS_LENGTH; i++) {
-    buildQuestion();
-    questions.push();
+    questions.push(buildQuestion());
   }
+  return questions;
 };
 
 export {QUESTIONS_LENGTH, Answer, Reward, countScores, createTimer, initialState, currentState, images, generateQuestions};

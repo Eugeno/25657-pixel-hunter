@@ -1,6 +1,6 @@
 import getGameDouble from './get-game-double';
 import getGameSingle from './get-game-single';
-import getGameTripple from './get-game-tripple';
+import getGameTripple from './get-game-triple';
 
 const getRandomNumber = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
 const renderRandomGame = () => {

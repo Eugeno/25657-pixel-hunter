@@ -1,6 +1,6 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
-import moduleRules from './module_rules';
+import getRulesBlock from './get-rules-block';
 import footerTemplate from './footer';
 
 const moduleGreeting = getElementFromTemplate(`<div class="greeting central--blur">
@@ -18,6 +18,8 @@ const moduleGreeting = getElementFromTemplate(`<div class="greeting central--blu
   </div>
 ${footerTemplate}`);
 
-moduleGreeting.querySelector(`.greeting__continue`).addEventListener(`click`, () => renderBlock(moduleRules));
+moduleGreeting.querySelector(`.greeting__continue`).addEventListener(`click`, () => getRulesBlock());
 
-export default moduleGreeting;
+const getGreetingBlock = () => renderBlock(moduleGreeting);
+
+export default getGreetingBlock;

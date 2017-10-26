@@ -31,7 +31,7 @@ ${footerTemplate}`);
 
 const getRandomNumber = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
 
-const getGame3 = () => {
+const getGameTriple = () => {
   renderBlock(moduleGame3());
 
   const options = [...document.querySelectorAll(`.game__option`)];
@@ -80,4 +80,4 @@ const getGame3 = () => {
   document.querySelector(`.back`).addEventListener(`click`, () => startNewGame);
 };
 
-export default getGame3;
+export default getGameTriple;

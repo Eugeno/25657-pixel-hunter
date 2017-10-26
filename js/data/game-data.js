@@ -43,19 +43,6 @@ const initialState = {
 
 const currentState = Object.assign({}, initialState);
 
-const images = {
-  paint: [
-    `https://k42.kn3.net/CF42609C8.jpg`,
-    `https://k42.kn3.net/D2F0370D6.jpg`,
-    `https://k32.kn3.net/5C7060EC5.jpg`
-  ],
-  photo: [
-    `http://i.imgur.com/1KegWPz.jpg`,
-    `https://i.imgur.com/DiHM5Zb.jpg`,
-    `http://i.imgur.com/DKR1HtB.jpg`
-  ]
-};
-
 const photos = [
   `https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/2_Ontario_Northland_Photos_from_Roger_Puta_%2827024572503%29.jpg/1024px-2_Ontario_Northland_Photos_from_Roger_Puta_%2827024572503%29.jpg`,
   `https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/2015-07-Life-of-Pix-free-stock-photos-green-parrot-nabeel.jpg/1024px-2015-07-Life-of-Pix-free-stock-photos-green-parrot-nabeel.jpg`,
@@ -112,7 +99,7 @@ const generateQuestions = () => {
         case 2:
           return `double`;
         case 3:
-          return `tripple`;
+          return `triple`;
       }
       return ``;
     };
@@ -155,16 +142,16 @@ const generateQuestions = () => {
       case `double`:
         question.data.push(getRandomImage());
         break;
-      case `tripple`:
+      case `triple`:
         question.data.push(getRandomImage());
         if (question.data[0].type === question.data[1].type) {
-          if (question.data[0].type === `photos`) {
+          if (question.data[0].type === `photo`) {
             question.data.push(getPaintImage());
             question.task = {
               type: `paint`,
               text: `рисунок`
             };
-          } else if (question.data[0].type === `paints`) {
+          } else if (question.data[0].type === `paint`) {
             question.data.push(getPhotoImage());
             question.task = {
               type: `photo`,
@@ -195,4 +182,4 @@ const generateQuestions = () => {
   return questions;
 };
 
-export {QUESTIONS_LENGTH, Answer, Reward, countScores, createTimer, initialState, currentState, images, generateQuestions};
+export {QUESTIONS_LENGTH, Answer, Reward, countScores, createTimer, initialState, currentState, generateQuestions};

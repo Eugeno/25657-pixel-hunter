@@ -32,12 +32,7 @@ input.addEventListener(`input`, ({target}) => {
 });
 moduleRules.querySelector(`.back`).addEventListener(`click`, () => getIntroBlock());
 
-rulesBtn.addEventListener(`click`, () => {
-  console.log(`getGame!`);
-  getGameModule(initialState);
-  /*getRandomGameModule();
-  currentState.level = 1;*/
-});
+rulesBtn.addEventListener(`click`, () => getGameModule(initialState));
 
 const getRulesBlock = () => renderBlock(moduleRules);
 

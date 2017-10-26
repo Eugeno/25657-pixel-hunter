@@ -4,7 +4,6 @@ import getGameDouble from './get-game-double';
 import getGameTriple from './get-game-triple';
 
 const getGameModule = (state) => {
-  console.log(questions[state.level]);
   switch (questions[state.level].type) {
     case `single`:
       getGameSingle(state);
@@ -13,7 +12,7 @@ const getGameModule = (state) => {
       getGameDouble(state);
       break;
     case `triple`:
-      getGameTriple();
+      getGameTriple(state);
       break;
   }
 };

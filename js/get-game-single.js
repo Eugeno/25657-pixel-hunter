@@ -33,7 +33,7 @@ ${footerTemplate}`);
 
 const getGameSingle = (state) => {
   renderBlock(moduleGameSingle(state));
-  const newState = Object.assign(state);
+  const newState = Object.assign({}, state);
   const form = document.querySelector(`.game__content`);
   const gameOptions = [...form.querySelectorAll(`.game__option`)];
 

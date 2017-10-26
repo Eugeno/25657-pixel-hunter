@@ -1,81 +1,57 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
-import getRandomGameModule from './render-random-game';
 import getStats from './module_stats';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
-import getRandomImage from './get-random-image';
-import {currentState} from './data/game-data';
+import questions from './main';
 import startNewGame from './start-new-game';
+import getGameModule from './get-game-module';
 
-const moduleGame3 = () => getElementFromTemplate(`${headerTemplate(currentState)}
+const gameOptionsTemplate = (state) => {
+  let options = ``;
+  for (let i = 0; i < 3; i++) {
+    options += `<div class="game__option">
+        <img src="${questions[state.level].data[i].src}" alt="Option ${i + 1}" width="304">
+      </div>`;
+  }
+  return options;
+};
+
+const moduleGameTriple = (state) => getElementFromTemplate(`${headerTemplate(state)}
   <div class="game">
-    <p class="game__task">Найдите рисунок среди изображений</p>
+    <p class="game__task">Найдите ${questions[state.level].task.text} среди изображений</p>
     <form class="game__content game__content--triple">
-      <div class="game__option">
-        <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
-      </div>
-      <div class="game__option game__option--selected">
-        <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
-      </div>
-      <div class="game__option">
-        <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
-      </div>
+      ${gameOptionsTemplate(state)}
     </form>
     <div class="stats">
-      ${statsTemplate(currentState)}
+      ${statsTemplate(state)}
     </div>
   </div>
 ${footerTemplate}`);
 
-const getRandomNumber = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
+const getGameTriple = (state) => {
+  renderBlock(moduleGameTriple(state));
+  const newState = Object.assign({}, state);
 
-const getGameTriple = () => {
-  renderBlock(moduleGame3());
-
-  const options = [...document.querySelectorAll(`.game__option`)];
-  options.forEach((option) => {
+  const form = document.querySelector(`.game__content`);
+  const gameOptions = [...form.querySelectorAll(`.game__option`)];
+  gameOptions.forEach((option) => {
     option.addEventListener(`click`, () => {
       let answer = `correct`;
-      if (option.querySelector(`img`).dataset.type !== `paint`) {
+      if (questions[state.level].data[option.querySelector(`img`).getAttribute(`alt`).split(` `)[1] - 1].type !== questions[state.level].task.type) {
         answer = `wrong`;
-        currentState.lives--;
+        newState.lives--;
       }
-      currentState.answers.push(answer);
-      if (currentState.level < 10 && currentState.lives > 0) {
-        currentState.level++;
-        getRandomGameModule();
+      newState.answers.push(answer);
+      if (newState.level < 10 && newState.lives > 0) {
+        newState.level++;
+        getGameModule(newState);
       } else {
         getStats();
       }
     });
   });
-
-  const img1 = options[0].querySelector(`img`);
-  const img2 = options[1].querySelector(`img`);
-  const img3 = options[2].querySelector(`img`);
-  const imgData1 = getRandomImage();
-  let imgData2 = getRandomImage();
-  let imgData3 = getRandomImage();
-  img1.src = imgData1.imageUrl;
-  img1.dataset.type = imgData1.type;
-  while (imgData1.imageUrl === imgData2.imageUrl) {
-    imgData2 = getRandomImage();
-  }
-  img2.src = imgData2.imageUrl;
-  img2.dataset.type = imgData2.type;
-  while (imgData1.imageUrl === imgData3.imageUrl || imgData2.imageUrl === imgData3.imageUrl) {
-    imgData3 = getRandomImage();
-  }
-  img3.src = imgData3.imageUrl;
-  img3.dataset.type = imgData3.type;
-  while (imgData1.type === `photo` && imgData2.imageUrl === `photo` && imgData3.imageUrl === `photo`) {
-    const imgDataX = getRandomImage();
-    const imgX = options[getRandomNumber(0, 2)].querySelector(`img`);
-    imgX.src = imgDataX.imageUrl;
-    imgX.dataset.type = imgDataX.type;
-  }
 
   document.querySelector(`.back`).addEventListener(`click`, () => startNewGame);
 };

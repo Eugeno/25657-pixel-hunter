@@ -13,7 +13,7 @@ const gameOptionsTemplate = (state) => {
   let options = ``;
   for (let i = 0; i < 2; i++) {
     options += `<div class="game__option">
-        <img src="${questions[state.level].data[i].src}" alt="Option ${i + 1}" width="468" height="458">
+        <img src="${questions[state.level].data[i].src}" alt="Option ${i + 1}" width="468">
         <label class="game__answer game__answer--photo">
           <input name="question${i + 1}" type="radio" value="photo">
           <span>Фото</span>
@@ -41,7 +41,7 @@ ${footerTemplate}`);
 
 const getGameDouble = (state) => {
   renderBlock(moduleGameDouble(state));
-  const newState = Object.assign(state);
+  const newState = Object.assign({}, state);
 
   const form = document.querySelector(`.game__content`);
   const countChecked = () => {

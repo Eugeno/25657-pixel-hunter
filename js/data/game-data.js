@@ -66,17 +66,17 @@ const photos = [
   `https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/MUNI_Double-Ended_PCC_Cars_--_3_Photos_%2826278928203%29.jpg/640px-MUNI_Double-Ended_PCC_Cars_--_3_Photos_%2826278928203%29.jpg`,
   `https://c1.staticflickr.com/8/7042/6831875658_6825074849_b.jpg`,
   `https://media.defense.gov/2017/Aug/04/2001787709/670/394/0/170713-F-VJ293-800.JPG`,
-  `https://cdn.pixabay.com/photo/2016/10/27/14/23/poor-1775239_960_720.jpg`,
+  `https://c1.staticflickr.com/1/589/21639063204_cd2b7b1cc4.jpg`,
   `https://upload.wikimedia.org/wikipedia/commons/4/4e/Photos-of-Murree-Remnants-of-Murree-Brewery-Pictures-of-Murree.jpg`,
   `https://c1.staticflickr.com/1/419/18734141725_66bf9b385c_b.jpg`,
-  `https://cdn.pixabay.com/photo/2016/10/17/10/52/wind-farm-1747331_960_720.jpg`,
+  `https://3hsyn13u3q9dhgyrg2qh3tin-wpengine.netdna-ssl.com/wp-content/uploads/2017/06/SplitShire-2980.jpg`,
   `https://c1.staticflickr.com/5/4001/4644123790_d6f6a1d31c_b.jpg`,
-  `https://cdn.pixabay.com/photo/2013/10/17/20/59/horse-197199_960_720.jpg`,
-  `https://cdn.pixabay.com/photo/2014/08/22/18/47/photographer-424623_960_720.jpg`,
-  `https://cdn.pixabay.com/photo/2016/11/14/15/29/hummingbird-1823829_960_720.jpg`,
-  `https://cdn.pixabay.com/photo/2015/04/26/23/16/fruit-741172_960_720.jpg`,
-  `https://cdn.pixabay.com/photo/2015/11/07/11/30/phone-1031194_960_720.jpg`,
-  `https://cdn.pixabay.com/photo/2017/04/08/10/23/surfer-2212948_960_720.jpg`
+  `http://publicdomainarchive.com/wp-content/uploads/2016/01/public-domain-images-free-stock-photos-001-1000x667.jpg`,
+  `http://publicdomainarchive.com/wp-content/uploads/2017/01/public-domain-images-free-stock-photos004-1000x667.jpg`,
+  `http://78.media.tumblr.com/15e7597409b840cc20bd4de23f23e19a/tumblr_n4e0j6iBHs1sdyj9lo1_1280.jpg`,
+  `https://stockphotos.io/wp-content/uploads/2013/04/13698285602e3d1-600x399.jpg`,
+  `https://stockphotos.io/wp-content/uploads/2013/04/13729474872ab5d.jpg`,
+  `http://res.freestockphotos.biz/pictures/15/15755-closeup-of-red-apples-pv.jpg`
 ];
 const paints = [
   `http://i.telegraph.co.uk/multimedia/archive/01483/water-drops_1483794i.jpg`,
@@ -120,9 +120,9 @@ const generateQuestions = () => {
     const getRandomImageType = () => {
       switch (getRandomNumber(1, 2)) {
         case 1:
-          return `photos`;
+          return `photo`;
         case 2:
-          return `paints`;
+          return `paint`;
       }
       return ``;
     };
@@ -130,18 +130,18 @@ const generateQuestions = () => {
       const type = getRandomImageType();
       return {
         type,
-        src: type === `photos` ? photos.pop() : paints.pop()
+        src: type === `photo` ? photos.pop() : paints.pop()
       };
     };
     const getPhotoImage = () => {
       return {
-        type: `photos`,
+        type: `photo`,
         src: photos.pop()
       };
     };
     const getPaintImage = () => {
       return {
-        type: `paints`,
+        type: `paint`,
         src: paints.pop()
       };
     };

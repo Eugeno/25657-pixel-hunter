@@ -1,8 +1,8 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
-import footerTemplate from './footer-template';
-import headerTemplate from './header-template';
-import statsTemplate from './stats-template';
+import footerTemplate from './data/footer-template';
+import headerTemplate from './data/header-template';
+import statsTemplate from './data/stats-template';
 import {Answer, getNextState} from './data/game-data';
 import repeatGame from './repeat-game';
 import getNextScreen from './get-next-screen';

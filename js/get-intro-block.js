@@ -1,7 +1,7 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
 import getGreetingBlock from './get-greeting-block';
-import footerTemplate from './footer-template';
+import footerTemplate from './data/footer-template';
 
 const moduleIntro = getElementFromTemplate(`<div id="main" class="central__content">
     <div id="intro" class="intro">

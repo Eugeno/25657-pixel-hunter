@@ -14,17 +14,6 @@ const Reward = {
   LIVE: 50
 };
 
-const GameType = {
-  SINGLE: `single`,
-  DOUBLE: `double`,
-  TRIPLE: `triple`
-};
-
-const ImageType = {
-  PHOTO: `photo`,
-  PAINT: `paint`
-};
-
 const countScores = (state) => {
   const reward = {};
   const answers = state.answers;
@@ -50,6 +39,19 @@ const initialState = {
   time: 0,
   answers: [],
   level: 0
+};
+
+const GameType = {
+  SINGLE: `single`,
+  DOUBLE: `double`,
+  TRIPLE: `triple`
+};
+
+const ImageType = {
+  PHOTO: `photo`,
+  PHOTO_TEXT: `фотографию`,
+  PAINT: `paint`,
+  PAINT_TEXT: `рисунок`,
 };
 
 const photos = [
@@ -102,30 +104,19 @@ const loadableImages = [];
 const questions = [];
 const generateQuestions = () => {
   const getRandomNumber = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
+  const GameTypes = {
+    1: GameType.SINGLE,
+    2: GameType.DOUBLE,
+    3: GameType.TRIPLE
+  };
+  const ImageTypes = {
+    1: ImageType.PHOTO,
+    2: ImageType.PAINT
+  };
   const buildQuestion = () => {
-    const getRandomGameType = () => {
-      switch (getRandomNumber(1, 3)) {
-        case 1:
-          return GameType.SINGLE;
-        case 2:
-          return GameType.DOUBLE;
-        case 3:
-          return GameType.TRIPLE;
-      }
-      return ``;
-    };
-    const gameType = getRandomGameType();
-    const getRandomImageType = () => {
-      switch (getRandomNumber(1, 2)) {
-        case 1:
-          return ImageType.PHOTO;
-        case 2:
-          return ImageType.PAINT;
-      }
-      return ``;
-    };
+    const gameType = GameTypes[getRandomNumber(1, 3)];
     const getRandomImage = () => {
-      const type = getRandomImageType();
+      const type = ImageTypes[getRandomNumber(1, 2)];
       const src = type === ImageType.PHOTO ? photos.pop() : paints.pop();
       loadableImages.push(src);
       return {
@@ -166,13 +157,13 @@ const generateQuestions = () => {
             question.data.push(getPaintImage());
             question.task = {
               type: ImageType.PAINT,
-              text: `рисунок`
+              text: ImageType.PAINT_TEXT
             };
           } else if (question.data[0].type === ImageType.PAINT) {
             question.data.push(getPhotoImage());
             question.task = {
               type: ImageType.PHOTO,
-              text: `фотографию`
+              text: ImageType.PHOTO_TEXT
             };
           }
         } else {
@@ -180,12 +171,12 @@ const generateQuestions = () => {
           if (question.data[0].type === question.data[2].type) {
             question.task = {
               type: question.data[1].type,
-              text: question.data[1].type === ImageType.PHOTO ? `фотографию` : `рисунок`
+              text: question.data[1].type === ImageType.PHOTO ? ImageType.PHOTO_TEXT : ImageType.PAINT_TEXT
             };
           } else {
             question.task = {
               type: question.data[0].type,
-              text: question.data[0].type === ImageType.PHOTO ? `фотографию` : `рисунок`
+              text: question.data[0].type === ImageType.PHOTO ? ImageType.PHOTO_TEXT : ImageType.PAINT_TEXT
             };
           }
         }

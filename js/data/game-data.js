@@ -180,4 +180,19 @@ const generateQuestions = () => {
   return questions;
 };
 
-export {QUESTIONS_LENGTH, Answer, Reward, countScores, createTimer, initialState, generateQuestions};
+const preloadImages = (sources, callback) => {
+  let counter = 0;
+  const onLoad = () => {
+    counter++;
+    if (counter === sources.length) {
+      callback();
+    }
+  };
+  for (let i = 0; i < sources.length; i++) {
+    const img = document.createElement(`img`);
+    img.onload = img.onerror = onLoad();
+    img.src = sources[i];
+  }
+};
+
+export {QUESTIONS_LENGTH, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, photos, paints};

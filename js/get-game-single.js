@@ -13,7 +13,7 @@ const moduleGameSingle = (state) => getElementFromTemplate(`${headerTemplate(sta
     <p class="game__task">Угадай, фото или рисунок?</p>
     <form class="game__content game__content--wide">
       <div class="game__option">
-        <img src="${questions[state.level].data[0].src}" alt="Option 1" width="705" height="455">
+        <img src="${questions[state.level].data[0].src}" alt="Option 1" width="705">
         <label class="game__answer game__answer--photo">
           <input name="question1" type="radio" value="photo">
           <span>Фото</span>

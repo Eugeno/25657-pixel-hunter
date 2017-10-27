@@ -1,8 +1,8 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
-import footerTemplate from './footer';
-import headerTemplate from './header';
-import statsTemplate from './stats';
+import footerTemplate from './footer-template';
+import headerTemplate from './header-template';
+import statsTemplate from './stats-template';
 import {countScores, Reward, initialState} from './data/game-data';
 import repeatGame from './repeat-game';
 

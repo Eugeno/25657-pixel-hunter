@@ -1,8 +1,8 @@
 import getElementFromTemplate from './get-element';
 import getIntroBlock from './get-intro-block';
 import getGameModule from './get-game-module';
-import footerTemplate from './footer';
-import headerTemplate from './header';
+import footerTemplate from './footer-template';
+import headerTemplate from './header-template';
 import {initialState} from './data/game-data';
 import renderBlock from './render-block';
 

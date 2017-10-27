@@ -5,7 +5,7 @@ import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
 import repeatGame from './repeat-game';
-import finishGameModule from './finish-game-module';
+import getNextState from './get-next-state';
 
 const gameOptionsTemplate = (state, question) => {
   let options = ``;
@@ -39,7 +39,7 @@ ${footerTemplate}`);
 
 const getGameDouble = (state, question) => {
   renderBlock(moduleGameDouble(state, question));
-  const newState = Object.assign({}, state);
+  const nextState = Object.assign({}, state);
 
   const form = document.querySelector(`.game__content`);
   const countChecked = () => {
@@ -53,9 +53,9 @@ const getGameDouble = (state, question) => {
       let answer = Answer.CORRECT;
       if (gameOptions.some((el, i) => question.data[i].type !== el.querySelector(`input[type="radio"]:checked`).value)) {
         answer = Answer.WRONG;
-        newState.lives--;
+        nextState.lives--;
       }
-      finishGameModule(newState, answer);
+      getNextState(nextState, answer);
     }
   });
   document.querySelector(`.back`).addEventListener(`click`, () => repeatGame());

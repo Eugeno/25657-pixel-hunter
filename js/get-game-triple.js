@@ -5,7 +5,7 @@ import headerTemplate from './header';
 import statsTemplate from './stats';
 import {Answer} from './data/game-data';
 import repeatGame from './repeat-game';
-import finishGameModule from './finish-game-module';
+import getNextState from './get-next-state';
 
 const gameOptionsTemplate = (state, question) => {
   let options = ``;
@@ -31,7 +31,7 @@ ${footerTemplate}`);
 
 const getGameTriple = (state, question) => {
   renderBlock(moduleGameTriple(state, question));
-  const newState = Object.assign({}, state);
+  const nextState = Object.assign({}, state);
 
   const form = document.querySelector(`.game__content`);
   const gameOptions = [...form.querySelectorAll(`.game__option`)];
@@ -40,9 +40,9 @@ const getGameTriple = (state, question) => {
       let answer = Answer.CORRECT;
       if (question.data[option.querySelector(`img`).getAttribute(`alt`).split(` `)[1] - 1].type !== question.task.type) {
         answer = Answer.WRONG;
-        newState.lives--;
+        nextState.lives--;
       }
-      finishGameModule(newState, answer);
+      getNextState(nextState, answer);
     });
   });
 

@@ -1,5 +1,5 @@
-import getIntroBlock from './get-intro-block';
+import getGreetingBlock from './get-greeting-block';
 
-const repeatGame = () => getIntroBlock();
+const repeatGame = () => getGreetingBlock();
 
 export default repeatGame;

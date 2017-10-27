@@ -1,7 +1,7 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
 import getRulesBlock from './get-rules-block';
-import footerTemplate from './data/footer-template';
+import footerTemplate from './components/footer';
 
 const moduleGreeting = getElementFromTemplate(`<div class="greeting central--blur">
     <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>

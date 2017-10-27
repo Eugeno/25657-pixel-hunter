@@ -1,18 +1,13 @@
-import {QUESTIONS_LENGTH, Answer} from './data/game-data';
-import getGameModule from './get-game-module';
-import getStatsBlock from './get-stats-block';
+import {Answer} from './data/game-data';
 
 const getNextState = (state, answer) => {
-  state.answers.push(answer);
-  state.level++;
+  const nextState = Object.assign({}, state);
+  nextState.answers.push(answer);
+  nextState.level++;
   if (answer === Answer.WRONG) {
-    state.lives--;
+    nextState.lives--;
   }
-  if (state.level < QUESTIONS_LENGTH && state.lives > 0) {
-    getGameModule(state);
-  } else {
-    getStatsBlock(state);
-  }
+  return nextState;
 };
 
 export default getNextState;

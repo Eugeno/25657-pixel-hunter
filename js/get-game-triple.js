@@ -6,6 +6,7 @@ import statsTemplate from './stats';
 import {Answer} from './data/game-data';
 import repeatGame from './repeat-game';
 import getNextState from './get-next-state';
+import getNextScreen from './get-next-screen';
 
 const gameOptionsTemplate = (state, question) => {
   let options = ``;
@@ -40,7 +41,8 @@ const getGameTriple = (state, question) => {
       if (question.data[option.querySelector(`img`).getAttribute(`alt`).split(` `)[1] - 1].type !== question.task.type) {
         answer = Answer.WRONG;
       }
-      getNextState(state, answer);
+      const nextState = getNextState(state, answer);
+      getNextScreen(nextState);
     });
   });
 

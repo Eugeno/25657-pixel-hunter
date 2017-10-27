@@ -6,6 +6,7 @@ import statsTemplate from './stats';
 import {Answer} from './data/game-data';
 import repeatGame from './repeat-game';
 import getNextState from './get-next-state';
+import getNextScreen from './get-next-screen';
 
 const moduleGameSingle = (state, question) => getElementFromTemplate(`${headerTemplate(state)}
   <div class="game">
@@ -40,7 +41,8 @@ const getGameSingle = (state, question) => {
     if (question.data[0].type !== gameOptions[0].querySelector(`input[type="radio"]:checked`).value) {
       answer = Answer.WRONG;
     }
-    getNextState(state, answer);
+    const nextState = getNextState(state, answer);
+    getNextScreen(nextState);
   });
   document.querySelector(`.back`).addEventListener(`click`, () => repeatGame());
 };

@@ -6,6 +6,7 @@ import headerTemplate from './header';
 import statsTemplate from './stats';
 import repeatGame from './repeat-game';
 import getNextState from './get-next-state';
+import getNextScreen from './get-next-screen';
 
 const gameOptionsTemplate = (state, question) => {
   let options = ``;
@@ -53,7 +54,8 @@ const getGameDouble = (state, question) => {
       if (gameOptions.some((el, i) => question.data[i].type !== el.querySelector(`input[type="radio"]:checked`).value)) {
         answer = Answer.WRONG;
       }
-      getNextState(state, answer);
+      const nextState = getNextState(state, answer);
+      getNextScreen(nextState);
     }
   });
   document.querySelector(`.back`).addEventListener(`click`, () => repeatGame());

@@ -14,6 +14,17 @@ const Reward = {
   LIVE: 50
 };
 
+const GameType = {
+  SINGLE: `single`,
+  DOUBLE: `double`,
+  TRIPLE: `triple`
+};
+
+const ImageType = {
+  PHOTO: `photo`,
+  PAINT: `paint`
+};
+
 const countScores = (state) => {
   const reward = {};
   const answers = state.answers;
@@ -95,11 +106,11 @@ const generateQuestions = () => {
     const getRandomGameType = () => {
       switch (getRandomNumber(1, 3)) {
         case 1:
-          return `single`;
+          return GameType.SINGLE;
         case 2:
-          return `double`;
+          return GameType.DOUBLE;
         case 3:
-          return `triple`;
+          return GameType.TRIPLE;
       }
       return ``;
     };
@@ -107,15 +118,15 @@ const generateQuestions = () => {
     const getRandomImageType = () => {
       switch (getRandomNumber(1, 2)) {
         case 1:
-          return `photo`;
+          return ImageType.PHOTO;
         case 2:
-          return `paint`;
+          return ImageType.PAINT;
       }
       return ``;
     };
     const getRandomImage = () => {
       const type = getRandomImageType();
-      const src = type === `photo` ? photos.pop() : paints.pop();
+      const src = type === ImageType.PHOTO ? photos.pop() : paints.pop();
       loadableImages.push(src);
       return {
         type,
@@ -126,7 +137,7 @@ const generateQuestions = () => {
       const src = photos.pop();
       loadableImages.push(src);
       return {
-        type: `photo`,
+        type: ImageType.PHOTO,
         src
       };
     };
@@ -134,7 +145,7 @@ const generateQuestions = () => {
       const src = paints.pop();
       loadableImages.push(src);
       return {
-        type: `paint`,
+        type: ImageType.PAINT,
         src
       };
     };
@@ -143,24 +154,24 @@ const generateQuestions = () => {
       data: [getRandomImage()]
     };
     switch (gameType) {
-      case `single`:
+      case GameType.SINGLE:
         break;
-      case `double`:
+      case GameType.DOUBLE:
         question.data.push(getRandomImage());
         break;
-      case `triple`:
+      case GameType.TRIPLE:
         question.data.push(getRandomImage());
         if (question.data[0].type === question.data[1].type) {
-          if (question.data[0].type === `photo`) {
+          if (question.data[0].type === ImageType.PHOTO) {
             question.data.push(getPaintImage());
             question.task = {
-              type: `paint`,
+              type: ImageType.PAINT,
               text: `рисунок`
             };
-          } else if (question.data[0].type === `paint`) {
+          } else if (question.data[0].type === ImageType.PAINT) {
             question.data.push(getPhotoImage());
             question.task = {
-              type: `photo`,
+              type: ImageType.PHOTO,
               text: `фотографию`
             };
           }
@@ -169,12 +180,12 @@ const generateQuestions = () => {
           if (question.data[0].type === question.data[2].type) {
             question.task = {
               type: question.data[1].type,
-              text: question.data[1].type === `photo` ? `фотографию` : `рисунок`
+              text: question.data[1].type === ImageType.PHOTO ? `фотографию` : `рисунок`
             };
           } else {
             question.task = {
               type: question.data[0].type,
-              text: question.data[0].type === `photo` ? `фотографию` : `рисунок`
+              text: question.data[0].type === ImageType.PHOTO ? `фотографию` : `рисунок`
             };
           }
         }
@@ -202,4 +213,4 @@ const preloadImages = (sources, callback) => {
   }
 };
 
-export {QUESTIONS_LENGTH, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages, questions};
+export {QUESTIONS_LENGTH, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages, questions, GameType};

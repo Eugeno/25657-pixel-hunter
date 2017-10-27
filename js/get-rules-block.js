@@ -32,7 +32,11 @@ input.addEventListener(`input`, ({target}) => {
 });
 moduleRules.querySelector(`.back`).addEventListener(`click`, () => getIntroBlock());
 
-rulesBtn.addEventListener(`click`, () => getGameModule(initialState));
+rulesBtn.addEventListener(`click`, () => {
+  const nextState = Object.assign({}, initialState);
+  nextState.answers = [];
+  getGameModule(nextState);
+});
 
 const getRulesBlock = () => renderBlock(moduleRules);
 

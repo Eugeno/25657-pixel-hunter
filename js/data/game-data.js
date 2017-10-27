@@ -86,6 +86,8 @@ const paints = [
   `https://www.wired.com/wp-content/uploads/images_blogs/rawfile/2013/11/PhotorealismInTheDigitalAge_p232b.jpg`
 ];
 
+const loadableImages = [];
+
 const generateQuestions = () => {
   const getRandomNumber = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
   let questions = [];
@@ -113,21 +115,27 @@ const generateQuestions = () => {
     };
     const getRandomImage = () => {
       const type = getRandomImageType();
+      const src = type === `photo` ? photos.pop() : paints.pop();
+      loadableImages.push(src);
       return {
         type,
-        src: type === `photo` ? photos.pop() : paints.pop()
+        src
       };
     };
     const getPhotoImage = () => {
+      const src = photos.pop();
+      loadableImages.push(src);
       return {
         type: `photo`,
-        src: photos.pop()
+        src
       };
     };
     const getPaintImage = () => {
+      const src = paints.pop();
+      loadableImages.push(src);
       return {
         type: `paint`,
-        src: paints.pop()
+        src
       };
     };
     const question = {
@@ -190,9 +198,9 @@ const preloadImages = (sources, callback) => {
   };
   for (let i = 0; i < sources.length; i++) {
     const img = document.createElement(`img`);
-    img.onload = img.onerror = onLoad();
+    img.onload = img.onerror = onLoad;
     img.src = sources[i];
   }
 };
 
-export {QUESTIONS_LENGTH, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, photos, paints};
+export {QUESTIONS_LENGTH, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages};

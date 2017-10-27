@@ -103,20 +103,20 @@ const loadableImages = [];
 
 const questions = [];
 const generateQuestions = () => {
-  const getRandomNumber = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
-  const GameTypes = {
-    1: GameType.SINGLE,
-    2: GameType.DOUBLE,
-    3: GameType.TRIPLE
-  };
-  const ImageTypes = {
-    1: ImageType.PHOTO,
-    2: ImageType.PAINT
-  };
+  const getRandomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+  const gameTypes = [
+    GameType.SINGLE,
+    GameType.DOUBLE,
+    GameType.TRIPLE
+  ];
+  const imageTypes = [
+    ImageType.PHOTO,
+    ImageType.PAINT
+  ];
   const buildQuestion = () => {
-    const gameType = GameTypes[getRandomNumber(1, 3)];
+    const gameType = getRandomItem(gameTypes);
     const getRandomImage = () => {
-      const type = ImageTypes[getRandomNumber(1, 2)];
+      const type = getRandomItem(imageTypes);
       const src = type === ImageType.PHOTO ? photos.pop() : paints.pop();
       loadableImages.push(src);
       return {

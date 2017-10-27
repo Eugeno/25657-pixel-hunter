@@ -34,7 +34,7 @@ moduleRules.querySelector(`.back`).addEventListener(`click`, () => getIntroBlock
 
 rulesBtn.addEventListener(`click`, () => {
   const nextState = Object.assign({}, initialState);
-  nextState.answers = [];
+  nextState.answers = JSON.parse(JSON.stringify(initialState.answers));
   getGameModule(nextState);
 });
 

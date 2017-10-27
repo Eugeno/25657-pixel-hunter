@@ -3,9 +3,8 @@ import renderBlock from './render-block';
 import footerTemplate from './footer-template';
 import headerTemplate from './header-template';
 import statsTemplate from './stats-template';
-import {Answer} from './data/game-data';
+import {Answer, getNextState} from './data/game-data';
 import repeatGame from './repeat-game';
-import getNextState from './get-next-state';
 import getNextScreen from './get-next-screen';
 
 const gameOptionsTemplate = (state, question) => {

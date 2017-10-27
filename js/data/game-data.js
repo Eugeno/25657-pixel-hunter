@@ -41,8 +41,6 @@ const initialState = {
   level: 0
 };
 
-const currentState = Object.assign({}, initialState);
-
 const photos = [
   `https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/2_Ontario_Northland_Photos_from_Roger_Puta_%2827024572503%29.jpg/1024px-2_Ontario_Northland_Photos_from_Roger_Puta_%2827024572503%29.jpg`,
   `https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/2015-07-Life-of-Pix-free-stock-photos-green-parrot-nabeel.jpg/1024px-2015-07-Life-of-Pix-free-stock-photos-green-parrot-nabeel.jpg`,
@@ -182,4 +180,4 @@ const generateQuestions = () => {
   return questions;
 };
 
-export {QUESTIONS_LENGTH, Answer, Reward, countScores, createTimer, initialState, currentState, generateQuestions};
+export {QUESTIONS_LENGTH, Answer, Reward, countScores, createTimer, initialState, generateQuestions};

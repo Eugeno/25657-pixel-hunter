@@ -3,22 +3,22 @@ import renderBlock from './render-block';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
-import {countScores, Reward, initialState, currentState} from './data/game-data';
-import startNewGame from './start-new-game';
+import {countScores, Reward, initialState} from './data/game-data';
+import repeatGame from './repeat-game';
 
-const getStats = () => {
-  const scores = countScores(currentState);
+const moduleStats = (state) => {
+  const scores = countScores(state);
   const totalReward = Object.keys(scores).reduce((sum, key) => sum + parseInt(scores[key], 10), 0);
   const resultTotal = scores === -1 ? `FAIL` : scores[`correct`];
 
-  const moduleStats = () => getElementFromTemplate(`${headerTemplate(currentState)}
+  return getElementFromTemplate(`${headerTemplate(state)}
     <div class="result">
       <h1>Победа!</h1>
       <table class="result__table">
         <tr>
           <td class="result__number">1.</td>
           <td colspan="2">
-            ${statsTemplate(currentState)}
+            ${statsTemplate(state)}
           </td>
           <td class="result__points">×&nbsp;${Reward[`correct`]}</td>
           <td class="result__total">${resultTotal}</td>
@@ -80,9 +80,11 @@ const getStats = () => {
       </table>
     </div>
   ${footerTemplate}`);
-
-  renderBlock(moduleStats());
-  document.querySelector(`.back`).addEventListener(`click`, () => startNewGame);
 };
 
-export default getStats;
+const getStatsBlock = (state) => {
+  renderBlock(moduleStats(state));
+  document.querySelector(`.back`).addEventListener(`click`, () => repeatGame());
+};
+
+export default getStatsBlock;

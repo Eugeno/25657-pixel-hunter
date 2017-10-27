@@ -3,13 +3,16 @@ import renderBlock from './render-block';
 import footerTemplate from './components/footer';
 import headerTemplate from './components/header';
 import statsTemplate from './components/stats';
-import {countScores, Reward, initialState} from './data/game-data';
+import {Answer, countScores, Reward, initialState} from './data/game-data';
 import repeatGame from './repeat-game';
 
 const moduleStats = (state) => {
   const scores = countScores(state);
   const totalReward = Object.keys(scores).reduce((sum, key) => sum + parseInt(scores[key], 10), 0);
-  const resultTotal = scores === -1 ? `FAIL` : scores[`correct`];
+  const resultTotal = scores === -1 ? `FAIL` : scores[Answer.CORRECT];
+  const fastAnswers = scores[Answer.FAST] / Reward[Answer.FAST];
+  const slowAnswers = scores[Answer.SLOW] / Reward[Answer.SLOW];
+  const lives = scores[Answer.LIVE] / Reward[Answer.LIVE];
 
   return getElementFromTemplate(`${headerTemplate(state)}
     <div class="result">
@@ -20,29 +23,29 @@ const moduleStats = (state) => {
           <td colspan="2">
             ${statsTemplate(state)}
           </td>
-          <td class="result__points">×&nbsp;${Reward[`correct`]}</td>
+          <td class="result__points">×&nbsp;${Reward[Answer.CORRECT]}</td>
           <td class="result__total">${resultTotal}</td>
         </tr>
         <tr>
           <td></td>
           <td class="result__extra">Бонус за скорость:</td>
-          <td class="result__extra">${scores[`fast`] / Reward[`fast`]}&nbsp;<span class="stats__result stats__result--fast"></span></td>
-          <td class="result__points">×&nbsp;${Reward[`fast`]}</td>
-          <td class="result__total">${scores[`fast`]}</td>
+          <td class="result__extra">${fastAnswers}&nbsp;<span class="stats__result stats__result--fast"></span></td>
+          <td class="result__points">×&nbsp;${Reward[Answer.FAST]}</td>
+          <td class="result__total">${scores[Answer.FAST]}</td>
         </tr>
         <tr>
           <td></td>
           <td class="result__extra">Бонус за жизни:</td>
-          <td class="result__extra">${scores[`live`] / Reward[`LIVE`]}&nbsp;<span class="stats__result stats__result--alive"></span></td>
-          <td class="result__points">×&nbsp;${Reward[`LIVE`]}</td>
-          <td class="result__total">${scores[`live`]}</td>
+          <td class="result__extra">${lives}&nbsp;<span class="stats__result stats__result--alive"></span></td>
+          <td class="result__points">×&nbsp;${Reward[Answer.LIVE]}</td>
+          <td class="result__total">${scores[Answer.LIVE]}</td>
         </tr>
         <tr>
           <td></td>
           <td class="result__extra">Штраф за медлительность:</td>
-          <td class="result__extra">${scores[`slow`] / Reward[`slow`]}&nbsp;<span class="stats__result stats__result--slow"></span></td>
-          <td class="result__points">×&nbsp;${Reward[`slow`]}</td>
-          <td class="result__total">${scores[`slow`]}</td>
+          <td class="result__extra">${slowAnswers}&nbsp;<span class="stats__result stats__result--slow"></span></td>
+          <td class="result__points">×&nbsp;${Reward[Answer.SLOW]}</td>
+          <td class="result__total">${scores[Answer.SLOW]}</td>
         </tr>
         <tr>
           <td colspan="5" class="result__total result__total--final">${totalReward}</td>

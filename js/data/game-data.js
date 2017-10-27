@@ -21,14 +21,14 @@ const countScores = (state) => {
     [Answer.FAST]: 0,
     [Answer.SLOW]: 0,
     [Answer.WRONG]: 0,
-    live: 0
+    LIVE: 0
   };
   const answers = state.answers;
   const lives = state.lives;
   answers.forEach((a) => {
     reward[a] += Reward[a];
   });
-  reward.live = lives * Reward.LIVE;
+  reward.LIVE = lives * Reward.LIVE;
   return answers.length === QUESTIONS_LENGTH ? reward : -1;
 };
 

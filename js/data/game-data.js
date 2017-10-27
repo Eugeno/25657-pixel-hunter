@@ -197,11 +197,11 @@ const preloadImages = (sources, callback) => {
       callback();
     }
   };
-  for (let i = 0; i < sources.length; i++) {
+  sources.forEach((source) => {
     const img = document.createElement(`img`);
     img.onload = img.onerror = onLoad;
-    img.src = sources[i];
-  }
+    img.src = source;
+  });
 };
 
 export {QUESTIONS_LENGTH, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages, questions, GameType};

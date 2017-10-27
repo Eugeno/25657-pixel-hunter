@@ -9,13 +9,11 @@ import getNextState from './get-next-state';
 import getNextScreen from './get-next-screen';
 
 const gameOptionsTemplate = (state, question) => {
-  let options = ``;
-  for (let i = 0; i < 3; i++) {
-    options += `<div class="game__option">
-        <img src="${question.data[i].src}" alt="Option ${i + 1}" width="304">
+  return question.data.map((q, i) => {
+    return `<div class="game__option">
+        <img src="${q.src}" alt="Option ${i + 1}" width="304">
       </div>`;
-  }
-  return options;
+  }).join(``);
 };
 
 const moduleGameTriple = (state, question) => getElementFromTemplate(`${headerTemplate(state)}
@@ -35,10 +33,10 @@ const getGameTriple = (state, question) => {
 
   const form = document.querySelector(`.game__content`);
   const gameOptions = [...form.querySelectorAll(`.game__option`)];
-  gameOptions.forEach((option) => {
+  gameOptions.forEach((option, i) => {
     option.addEventListener(`click`, () => {
       let answer = Answer.CORRECT;
-      if (question.data[option.querySelector(`img`).getAttribute(`alt`).split(` `)[1] - 1].type !== question.task.type) {
+      if (question.data[i].type !== question.task.type) {
         answer = Answer.WRONG;
       }
       const nextState = getNextState(state, answer);

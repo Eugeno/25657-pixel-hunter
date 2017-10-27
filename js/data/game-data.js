@@ -25,11 +25,11 @@ const countScores = (state) => {
   };
   const answers = state.answers;
   const lives = state.lives;
-  answers.reduce((prev, curr) => {
-    reward[curr] += Reward[curr];
-  }, 0);
+  answers.forEach((a) => {
+    reward[a] += Reward[a];
+  });
   reward.live = lives * Reward.LIVE;
-  return answers.length === 10 ? reward : -1;
+  return answers.length === QUESTIONS_LENGTH ? reward : -1;
 };
 
 const createTimer = (duration) => {

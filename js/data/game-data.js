@@ -9,18 +9,25 @@ const Answer = {
 
 const Reward = {
   [Answer.CORRECT]: 100,
-  [Answer.FAST]: 50,
-  [Answer.SLOW]: -50,
+  [Answer.FAST]: 150,
+  [Answer.SLOW]: 50,
+  [Answer.WRONG]: 0,
   LIVE: 50
 };
 
 const countScores = (state) => {
-  const reward = {};
+  const reward = {
+    [Answer.CORRECT]: 0,
+    [Answer.FAST]: 0,
+    [Answer.SLOW]: 0,
+    [Answer.WRONG]: 0,
+    live: 0
+  };
   const answers = state.answers;
   const lives = state.lives;
-  reward.correct = answers.filter((t) => t !== Answer.WRONG).length * Reward[Answer.CORRECT];
-  reward.fast = answers.filter((t) => t === Answer.FAST).length * Reward[Answer.FAST];
-  reward.slow = answers.filter((t) => t === Answer.SLOW).length * Reward[Answer.SLOW];
+  answers.reduce((prev, curr) => {
+    reward[curr] += Reward[curr];
+  }, 0);
   reward.live = lives * Reward.LIVE;
   return answers.length === 10 ? reward : -1;
 };

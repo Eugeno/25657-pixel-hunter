@@ -39,7 +39,6 @@ ${footerTemplate}`);
 
 const getGameDouble = (state, question) => {
   renderBlock(moduleGameDouble(state, question));
-  const nextState = Object.assign({}, state);
 
   const form = document.querySelector(`.game__content`);
   const countChecked = () => {
@@ -54,7 +53,7 @@ const getGameDouble = (state, question) => {
       if (gameOptions.some((el, i) => question.data[i].type !== el.querySelector(`input[type="radio"]:checked`).value)) {
         answer = Answer.WRONG;
       }
-      getNextState(nextState, answer);
+      getNextState(state, answer);
     }
   });
   document.querySelector(`.back`).addEventListener(`click`, () => repeatGame());

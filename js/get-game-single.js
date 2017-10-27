@@ -31,7 +31,6 @@ ${footerTemplate}`);
 
 const getGameSingle = (state, question) => {
   renderBlock(moduleGameSingle(state, question));
-  const nextState = Object.assign({}, state);
 
   const form = document.querySelector(`.game__content`);
   const gameOptions = [...form.querySelectorAll(`.game__option`)];
@@ -41,7 +40,7 @@ const getGameSingle = (state, question) => {
     if (question.data[0].type !== gameOptions[0].querySelector(`input[type="radio"]:checked`).value) {
       answer = Answer.WRONG;
     }
-    getNextState(nextState, answer);
+    getNextState(state, answer);
   });
   document.querySelector(`.back`).addEventListener(`click`, () => repeatGame());
 };

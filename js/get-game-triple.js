@@ -31,7 +31,6 @@ ${footerTemplate}`);
 
 const getGameTriple = (state, question) => {
   renderBlock(moduleGameTriple(state, question));
-  const nextState = Object.assign({}, state);
 
   const form = document.querySelector(`.game__content`);
   const gameOptions = [...form.querySelectorAll(`.game__option`)];
@@ -41,7 +40,7 @@ const getGameTriple = (state, question) => {
       if (question.data[option.querySelector(`img`).getAttribute(`alt`).split(` `)[1] - 1].type !== question.task.type) {
         answer = Answer.WRONG;
       }
-      getNextState(nextState, answer);
+      getNextState(state, answer);
     });
   });
 

@@ -40,7 +40,6 @@ const getGameSingle = (state, question) => {
     let answer = Answer.CORRECT;
     if (question.data[0].type !== gameOptions[0].querySelector(`input[type="radio"]:checked`).value) {
       answer = Answer.WRONG;
-      nextState.lives--;
     }
     getNextState(nextState, answer);
   });

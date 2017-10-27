@@ -40,7 +40,6 @@ const getGameTriple = (state, question) => {
       let answer = Answer.CORRECT;
       if (question.data[option.querySelector(`img`).getAttribute(`alt`).split(` `)[1] - 1].type !== question.task.type) {
         answer = Answer.WRONG;
-        nextState.lives--;
       }
       getNextState(nextState, answer);
     });

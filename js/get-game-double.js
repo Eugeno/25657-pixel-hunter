@@ -53,7 +53,6 @@ const getGameDouble = (state, question) => {
       let answer = Answer.CORRECT;
       if (gameOptions.some((el, i) => question.data[i].type !== el.querySelector(`input[type="radio"]:checked`).value)) {
         answer = Answer.WRONG;
-        nextState.lives--;
       }
       getNextState(nextState, answer);
     }

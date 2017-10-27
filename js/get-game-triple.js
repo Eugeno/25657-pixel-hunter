@@ -3,26 +3,25 @@ import renderBlock from './render-block';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
-import {Answer} from './data/game-data';
-import questions from './main';
+import {Answer, questions} from './data/game-data';
 import repeatGame from './repeat-game';
 import finishGameModule from './finish-game-module';
 
-const gameOptionsTemplate = (state) => {
+const gameOptionsTemplate = (state, question) => {
   let options = ``;
   for (let i = 0; i < 3; i++) {
     options += `<div class="game__option">
-        <img src="${questions[state.level].data[i].src}" alt="Option ${i + 1}" width="304">
+        <img src="${question.data[i].src}" alt="Option ${i + 1}" width="304">
       </div>`;
   }
   return options;
 };
 
-const moduleGameTriple = (state) => getElementFromTemplate(`${headerTemplate(state)}
+const moduleGameTriple = (state, question) => getElementFromTemplate(`${headerTemplate(state)}
   <div class="game">
     <p class="game__task">Найдите ${questions[state.level].task.text} среди изображений</p>
     <form class="game__content game__content--triple">
-      ${gameOptionsTemplate(state)}
+      ${gameOptionsTemplate(state, question)}
     </form>
     <div class="stats">
       ${statsTemplate(state)}
@@ -30,8 +29,8 @@ const moduleGameTriple = (state) => getElementFromTemplate(`${headerTemplate(sta
   </div>
 ${footerTemplate}`);
 
-const getGameTriple = (state) => {
-  renderBlock(moduleGameTriple(state));
+const getGameTriple = (state, question) => {
+  renderBlock(moduleGameTriple(state, question));
   const newState = Object.assign({}, state);
 
   const form = document.querySelector(`.game__content`);

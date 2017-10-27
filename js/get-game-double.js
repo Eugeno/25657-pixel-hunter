@@ -1,18 +1,17 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
-import {Answer} from './data/game-data';
+import {Answer, questions} from './data/game-data';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
-import questions from './main';
 import repeatGame from './repeat-game';
 import finishGameModule from './finish-game-module';
 
-const gameOptionsTemplate = (state) => {
+const gameOptionsTemplate = (state, question) => {
   let options = ``;
   for (let i = 0; i < 2; i++) {
     options += `<div class="game__option">
-        <img src="${questions[state.level].data[i].src}" alt="Option ${i + 1}" width="468">
+        <img src="${question.data[i].src}" alt="Option ${i + 1}" width="468">
         <label class="game__answer game__answer--photo">
           <input name="question${i + 1}" type="radio" value="photo">
           <span>Фото</span>
@@ -26,11 +25,11 @@ const gameOptionsTemplate = (state) => {
   return options;
 };
 
-const moduleGameDouble = (state) => getElementFromTemplate(`${headerTemplate(state)}
+const moduleGameDouble = (state, question) => getElementFromTemplate(`${headerTemplate(state)}
   <div class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
     <form class="game__content">  
-      ${gameOptionsTemplate(state)}
+      ${gameOptionsTemplate(state, question)}
     </form>
     <div class="stats">
       ${statsTemplate(state)}
@@ -38,8 +37,8 @@ const moduleGameDouble = (state) => getElementFromTemplate(`${headerTemplate(sta
   </div>
 ${footerTemplate}`);
 
-const getGameDouble = (state) => {
-  renderBlock(moduleGameDouble(state));
+const getGameDouble = (state, question) => {
+  renderBlock(moduleGameDouble(state, question));
   const newState = Object.assign({}, state);
 
   const form = document.querySelector(`.game__content`);

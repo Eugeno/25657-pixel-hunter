@@ -88,9 +88,9 @@ const paints = [
 
 const loadableImages = [];
 
+const questions = [];
 const generateQuestions = () => {
   const getRandomNumber = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
-  let questions = [];
   const buildQuestion = () => {
     const getRandomGameType = () => {
       switch (getRandomNumber(1, 3)) {
@@ -185,7 +185,6 @@ const generateQuestions = () => {
   for (let i = 0; i < QUESTIONS_LENGTH; i++) {
     questions.push(buildQuestion());
   }
-  return questions;
 };
 
 const preloadImages = (sources, callback) => {
@@ -203,4 +202,4 @@ const preloadImages = (sources, callback) => {
   }
 };
 
-export {QUESTIONS_LENGTH, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages};
+export {QUESTIONS_LENGTH, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages, questions};

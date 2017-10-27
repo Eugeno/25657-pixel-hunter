@@ -1,4 +1,4 @@
-import questions from './main';
+import {questions} from './data/game-data';
 import getGameSingle from './get-game-single';
 import getGameDouble from './get-game-double';
 import getGameTriple from './get-game-triple';
@@ -6,13 +6,13 @@ import getGameTriple from './get-game-triple';
 const getGameModule = (state) => {
   switch (questions[state.level].type) {
     case `single`:
-      getGameSingle(state);
+      getGameSingle(state, questions[state.level]);
       break;
     case `double`:
-      getGameDouble(state);
+      getGameDouble(state, questions[state.level]);
       break;
     case `triple`:
-      getGameTriple(state);
+      getGameTriple(state, questions[state.level]);
       break;
   }
 };

@@ -1,6 +1,6 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
-import {Answer, questions} from './data/game-data';
+import {Answer} from './data/game-data';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
@@ -51,7 +51,7 @@ const getGameDouble = (state, question) => {
   form.addEventListener(`change`, () => {
     if (countChecked() === tasks) {
       let answer = Answer.CORRECT;
-      if (gameOptions.some((el, i) => questions[state.level].data[i].type !== el.querySelector(`input[type="radio"]:checked`).value)) {
+      if (gameOptions.some((el, i) => question.data[i].type !== el.querySelector(`input[type="radio"]:checked`).value)) {
         answer = Answer.WRONG;
         newState.lives--;
       }

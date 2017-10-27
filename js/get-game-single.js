@@ -3,7 +3,7 @@ import renderBlock from './render-block';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
-import {Answer, questions} from './data/game-data';
+import {Answer} from './data/game-data';
 import repeatGame from './repeat-game';
 import finishGameModule from './finish-game-module';
 
@@ -37,7 +37,7 @@ const getGameSingle = (state, question) => {
 
   form.addEventListener(`change`, () => {
     let answer = Answer.CORRECT;
-    if (questions[state.level].data[0].type !== gameOptions[0].querySelector(`input[type="radio"]:checked`).value) {
+    if (question.data[0].type !== gameOptions[0].querySelector(`input[type="radio"]:checked`).value) {
       answer = Answer.WRONG;
       newState.lives--;
     }

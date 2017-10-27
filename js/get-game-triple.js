@@ -3,7 +3,7 @@ import renderBlock from './render-block';
 import footerTemplate from './footer';
 import headerTemplate from './header';
 import statsTemplate from './stats';
-import {Answer, questions} from './data/game-data';
+import {Answer} from './data/game-data';
 import repeatGame from './repeat-game';
 import finishGameModule from './finish-game-module';
 
@@ -19,7 +19,7 @@ const gameOptionsTemplate = (state, question) => {
 
 const moduleGameTriple = (state, question) => getElementFromTemplate(`${headerTemplate(state)}
   <div class="game">
-    <p class="game__task">Найдите ${questions[state.level].task.text} среди изображений</p>
+    <p class="game__task">Найдите ${question.task.text} среди изображений</p>
     <form class="game__content game__content--triple">
       ${gameOptionsTemplate(state, question)}
     </form>
@@ -38,7 +38,7 @@ const getGameTriple = (state, question) => {
   gameOptions.forEach((option) => {
     option.addEventListener(`click`, () => {
       let answer = Answer.CORRECT;
-      if (questions[state.level].data[option.querySelector(`img`).getAttribute(`alt`).split(` `)[1] - 1].type !== questions[state.level].task.type) {
+      if (question.data[option.querySelector(`img`).getAttribute(`alt`).split(` `)[1] - 1].type !== question.task.type) {
         answer = Answer.WRONG;
         newState.lives--;
       }

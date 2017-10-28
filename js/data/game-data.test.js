@@ -1,5 +1,5 @@
 import assert from 'assert';
-import {QUESTIONS_LENGTH, Answer, countScores, createTimer} from '../game-data';
+import {QUESTIONS_LENGTH, Answer, countScores, createTimer} from './game-data';
 
 describe(`Array`, () => {
   describe(`#indexOf()`, () => {
@@ -11,70 +11,82 @@ describe(`Array`, () => {
 
 describe(`Counting total scores`, () => {
   it(`should return -1 when user didn't answer to all questions`, () => {
-    const answers = [
-      Answer.NORMAL,
-      Answer.WRONG,
-      Answer.WRONG,
-      Answer.NORMAL,
-      Answer.NORMAL,
-      Answer.SLOW,
-      Answer.NORMAL,
-      Answer.NORMAL,
-      Answer.WRONG
-    ];
-    const lives = 0;
-    assert.equal(-1, countScores(answers, lives));
+    const state = {
+      answers: [
+        Answer.CORRECT,
+        Answer.WRONG,
+        Answer.WRONG,
+        Answer.CORRECT,
+        Answer.CORRECT,
+        Answer.SLOW,
+        Answer.CORRECT,
+        Answer.CORRECT,
+        Answer.WRONG
+      ],
+      lives: 0
+    };
+    assert.equal(-1, countScores(state));
   });
   it(`should return -1 when user didn't answer to all questions`, () => {
-    const answers = [
-      Answer.WRONG,
-      Answer.WRONG,
-      Answer.WRONG
-    ];
-    const lives = 0;
-    assert.equal(-1, countScores(answers, lives));
+    const state = {
+      answers: [
+        Answer.WRONG,
+        Answer.WRONG,
+        Answer.WRONG
+      ],
+      lives: 0
+    };
+    assert.equal(-1, countScores(state));
   });
   it(`should return 1150 when user answered to all questions in normal speed, and got all lives`, () => {
-    const answers = new Array(QUESTIONS_LENGTH).fill(Answer.NORMAL);
-    const lives = 3;
-    assert.equal(1150, countScores(answers, lives));
+    const state = {
+      answers: new Array(QUESTIONS_LENGTH).fill(Answer.CORRECT),
+      lives: 3
+    };
+    assert.equal(1150, Object.keys(countScores(state)).reduce((sum, key) => sum + parseInt(countScores(state)[key], 10), 0));
   });
   it(`should return 750 when user answered 2 times right, 3 times wrong, 3 times fast and 2 times slow`, () => {
-    const answers = [
-      Answer.FAST,
-      Answer.WRONG,
-      Answer.NORMAL,
-      Answer.SLOW,
-      Answer.FAST,
-      Answer.WRONG,
-      Answer.NORMAL,
-      Answer.SLOW,
-      Answer.FAST,
-      Answer.WRONG
-    ];
-    const lives = 0;
-    assert.equal(750, countScores(answers, lives));
+    const state = {
+      answers: [
+        Answer.FAST,
+        Answer.WRONG,
+        Answer.CORRECT,
+        Answer.SLOW,
+        Answer.FAST,
+        Answer.WRONG,
+        Answer.CORRECT,
+        Answer.SLOW,
+        Answer.FAST,
+        Answer.WRONG
+      ],
+      lives: 0
+    };
+    assert.equal(750, Object.keys(countScores(state)).reduce((sum, key) => sum + parseInt(countScores(state)[key], 10), 0));
   });
   it(`should return 1650 when user answered fast for all questions`, () => {
-    const answers = new Array(QUESTIONS_LENGTH).fill(Answer.FAST);
-    const lives = 3;
-    assert.equal(1650, countScores(answers, lives));
+    const state = {
+      answers: new Array(QUESTIONS_LENGTH).fill(Answer.FAST),
+      lives: 3
+    };
+    assert.equal(1650, Object.keys(countScores(state)).reduce((sum, key) => sum + parseInt(countScores(state)[key], 10), 0));
   });
   it(`should return 350 when user answered slow 7 times and had 3 mistakes`, () => {
-    const answers = [
-      Answer.SLOW,
-      Answer.SLOW,
-      Answer.SLOW,
-      Answer.SLOW,
-      Answer.SLOW,
-      Answer.SLOW,
-      Answer.SLOW,
-      Answer.WRONG,
-      Answer.WRONG,
-      Answer.WRONG
-    ];
-    const lives = 0;
-    assert.equal(350, countScores(answers, lives));
+    const state = {
+      answers: [
+        Answer.SLOW,
+        Answer.SLOW,
+        Answer.SLOW,
+        Answer.SLOW,
+        Answer.SLOW,
+        Answer.SLOW,
+        Answer.SLOW,
+        Answer.WRONG,
+        Answer.WRONG,
+        Answer.WRONG
+      ],
+      lives: 0
+    };
+    assert.equal(350, Object.keys(countScores(state)).reduce((sum, key) => sum + parseInt(countScores(state)[key], 10), 0));
   });
 });
 

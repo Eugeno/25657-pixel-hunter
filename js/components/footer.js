@@ -1,14 +1,4 @@
-import getElementFromTemplate from './get-element';
-import renderBlock from './render-block';
-import moduleGreeting from './module_greeting';
-
-const moduleIntro = getElementFromTemplate(`<div id="main" class="central__content">
-    <div id="intro" class="intro">
-      <h1 class="intro__asterisk">*</h1>
-      <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
-    </div>
-  </div>
-  <footer class="footer">
+const footerTemplate = `<footer class="footer">
     <a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
     <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> © 2016</span>
     <div class="footer__social-links">
@@ -17,10 +7,6 @@ const moduleIntro = getElementFromTemplate(`<div id="main" class="central__conte
       <a href="https://www.facebook.com/htmlacademy" class="social-link social-link--fb">Фэйсбук</a>
       <a href="https://vk.com/htmlacademy" class="social-link social-link--vk">Вконтакте</a>
     </div>
-  </footer>`);
+  </footer>`;
 
-moduleIntro.querySelector(`.intro__asterisk`).addEventListener(`click`, () => renderBlock(moduleGreeting));
-
-export default moduleIntro;
-
-
+export default footerTemplate;

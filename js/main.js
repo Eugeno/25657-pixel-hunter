@@ -1,6 +1,12 @@
-import renderBlock from './render-block';
-import moduleIntro from './module_intro';
+import getIntroBlock from './get-intro-block';
+import {generateQuestions, preloadImages, loadableImages} from './data/game-data';
 
-const ready = () => renderBlock(moduleIntro);
+generateQuestions();
+const imagesLoaded = () => {};
+preloadImages(loadableImages, imagesLoaded);
+
+const ready = () => {
+  getIntroBlock();
+};
 
 document.addEventListener(`DOMContentLoaded`, ready);

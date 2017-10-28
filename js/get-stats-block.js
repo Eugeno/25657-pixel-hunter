@@ -12,13 +12,20 @@ const moduleStats = (state) => {
   const resultTotal = scores === -1 ? `FAIL` : scores[Answer.CORRECT];
   const fastAnswers = scores[Answer.FAST] / Reward[Answer.FAST];
   const slowAnswers = scores[Answer.SLOW] / Reward[Answer.SLOW];
-  const lives = scores[Answer.LIVE] / Reward[Answer.LIVE];
+  const lives = scores.LIVE / Reward.LIVE;
 
-  return getElementFromTemplate(`${headerTemplate(state)}
-    <div class="result">
-      <h1>Победа!</h1>
-      <table class="result__table">
-        <tr>
+  const getDetailedStat = () => {
+    if (scores === -1) {
+      return `<tr>
+          <td class="result__number">1.</td>
+          <td>
+            ${statsTemplate(state)}
+          </td>
+          <td class="result__total"></td>
+          <td class="result__total result__total--final">${resultTotal}</td>
+        </tr>`;
+    } else {
+      return `<tr>
           <td class="result__number">1.</td>
           <td colspan="2">
             ${statsTemplate(state)}
@@ -37,8 +44,8 @@ const moduleStats = (state) => {
           <td></td>
           <td class="result__extra">Бонус за жизни:</td>
           <td class="result__extra">${lives}&nbsp;<span class="stats__result stats__result--alive"></span></td>
-          <td class="result__points">×&nbsp;${Reward[Answer.LIVE]}</td>
-          <td class="result__total">${scores[Answer.LIVE]}</td>
+          <td class="result__points">×&nbsp;${Reward.LIVE}</td>
+          <td class="result__total">${scores.LIVE}</td>
         </tr>
         <tr>
           <td></td>
@@ -49,7 +56,15 @@ const moduleStats = (state) => {
         </tr>
         <tr>
           <td colspan="5" class="result__total result__total--final">${totalReward}</td>
-        </tr>
+        </tr>`;
+    }
+  };
+
+  return getElementFromTemplate(`${headerTemplate(state)}
+    <div class="result">
+      <h1>Победа!</h1>
+      <table class="result__table">
+        ${getDetailedStat()}
       </table>
       <table class="result__table">
         <tr>

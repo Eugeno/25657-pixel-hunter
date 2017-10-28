@@ -1,17 +1,15 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
-import {Answer, getNextState} from './data/game-data';
+import {Answer, getNextState, getNextScreen} from './data/game-data';
 import footerTemplate from './components/footer';
 import headerTemplate from './components/header';
 import statsTemplate from './components/stats';
 import repeatGame from './repeat-game';
-import getNextScreen from './get-next-screen';
 
-const gameOptionsTemplate = (state, question) => {
-  let options = ``;
-  for (let i = 0; i < 2; i++) {
-    options += `<div class="game__option">
-        <img src="${question.data[i].src}" alt="Option ${i + 1}" width="468">
+const gameOptionsTemplate = (question) => {
+  return question.data.map((q, i) => {
+    return `<div class="game__option">
+        <img src="${q.src}" alt="Option ${i + 1}" width="468">
         <label class="game__answer game__answer--photo">
           <input name="question${i + 1}" type="radio" value="photo">
           <span>Фото</span>
@@ -21,15 +19,14 @@ const gameOptionsTemplate = (state, question) => {
           <span>Рисунок</span>
         </label>
       </div>`;
-  }
-  return options;
+  }).join(``);
 };
 
 const moduleGameDouble = (state, question) => getElementFromTemplate(`${headerTemplate(state)}
   <div class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
     <form class="game__content">  
-      ${gameOptionsTemplate(state, question)}
+      ${gameOptionsTemplate(question)}
     </form>
     <div class="stats">
       ${statsTemplate(state)}
@@ -49,10 +46,7 @@ const getGameDouble = (state, question) => {
   const tasks = gameOptions.length;
   form.addEventListener(`change`, () => {
     if (countChecked() === tasks) {
-      let answer = Answer.CORRECT;
-      if (gameOptions.some((el, i) => question.data[i].type !== el.querySelector(`input[type="radio"]:checked`).value)) {
-        answer = Answer.WRONG;
-      }
+      const answer = gameOptions.some((el, i) => question.data[i].type !== el.querySelector(`input[type="radio"]:checked`).value) ? Answer.WRONG : Answer.CORRECT;
       const nextState = getNextState(state, answer);
       getNextScreen(nextState);
     }

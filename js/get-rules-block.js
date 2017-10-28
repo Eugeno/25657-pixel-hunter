@@ -1,9 +1,8 @@
 import getElementFromTemplate from './get-element';
 import getIntroBlock from './get-intro-block';
-import getGameModule from './get-game-module';
 import footerTemplate from './components/footer';
 import headerTemplate from './components/header';
-import {initialState} from './data/game-data';
+import {initialState, getGameModule} from './data/game-data';
 import renderBlock from './render-block';
 
 const moduleRules = getElementFromTemplate(`${headerTemplate(initialState)}
@@ -34,7 +33,7 @@ moduleRules.querySelector(`.back`).addEventListener(`click`, () => getIntroBlock
 
 rulesBtn.addEventListener(`click`, () => {
   const nextState = Object.assign({}, initialState);
-  nextState.answers = JSON.parse(JSON.stringify(initialState.answers));
+  nextState.answers = initialState.answers.slice(0);
   getGameModule(nextState);
 });
 

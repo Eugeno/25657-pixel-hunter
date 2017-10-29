@@ -3,7 +3,8 @@ import renderBlock from './render-block';
 import footerTemplate from './components/footer';
 import headerTemplate from './components/header';
 import statsTemplate from './components/stats';
-import {Answer, getNextState, getNextScreen} from './data/game-data';
+import {Answer, getNextState} from './data/game-data';
+import {getNextScreen} from './route-methods';
 import repeatGame from './repeat-game';
 
 const moduleGameSingle = (state, question) => getElementFromTemplate(`${headerTemplate(state)}

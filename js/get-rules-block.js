@@ -2,7 +2,8 @@ import getElementFromTemplate from './get-element';
 import getIntroBlock from './get-intro-block';
 import footerTemplate from './components/footer';
 import headerTemplate from './components/header';
-import {initialState, getGameModule} from './data/game-data';
+import {initialState} from './data/game-data';
+import {getGameModule} from './route-methods';
 import renderBlock from './render-block';
 
 const moduleRules = getElementFromTemplate(`${headerTemplate(initialState)}

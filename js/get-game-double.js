@@ -1,6 +1,7 @@
 import getElementFromTemplate from './get-element';
 import renderBlock from './render-block';
-import {Answer, getNextState, getNextScreen} from './data/game-data';
+import {Answer, getNextState} from './data/game-data';
+import {getNextScreen} from './route-methods';
 import footerTemplate from './components/footer';
 import headerTemplate from './components/header';
 import statsTemplate from './components/stats';

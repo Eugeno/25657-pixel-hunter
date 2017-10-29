@@ -1,6 +1,6 @@
 import IntroView from './intro-view';
-import renderBlock from './render-block';
-import getGreetingBlock from './get-greeting-block';
+import renderBlock from '../render-block';
+import getGreetingBlock from '../get-greeting-block';
 
 const getIntro = () => {
   const introBlock = new IntroView();

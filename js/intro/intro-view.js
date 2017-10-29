@@ -1,5 +1,5 @@
-import AbstractView from './abstract-view';
-import footerTemplate from './components/footer';
+import AbstractView from '../abstract-view';
+import footerTemplate from '../components/footer';
 
 class IntroView extends AbstractView {
   get template() {

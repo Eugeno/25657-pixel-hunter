@@ -1,6 +1,8 @@
+import getElementFromTemplate from './get-element';
+
 class AbstractView {
   get template() {
-
+    throw new Error(`There are no template for view`);
   }
 
   get element() {
@@ -12,9 +14,7 @@ class AbstractView {
   }
 
   render() {
-    const el = document.createElement(`div`);
-    el.innerHTML = this.template;
-    return el;
+    return getElementFromTemplate(this.template);
   }
 
   bind() {

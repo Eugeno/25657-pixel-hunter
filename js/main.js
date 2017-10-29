@@ -1,4 +1,4 @@
-import getIntro from './intro';
+import getIntro from './intro/intro';
 import {generateQuestions, preloadImages, loadableImages} from './data/game-data';
 
 generateQuestions();

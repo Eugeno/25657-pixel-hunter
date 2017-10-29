@@ -1,10 +1,10 @@
 import getElementFromTemplate from './get-element';
-import getIntroBlock from './get-intro-block';
 import footerTemplate from './components/footer';
 import headerTemplate from './components/header';
 import {initialState} from './data/game-data';
 import {getGameModule} from './route-methods';
 import renderBlock from './render-block';
+import repeatGame from './repeat-game';
 
 const moduleRules = getElementFromTemplate(`${headerTemplate(initialState)}
   <div class="rules">
@@ -30,7 +30,7 @@ const rulesBtn = moduleRules.querySelector(`.rules__button`);
 input.addEventListener(`input`, ({target}) => {
   rulesBtn.disabled = !target.value.trim();
 });
-moduleRules.querySelector(`.back`).addEventListener(`click`, () => getIntroBlock());
+moduleRules.querySelector(`.back`).addEventListener(`click`, () => repeatGame());
 
 rulesBtn.addEventListener(`click`, () => {
   const nextState = Object.assign({}, initialState);

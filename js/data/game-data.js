@@ -1,7 +1,9 @@
 const QUESTIONS_LENGTH = 10;
-const MAX_ANSWER_TIME = 30;
-const FAST_ANSWER_TIME = 10;
-const SLOW_ANSWER_TIME = 20;
+const AnswerTime = {
+  MAX: 30,
+  FAST: 10,
+  SLOW: 20
+};
 
 const Answer = {
   CORRECT: `correct`,
@@ -46,7 +48,7 @@ const createTimer = (duration) => {
 
 const initialState = {
   lives: 3,
-  time: MAX_ANSWER_TIME,
+  time: AnswerTime.MAX,
   answers: [],
   level: 0
 };
@@ -221,8 +223,8 @@ const getNextState = (state, answer) => {
   if (answer === Answer.WRONG) {
     nextState.lives--;
   }
-  nextState.time = MAX_ANSWER_TIME;
+  nextState.time = AnswerTime.MAX;
   return nextState;
 };
 
-export {QUESTIONS_LENGTH, MAX_ANSWER_TIME, FAST_ANSWER_TIME, SLOW_ANSWER_TIME, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages, questions, GameType, getNextState};
+export {QUESTIONS_LENGTH, AnswerTime, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages, questions, GameType, getNextState};

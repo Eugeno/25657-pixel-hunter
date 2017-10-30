@@ -1,6 +1,6 @@
 import renderBlock from '../render-block';
 import repeatGame from '../repeat-game';
-import {MAX_ANSWER_TIME, FAST_ANSWER_TIME, SLOW_ANSWER_TIME, Answer, getNextState} from '../data/game-data';
+import {AnswerTime, Answer, getNextState} from '../data/game-data';
 import {getNextScreen} from '../route-methods';
 
 const getGame = (state, question, gameBlock) => {
@@ -23,9 +23,9 @@ const getGame = (state, question, gameBlock) => {
     if (!answers || isWrongAnswer()) {
       answer = Answer.WRONG;
     } else {
-      if (MAX_ANSWER_TIME - gameBlock.state.time < FAST_ANSWER_TIME) {
+      if (AnswerTime.MAX - gameBlock.state.time < AnswerTime.FAST) {
         answer = Answer.FAST;
-      } else if (MAX_ANSWER_TIME - gameBlock.state.time > SLOW_ANSWER_TIME) {
+      } else if (AnswerTime.MAX - gameBlock.state.time > AnswerTime.SLOW) {
         answer = Answer.SLOW;
       }
     }

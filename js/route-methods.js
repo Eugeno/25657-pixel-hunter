@@ -1,4 +1,4 @@
-import {QUESTIONS_LENGTH, MAX_ANSWER_TIME, GameType, questions} from './data/game-data';
+import {QUESTIONS_LENGTH, AnswerTime, GameType, questions} from './data/game-data';
 import GameSingleView from './games/game-single-view';
 import GameDoubleView from './games/game-double-view';
 import GameTripleView from './games/game-triple-view';
@@ -17,7 +17,7 @@ const getGameModule = (state) => {
 
 const getNextScreen = (state) => {
   const nextState = Object.assign({}, state);
-  nextState.time = MAX_ANSWER_TIME;
+  nextState.time = AnswerTime.MAX;
   if (state.level < QUESTIONS_LENGTH && state.lives >= 0) {
     getGameModule(state);
   } else {

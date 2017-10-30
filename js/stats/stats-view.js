@@ -10,9 +10,13 @@ class StatsView extends AbstractView {
     this.state = state;
     this.scores = countScores(state);
     this.totalReward = Object.keys(this.scores).reduce((sum, key) => sum + parseInt(this.scores[key], 10), 0);
-    this.resultTotal = this.scores === -1 ? `FAIL` : this.scores[Answer.CORRECT];
     this.fastAnswers = this.scores[Answer.FAST] / Reward[Answer.FAST];
     this.slowAnswers = this.scores[Answer.SLOW] / Reward[Answer.SLOW];
+    this.fastReward = Reward[Answer.FAST] - Reward[Answer.CORRECT];
+    this.slowReward = Reward[Answer.CORRECT] - Reward[Answer.SLOW];
+    this.totalFastReward = this.fastReward * this.fastAnswers;
+    this.totalSlowReward = -this.slowReward * this.slowAnswers;
+    this.resultTotal = this.scores === -1 ? `FAIL` : this.scores[Answer.CORRECT] + (this.fastAnswers + this.slowAnswers) * Reward[Answer.CORRECT];
     this.lives = this.scores.LIVE / Reward.LIVE;
   }
 
@@ -39,8 +43,8 @@ class StatsView extends AbstractView {
         <td></td>
         <td class="result__extra">Бонус за скорость:</td>
         <td class="result__extra">${this.fastAnswers}&nbsp;<span class="stats__result stats__result--fast"></span></td>
-        <td class="result__points">×&nbsp;${Reward[Answer.FAST]}</td>
-        <td class="result__total">${this.scores[Answer.FAST]}</td>
+        <td class="result__points">×&nbsp;${this.fastReward}</td>
+        <td class="result__total">${this.totalFastReward}</td>
       </tr>
       <tr>
         <td></td>
@@ -53,8 +57,8 @@ class StatsView extends AbstractView {
         <td></td>
         <td class="result__extra">Штраф за медлительность:</td>
         <td class="result__extra">${this.slowAnswers}&nbsp;<span class="stats__result stats__result--slow"></span></td>
-        <td class="result__points">×&nbsp;${Reward[Answer.SLOW]}</td>
-        <td class="result__total">${this.scores[Answer.SLOW]}</td>
+        <td class="result__points">×&nbsp;${this.slowReward}</td>
+        <td class="result__total">${this.totalSlowReward}</td>
       </tr>
       <tr>
         <td colspan="5" class="result__total result__total--final">${this.totalReward}</td>

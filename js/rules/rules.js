@@ -11,9 +11,7 @@ const getRules = () => {
     nextState.answers = initialState.answers.slice(0);
     getGameModule(nextState);
   };
-  rulesBlock.onBackBtnClick = () => {
-    repeatGame();
-  };
+  rulesBlock.onBackBtnClick = () => repeatGame();
   renderBlock(rulesBlock);
 };
 

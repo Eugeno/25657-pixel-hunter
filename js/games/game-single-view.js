@@ -50,22 +50,12 @@ ${footerTemplate}`;
 
   }
 
-  tick() {
-    this.state.time--;
+  onTick() {
     this.element.querySelector(`.game__timer`).innerHTML = this.state.time;
-    if (this.state.time === 0) {
-      this.timeExceed();
-    } else {
-      this.timer = setTimeout(() => this.tick(), 1000);
-    }
-  }
-
-  stopTimer() {
-    clearTimeout(this.timer);
   }
 
   timeExceed() {
-    this.onAnswer();
+    this.onAnswer(null);
   }
 }
 

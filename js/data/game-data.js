@@ -1,5 +1,7 @@
 const QUESTIONS_LENGTH = 10;
 const MAX_ANSWER_TIME = 30;
+const FAST_ANSWER_TIME = 10;
+const SLOW_ANSWER_TIME = 20;
 
 const Answer = {
   CORRECT: `correct`,
@@ -223,4 +225,4 @@ const getNextState = (state, answer) => {
   return nextState;
 };
 
-export {QUESTIONS_LENGTH, MAX_ANSWER_TIME, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages, questions, GameType, getNextState};
+export {QUESTIONS_LENGTH, MAX_ANSWER_TIME, FAST_ANSWER_TIME, SLOW_ANSWER_TIME, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages, questions, GameType, getNextState};

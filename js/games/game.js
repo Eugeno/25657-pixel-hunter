@@ -1,30 +1,28 @@
-import GameSingleView from './game-single-view';
 import renderBlock from '../render-block';
 import repeatGame from '../repeat-game';
 import {MAX_ANSWER_TIME, FAST_ANSWER_TIME, SLOW_ANSWER_TIME, Answer, getNextState, createTimer} from '../data/game-data';
 import {getNextScreen} from '../route-methods';
 
-const getGameSingle = (state, question) => {
-  const gameSingleBlock = new GameSingleView(state, question);
+const getGame = (state, question, gameBlock) => {
   let timer = createTimer(MAX_ANSWER_TIME);
   let timeouter;
-  gameSingleBlock.tick = () => {
+  gameBlock.tick = () => {
     timer = timer.tick();
     if (typeof timer === `object`) {
-      gameSingleBlock.state.time = timer.value;
-      gameSingleBlock.onTick();
+      gameBlock.state.time = timer.value;
+      gameBlock.onTick();
       timeouter = setTimeout(() => {
-        gameSingleBlock.tick();
+        gameBlock.tick();
       }, 1000);
     } else {
-      gameSingleBlock.timeExceed();
+      gameBlock.timeExceed();
     }
   };
   setTimeout(() => {
-    gameSingleBlock.tick();
+    gameBlock.tick();
   }, 1000);
 
-  gameSingleBlock.onAnswer = (answers) => {
+  gameBlock.onAnswer = (answers) => {
     clearTimeout(timeouter);
     let answer = Answer.CORRECT;
     const isWrongAnswer = () => {
@@ -35,17 +33,17 @@ const getGameSingle = (state, question) => {
     if (answers.length !== question.data.length || isWrongAnswer()) {
       answer = Answer.WRONG;
     } else {
-      if (MAX_ANSWER_TIME - gameSingleBlock.state.time < FAST_ANSWER_TIME) {
+      if (MAX_ANSWER_TIME - gameBlock.state.time < FAST_ANSWER_TIME) {
         answer = Answer.FAST;
-      } else if (MAX_ANSWER_TIME - gameSingleBlock.state.time > SLOW_ANSWER_TIME) {
+      } else if (MAX_ANSWER_TIME - gameBlock.state.time > SLOW_ANSWER_TIME) {
         answer = Answer.SLOW;
       }
     }
     const nextState = getNextState(state, answer);
     getNextScreen(nextState);
   };
-  gameSingleBlock.onBackBtnClick = () => repeatGame();
-  renderBlock(gameSingleBlock);
+  gameBlock.onBackBtnClick = () => repeatGame();
+  renderBlock(gameBlock);
 };
 
-export default getGameSingle;
+export default getGame;

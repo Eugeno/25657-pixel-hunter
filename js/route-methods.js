@@ -1,16 +1,18 @@
 import {QUESTIONS_LENGTH, GameType, questions} from './data/game-data';
-import getGameSingle from './games/game-single';
-import getGameDouble from './games/game-double';
-import getGameTriple from './games/game-triple';
+import GameSingleView from './games/game-single-view';
+import GameDoubleView from './games/game-double-view';
+import GameTripleView from './games/game-triple-view';
+import getGame from './games/game';
 import getStats from './stats/stats';
 
 const getGameModule = (state) => {
-  const GameTypes = {
-    [GameType.SINGLE]: getGameSingle,
-    [GameType.DOUBLE]: getGameDouble,
-    [GameType.TRIPLE]: getGameTriple,
+  const GameModules = {
+    [GameType.SINGLE]: GameSingleView,
+    [GameType.DOUBLE]: GameDoubleView,
+    [GameType.TRIPLE]: GameTripleView,
   };
-  GameTypes[questions[state.level].type](state, questions[state.level]);
+  const gameModule = new GameModules[questions[state.level].type](state, questions[state.level]);
+  getGame(state, questions[state.level], gameModule);
 };
 
 const getNextScreen = (state) => {

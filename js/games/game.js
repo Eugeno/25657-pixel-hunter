@@ -32,7 +32,10 @@ const getGame = (state, question, gameBlock) => {
     const nextState = getNextState(state, answer);
     getNextScreen(nextState);
   };
-  gameBlock.onBackBtnClick = () => repeatGame();
+  gameBlock.onBackBtnClick = () => {
+    clearInterval(timer);
+    repeatGame();
+  };
   renderBlock(gameBlock);
 };
 

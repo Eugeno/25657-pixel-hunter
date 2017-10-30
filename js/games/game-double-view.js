@@ -44,7 +44,18 @@ ${footerTemplate}`;
     const el = this.element;
     const form = el.querySelector(`form`);
     const backBtn = el.querySelector(`.back`);
-    form.addEventListener(`change`, this.onAnswer);
+    const countChecked = () => form.querySelectorAll(`input[type="radio"]:checked`).length;
+    const gameOptions = [...form.querySelectorAll(`.game__option`)];
+    const tasks = gameOptions.length;
+    const answers = [];
+    form.addEventListener(`change`, () => {
+      if (countChecked() === tasks) {
+        gameOptions.forEach((option) => {
+          answers.push(option.querySelector(`input[type="radio"]:checked`).value);
+        });
+        this.onAnswer(answers);
+      }
+    });
     backBtn.addEventListener(`click`, this.onBackBtnClick);
   }
 

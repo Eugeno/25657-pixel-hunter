@@ -23,26 +23,20 @@ const getGameDouble = (state, question) => {
     gameDoubleBlock.tick();
   }, 1000);
 
-  gameDoubleBlock.onAnswer = () => {
-    const form = gameDoubleBlock.element.querySelector(`.game__content`);
-    const countChecked = () => form.querySelectorAll(`input[type="radio"]:checked`).length;
-    const gameOptions = [...form.querySelectorAll(`.game__option`)];
-    const tasks = gameOptions.length;
+  gameDoubleBlock.onAnswer = (answers) => {
+    clearTimeout(gameDoubleBlock.timer);
     let answer = Answer.CORRECT;
-    if (state.time === 0 || countChecked() === tasks) {
-      clearTimeout(gameDoubleBlock.timer);
-      if (state.time === 0 || gameOptions.some((el, i) => question.data[i].type !== el.querySelector(`input[type="radio"]:checked`).value)) {
-        answer = Answer.WRONG;
-      } else {
-        if (MAX_ANSWER_TIME - gameDoubleBlock.state.time < FAST_ANSWER_TIME) {
-          answer = Answer.FAST;
-        } else if (MAX_ANSWER_TIME - gameDoubleBlock.state.time > SLOW_ANSWER_TIME) {
-          answer = Answer.SLOW;
-        }
+    if (state.time === 0 || answers.some((el, i) => question.data[i].type !== answers[i])) {
+      answer = Answer.WRONG;
+    } else {
+      if (MAX_ANSWER_TIME - gameDoubleBlock.state.time < FAST_ANSWER_TIME) {
+        answer = Answer.FAST;
+      } else if (MAX_ANSWER_TIME - gameDoubleBlock.state.time > SLOW_ANSWER_TIME) {
+        answer = Answer.SLOW;
       }
-      const nextState = getNextState(state, answer);
-      getNextScreen(nextState);
     }
+    const nextState = getNextState(state, answer);
+    getNextScreen(nextState);
   };
   gameDoubleBlock.onBackBtnClick = () => repeatGame();
   renderBlock(gameDoubleBlock);

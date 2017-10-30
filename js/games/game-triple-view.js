@@ -39,7 +39,7 @@ ${footerTemplate}`;
     const backBtn = el.querySelector(`.back`);
     gameOptions.forEach((option, i) => {
       option.addEventListener(`click`, () => {
-        this.onAnswer(option, i);
+        this.onAnswer(i);
       });
     });
     backBtn.addEventListener(`click`, this.onBackBtnClick);

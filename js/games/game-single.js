@@ -6,10 +6,15 @@ import {getNextScreen} from '../route-methods';
 
 const getGameSingle = (state, question) => {
   const GameSingleBlock = new GameSingleView(state, question);
-  GameSingleBlock.onChangeAnswerInput = () => {
+  setTimeout(() => {
+    GameSingleBlock.tick();
+  }, 1000);
+  GameSingleBlock.onAnswer = () => {
+    GameSingleBlock.stopTimer();
     const gameOptions = [...GameSingleBlock.element.querySelectorAll(`.game__option`)];
     let answer = Answer.CORRECT;
-    if (question.data[0].type !== gameOptions[0].querySelector(`input[type="radio"]:checked`).value) {
+    const hasAnswer = gameOptions[0].querySelector(`input[type="radio"]:checked`);
+    if (!hasAnswer || question.data[0].type !== gameOptions[0].querySelector(`input[type="radio"]:checked`).value) {
       answer = Answer.WRONG;
     }
     const nextState = getNextState(state, answer);

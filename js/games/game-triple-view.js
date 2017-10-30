@@ -2,6 +2,7 @@ import AbstractView from '../abstract-view';
 import footerTemplate from '../components/footer';
 import statsTemplate from '../components/stats';
 import headerTemplate from '../components/header';
+import {MAX_ANSWER_TIME} from '../data/game-data';
 
 class GameTripleView extends AbstractView {
   constructor(state, question) {
@@ -39,18 +40,36 @@ ${footerTemplate}`;
     const backBtn = el.querySelector(`.back`);
     gameOptions.forEach((option, i) => {
       option.addEventListener(`click`, () => {
-        this.onClickAnswer(option, i);
+        this.onAnswer(option, i);
       });
     });
     backBtn.addEventListener(`click`, this.onBackBtnClick);
   }
 
-  onClickAnswer() {
+  onAnswer() {
 
   }
 
   onBackBtnClick() {
 
+  }
+
+  tick() {
+    this.state.time++;
+    this.element.querySelector(`.game__timer`).innerHTML = this.state.time;
+    if (this.state.time >= MAX_ANSWER_TIME) {
+      this.timeExceed();
+    } else {
+      this.timer = setTimeout(() => this.tick(), 1000);
+    }
+  }
+
+  stopTimer() {
+    clearTimeout(this.timer);
+  }
+
+  timeExceed() {
+    this.onAnswer();
   }
 }
 

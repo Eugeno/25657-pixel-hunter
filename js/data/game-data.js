@@ -1,4 +1,5 @@
 const QUESTIONS_LENGTH = 10;
+const MAX_ANSWER_TIME = 30;
 
 const Answer = {
   CORRECT: `correct`,
@@ -218,7 +219,8 @@ const getNextState = (state, answer) => {
   if (answer === Answer.WRONG) {
     nextState.lives--;
   }
+  nextState.time = 0;
   return nextState;
 };
 
-export {QUESTIONS_LENGTH, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages, questions, GameType, getNextState};
+export {QUESTIONS_LENGTH, MAX_ANSWER_TIME, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages, questions, GameType, getNextState};

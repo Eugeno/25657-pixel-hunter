@@ -6,9 +6,13 @@ import {getNextScreen} from '../route-methods';
 
 const getGameTriple = (state, question) => {
   const GameTripleBlock = new GameTripleView(state, question);
-  GameTripleBlock.onClickAnswer = (option, i) => {
+  setTimeout(() => {
+    GameTripleBlock.tick();
+  }, 1000);
+  GameTripleBlock.onAnswer = (option, i) => {
+    GameTripleBlock.stopTimer();
     let answer = Answer.CORRECT;
-    if (question.data[i].type !== question.task.type) {
+    if (!option || question.data[i].type !== question.task.type) {
       answer = Answer.WRONG;
     }
     const nextState = getNextState(state, answer);

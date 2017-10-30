@@ -4,32 +4,22 @@ import {MAX_ANSWER_TIME, FAST_ANSWER_TIME, SLOW_ANSWER_TIME, Answer, getNextStat
 import {getNextScreen} from '../route-methods';
 
 const getGame = (state, question, gameBlock) => {
-  let estimatedTime = MAX_ANSWER_TIME;
-  let timeouter;
+  const timer = setInterval(() => {
+    gameBlock.tick();
+  }, 1000);
   gameBlock.tick = () => {
-    estimatedTime--;
-    if (estimatedTime > 0) {
-      gameBlock.state.time = estimatedTime;
+    gameBlock.state.time--;
+    if (gameBlock.state.time > 0) {
       gameBlock.onTick();
-      timeouter = setTimeout(() => {
-        gameBlock.tick();
-      }, 1000);
     } else {
       gameBlock.timeExceed();
     }
   };
-  setTimeout(() => {
-    gameBlock.tick();
-  }, 1000);
 
   gameBlock.onAnswer = (answers) => {
-    clearTimeout(timeouter);
+    clearInterval(timer);
     let answer = Answer.CORRECT;
-    const isWrongAnswer = () => {
-      return question.data.some((t, i) => {
-        return t.type !== answers[i];
-      });
-    };
+    const isWrongAnswer = () => question.data.some((t, i) => t.type !== answers[i]);
     if (!answers || isWrongAnswer()) {
       answer = Answer.WRONG;
     } else {

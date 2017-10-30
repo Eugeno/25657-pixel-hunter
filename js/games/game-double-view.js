@@ -46,9 +46,8 @@ ${footerTemplate}`;
     const backBtn = el.querySelector(`.back`);
     const countChecked = () => form.querySelectorAll(`input[type="radio"]:checked`).length;
     const gameOptions = [...form.querySelectorAll(`.game__option`)];
-    const tasks = gameOptions.length;
     form.addEventListener(`change`, () => {
-      if (countChecked() === tasks) {
+      if (countChecked() === gameOptions.length) {
         const answers = gameOptions.map((option) => option.querySelector(`input[type="radio"]:checked`).value);
         this.onAnswer(answers);
       }

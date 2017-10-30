@@ -7,12 +7,13 @@ import {getNextScreen} from '../route-methods';
 const getGameSingle = (state, question) => {
   const gameSingleBlock = new GameSingleView(state, question);
   let timer = createTimer(MAX_ANSWER_TIME);
+  let timeouter;
   gameSingleBlock.tick = () => {
     timer = timer.tick();
     if (typeof timer === `object`) {
       gameSingleBlock.state.time = timer.value;
       gameSingleBlock.onTick();
-      gameSingleBlock.timer = setTimeout(() => {
+      timeouter = setTimeout(() => {
         gameSingleBlock.tick();
       }, 1000);
     } else {
@@ -24,7 +25,7 @@ const getGameSingle = (state, question) => {
   }, 1000);
 
   gameSingleBlock.onAnswer = (answers) => {
-    clearTimeout(gameSingleBlock.timer);
+    clearTimeout(timeouter);
     let answer = Answer.CORRECT;
     if (!answers || question.data[0].type !== answers[0]) {
       answer = Answer.WRONG;

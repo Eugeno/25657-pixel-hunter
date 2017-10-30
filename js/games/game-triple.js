@@ -7,12 +7,13 @@ import {getNextScreen} from '../route-methods';
 const getGameTriple = (state, question) => {
   const gameTripleBlock = new GameTripleView(state, question);
   let timer = createTimer(MAX_ANSWER_TIME);
+  let timeouter;
   gameTripleBlock.tick = () => {
     timer = timer.tick();
     if (typeof timer === `object`) {
       gameTripleBlock.state.time = timer.value;
       gameTripleBlock.onTick();
-      gameTripleBlock.timer = setTimeout(() => {
+      timeouter = setTimeout(() => {
         gameTripleBlock.tick();
       }, 1000);
     } else {
@@ -24,7 +25,7 @@ const getGameTriple = (state, question) => {
   }, 1000);
 
   gameTripleBlock.onAnswer = (answers) => {
-    clearTimeout(gameTripleBlock.timer);
+    clearTimeout(timeouter);
     let answer = Answer.CORRECT;
     if (!answers || answers[0] !== question.task.type) {
       answer = Answer.WRONG;

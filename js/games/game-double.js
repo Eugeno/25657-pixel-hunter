@@ -7,12 +7,13 @@ import {getNextScreen} from '../route-methods';
 const getGameDouble = (state, question) => {
   const gameDoubleBlock = new GameDoubleView(state, question);
   let timer = createTimer(MAX_ANSWER_TIME);
+  let timeouter;
   gameDoubleBlock.tick = () => {
     timer = timer.tick();
     if (typeof timer === `object`) {
       gameDoubleBlock.state.time = timer.value;
       gameDoubleBlock.onTick();
-      gameDoubleBlock.timer = setTimeout(() => {
+      timeouter = setTimeout(() => {
         gameDoubleBlock.tick();
       }, 1000);
     } else {
@@ -24,7 +25,7 @@ const getGameDouble = (state, question) => {
   }, 1000);
 
   gameDoubleBlock.onAnswer = (answers) => {
-    clearTimeout(gameDoubleBlock.timer);
+    clearTimeout(timeouter);
     let answer = Answer.CORRECT;
     if (state.time === 0 || answers.some((el, i) => question.data[i].type !== answers[i])) {
       answer = Answer.WRONG;

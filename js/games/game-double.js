@@ -1,7 +1,7 @@
 import GameDoubleView from './game-double-view';
 import renderBlock from '../render-block';
 import repeatGame from '../repeat-game';
-import {Answer, getNextState, MAX_ANSWER_TIME} from '../data/game-data';
+import {Answer, getNextState} from '../data/game-data';
 import {getNextScreen} from '../route-methods';
 
 const getGameDouble = (state, question) => {
@@ -15,9 +15,9 @@ const getGameDouble = (state, question) => {
     const gameOptions = [...form.querySelectorAll(`.game__option`)];
     const tasks = gameOptions.length;
     let answer = Answer.CORRECT;
-    if (state.time === MAX_ANSWER_TIME || countChecked() === tasks) {
+    if (state.time === 0 || countChecked() === tasks) {
       GameDoubleBlock.stopTimer();
-      if (state.time === MAX_ANSWER_TIME || gameOptions.some((el, i) => question.data[i].type !== el.querySelector(`input[type="radio"]:checked`).value)) {
+      if (state.time === 0 || gameOptions.some((el, i) => question.data[i].type !== el.querySelector(`input[type="radio"]:checked`).value)) {
         answer = Answer.WRONG;
       }
       const nextState = getNextState(state, answer);

@@ -44,7 +44,7 @@ const createTimer = (duration) => {
 
 const initialState = {
   lives: 3,
-  time: 0,
+  time: MAX_ANSWER_TIME,
   answers: [],
   level: 0
 };
@@ -219,7 +219,7 @@ const getNextState = (state, answer) => {
   if (answer === Answer.WRONG) {
     nextState.lives--;
   }
-  nextState.time = 0;
+  nextState.time = MAX_ANSWER_TIME;
   return nextState;
 };
 

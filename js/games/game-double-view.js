@@ -2,7 +2,6 @@ import AbstractView from '../abstract-view';
 import footerTemplate from '../components/footer';
 import statsTemplate from '../components/stats';
 import headerTemplate from '../components/header';
-import {MAX_ANSWER_TIME} from '../data/game-data';
 
 class GameDoubleView extends AbstractView {
   constructor(state, question) {
@@ -58,9 +57,9 @@ ${footerTemplate}`;
   }
 
   tick() {
-    this.state.time++;
+    this.state.time--;
     this.element.querySelector(`.game__timer`).innerHTML = this.state.time;
-    if (this.state.time >= MAX_ANSWER_TIME) {
+    if (this.state.time === 0) {
       this.timeExceed();
     } else {
       this.timer = setTimeout(() => this.tick(), 1000);

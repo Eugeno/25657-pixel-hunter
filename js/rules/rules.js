@@ -5,7 +5,7 @@ import {getGameModule} from '../route-methods';
 import repeatGame from '../repeat-game';
 
 const getRules = () => {
-  const rulesBlock = new RulesView();
+  const rulesBlock = new RulesView(initialState);
   rulesBlock.onNextBtnClick = () => {
     const nextState = Object.assign({}, initialState);
     nextState.answers = initialState.answers.slice(0);

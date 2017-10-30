@@ -1,7 +1,7 @@
 import {QUESTIONS_LENGTH, GameType, questions} from './data/game-data';
-import getGameSingle from './get-game-single';
-import getGameDouble from './get-game-double';
-import getGameTriple from './get-game-triple';
+import getGameSingle from './games/game-single';
+import getGameDouble from './games/game-double';
+import getGameTriple from './games/game-triple';
 import getStatsBlock from './get-stats-block';
 
 const getGameModule = (state) => {

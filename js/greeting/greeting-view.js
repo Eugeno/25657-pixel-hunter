@@ -1,7 +1,7 @@
 import AbstractView from '../abstract-view';
 import footerTemplate from '../components/footer';
 
-class IntroView extends AbstractView {
+class GreetingView extends AbstractView {
   get template() {
     return `<div class="greeting central--blur">
     <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
@@ -29,4 +29,4 @@ ${footerTemplate}`;
   }
 }
 
-export default IntroView;
+export default GreetingView;

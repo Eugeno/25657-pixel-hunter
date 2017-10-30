@@ -1,11 +1,15 @@
 import AbstractView from '../abstract-view';
 import headerTemplate from '../components/header';
 import footerTemplate from '../components/footer';
-import {initialState} from '../data/game-data';
 
 class RulesView extends AbstractView {
+  constructor(state) {
+    super();
+    this.state = state;
+  }
+
   get template() {
-    return `${headerTemplate(initialState)}
+    return `${headerTemplate(this.state)}
   <div class="rules">
     <h1 class="rules__title">Правила</h1>
     <p class="rules__description">Угадай 10 раз для каждого изображения фото <img

@@ -30,7 +30,7 @@ const getGame = (state, question, gameBlock) => {
         return t.type !== answers[i];
       });
     };
-    if (answers.length !== question.data.length || isWrongAnswer()) {
+    if (!answers || isWrongAnswer()) {
       answer = Answer.WRONG;
     } else {
       if (MAX_ANSWER_TIME - gameBlock.state.time < FAST_ANSWER_TIME) {

@@ -20,7 +20,9 @@ const getNextScreen = (state) => {
     getGameModule(state);
   } else {
     const nextState = Object.assign({}, state);
-    nextState.lives = 0;
+    if (nextState.lives < 0) {
+      nextState.lives = 0;
+    }
     getStats(nextState);
   }
 };

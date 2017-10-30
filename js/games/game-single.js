@@ -5,13 +5,13 @@ import {Answer, getNextState} from '../data/game-data';
 import {getNextScreen} from '../route-methods';
 
 const getGameSingle = (state, question) => {
-  const GameSingleBlock = new GameSingleView(state, question);
+  const gameSingleBlock = new GameSingleView(state, question);
   setTimeout(() => {
-    GameSingleBlock.tick();
+    gameSingleBlock.tick();
   }, 1000);
-  GameSingleBlock.onAnswer = () => {
-    GameSingleBlock.stopTimer();
-    const gameOptions = [...GameSingleBlock.element.querySelectorAll(`.game__option`)];
+  gameSingleBlock.onAnswer = () => {
+    gameSingleBlock.stopTimer();
+    const gameOptions = [...gameSingleBlock.element.querySelectorAll(`.game__option`)];
     let answer = Answer.CORRECT;
     const hasAnswer = gameOptions[0].querySelector(`input[type="radio"]:checked`);
     if (!hasAnswer || question.data[0].type !== gameOptions[0].querySelector(`input[type="radio"]:checked`).value) {
@@ -20,8 +20,8 @@ const getGameSingle = (state, question) => {
     const nextState = getNextState(state, answer);
     getNextScreen(nextState);
   };
-  GameSingleBlock.onBackBtnClick = () => repeatGame();
-  renderBlock(GameSingleBlock);
+  gameSingleBlock.onBackBtnClick = () => repeatGame();
+  renderBlock(gameSingleBlock);
 };
 
 export default getGameSingle;

@@ -5,12 +5,12 @@ import {Answer, getNextState} from '../data/game-data';
 import {getNextScreen} from '../route-methods';
 
 const getGameTriple = (state, question) => {
-  const GameTripleBlock = new GameTripleView(state, question);
+  const gameTripleBlock = new GameTripleView(state, question);
   setTimeout(() => {
-    GameTripleBlock.tick();
+    gameTripleBlock.tick();
   }, 1000);
-  GameTripleBlock.onAnswer = (option, i) => {
-    GameTripleBlock.stopTimer();
+  gameTripleBlock.onAnswer = (option, i) => {
+    gameTripleBlock.stopTimer();
     let answer = Answer.CORRECT;
     if (!option || question.data[i].type !== question.task.type) {
       answer = Answer.WRONG;
@@ -18,8 +18,8 @@ const getGameTriple = (state, question) => {
     const nextState = getNextState(state, answer);
     getNextScreen(nextState);
   };
-  GameTripleBlock.onBackBtnClick = () => repeatGame();
-  renderBlock(GameTripleBlock);
+  gameTripleBlock.onBackBtnClick = () => repeatGame();
+  renderBlock(gameTripleBlock);
 };
 
 export default getGameTriple;

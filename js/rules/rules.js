@@ -11,9 +11,6 @@ const getRules = () => {
     nextState.answers = initialState.answers.slice(0);
     getGameModule(nextState);
   };
-  rulesBlock.onInputNameField = ({target}) => {
-    rulesBlock.element.querySelector(`.rules__button`).disabled = !target.value.trim();
-  };
   rulesBlock.onBackBtnClick = () => {
     repeatGame();
   };

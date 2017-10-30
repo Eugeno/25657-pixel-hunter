@@ -34,16 +34,14 @@ ${footerTemplate}`;
     const input = el.querySelector(`.rules__input`);
     const nextBtn = el.querySelector(`.rules__button`);
     const backBtn = el.querySelector(`.back`);
-    input.addEventListener(`input`, this.onInputNameField);
+    input.addEventListener(`input`, ({target}) => {
+      nextBtn.disabled = !target.value.trim();
+    });
     nextBtn.addEventListener(`click`, this.onNextBtnClick);
     backBtn.addEventListener(`click`, this.onBackBtnClick);
   }
 
   onNextBtnClick() {
-
-  }
-
-  onInputNameField() {
 
   }
 

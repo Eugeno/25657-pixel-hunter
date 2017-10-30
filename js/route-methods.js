@@ -14,10 +14,12 @@ const getGameModule = (state) => {
 };
 
 const getNextScreen = (state) => {
-  if (state.level < QUESTIONS_LENGTH && state.lives > 0) {
+  if (state.level < QUESTIONS_LENGTH && state.lives >= 0) {
     getGameModule(state);
   } else {
-    getStats(state);
+    const nextState = Object.assign({}, state);
+    nextState.lives = 0;
+    getStats(nextState);
   }
 };
 

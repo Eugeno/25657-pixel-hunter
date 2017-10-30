@@ -1,7 +1,7 @@
 const main = document.querySelector(`main`);
-const renderBlock = (blockElement) => {
+const renderBlock = (view) => {
   main.innerHTML = ``;
-  main.appendChild(blockElement);
+  main.appendChild(view.element);
 };
 
 export default renderBlock;

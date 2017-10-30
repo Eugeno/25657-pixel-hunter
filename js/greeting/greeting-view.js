@@ -1,9 +1,9 @@
-import getElementFromTemplate from './get-element';
-import renderBlock from './render-block';
-import getRulesBlock from './get-rules-block';
-import footerTemplate from './components/footer';
+import AbstractView from '../abstract-view';
+import footerTemplate from '../components/footer';
 
-const moduleGreeting = getElementFromTemplate(`<div class="greeting central--blur">
+class GreetingView extends AbstractView {
+  get template() {
+    return `<div class="greeting central--blur">
     <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
     <h1 class="greeting__asterisk">*</h1>
     <div class="greeting__challenge">
@@ -16,10 +16,17 @@ const moduleGreeting = getElementFromTemplate(`<div class="greeting central--blu
     </div>
     <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
   </div>
-${footerTemplate}`);
+${footerTemplate}`;
+  }
 
-moduleGreeting.querySelector(`.greeting__continue`).addEventListener(`click`, () => getRulesBlock());
+  bind() {
+    const nextBtn = this.element.querySelector(`.greeting__continue`);
+    nextBtn.addEventListener(`click`, this.onNextBtnClick);
+  }
 
-const getGreetingBlock = () => renderBlock(moduleGreeting);
+  onNextBtnClick() {
 
-export default getGreetingBlock;
+  }
+}
+
+export default GreetingView;

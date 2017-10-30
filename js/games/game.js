@@ -1,15 +1,15 @@
 import renderBlock from '../render-block';
 import repeatGame from '../repeat-game';
-import {MAX_ANSWER_TIME, FAST_ANSWER_TIME, SLOW_ANSWER_TIME, Answer, getNextState, createTimer} from '../data/game-data';
+import {MAX_ANSWER_TIME, FAST_ANSWER_TIME, SLOW_ANSWER_TIME, Answer, getNextState} from '../data/game-data';
 import {getNextScreen} from '../route-methods';
 
 const getGame = (state, question, gameBlock) => {
-  let timer = createTimer(MAX_ANSWER_TIME);
+  let estimatedTime = MAX_ANSWER_TIME;
   let timeouter;
   gameBlock.tick = () => {
-    timer = timer.tick();
-    if (typeof timer === `object`) {
-      gameBlock.state.time = timer.value;
+    estimatedTime--;
+    if (estimatedTime > 0) {
+      gameBlock.state.time = estimatedTime;
       gameBlock.onTick();
       timeouter = setTimeout(() => {
         gameBlock.tick();

@@ -38,9 +38,8 @@ ${footerTemplate}`;
     const el = this.element;
     const form = el.querySelector(`form`);
     const backBtn = el.querySelector(`.back`);
-    const answers = [];
     form.addEventListener(`change`, () => {
-      answers.push(form.querySelector(`input[type="radio"]:checked`).value);
+      const answers = [form.querySelector(`input[type="radio"]:checked`).value];
       this.onAnswer(answers);
     });
     backBtn.addEventListener(`click`, this.onBackBtnClick);

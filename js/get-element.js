@@ -3,4 +3,5 @@ const getElementFromTemplate = (markup) => {
   el.innerHTML = markup;
   return el;
 };
+
 export default getElementFromTemplate;

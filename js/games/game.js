@@ -4,10 +4,7 @@ import {MAX_ANSWER_TIME, FAST_ANSWER_TIME, SLOW_ANSWER_TIME, Answer, getNextStat
 import {getNextScreen} from '../route-methods';
 
 const getGame = (state, question, gameBlock) => {
-  const timer = setInterval(() => {
-    gameBlock.tick();
-  }, 1000);
-  gameBlock.tick = () => {
+  const tick = () => {
     gameBlock.state.time--;
     if (gameBlock.state.time > 0) {
       gameBlock.onTick();
@@ -15,6 +12,9 @@ const getGame = (state, question, gameBlock) => {
       gameBlock.timeExceed();
     }
   };
+  const timer = setInterval(() => {
+    tick();
+  }, 1000);
 
   gameBlock.onAnswer = (answers) => {
     clearInterval(timer);

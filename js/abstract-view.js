@@ -2,7 +2,7 @@ import getElementFromTemplate from './get-element';
 
 class AbstractView {
   get template() {
-    throw new Error(`There are no template for view`);
+    throw new Error(`There is no template for view`);
   }
 
   get element() {

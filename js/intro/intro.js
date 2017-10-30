@@ -1,13 +1,13 @@
 import IntroView from './intro-view';
 import renderBlock from '../render-block';
-import getGreetingBlock from '../get-greeting-block';
+import getGreeting from '../greeting/greeting';
 
 const getIntro = () => {
   const introBlock = new IntroView();
-  introBlock.onAsteriskClick = () => {
-    getGreetingBlock();
+  introBlock.onNextBtnClick = () => {
+    getGreeting();
   };
-  renderBlock(introBlock.element);
+  renderBlock(introBlock);
 };
 
 export default getIntro;

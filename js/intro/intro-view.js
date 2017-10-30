@@ -13,11 +13,11 @@ ${footerTemplate}`;
   }
 
   bind() {
-    const asterisk = this.element.querySelector(`.intro__asterisk`);
-    asterisk.addEventListener(`click`, this.onAsteriskClick);
+    const nextBtn = this.element.querySelector(`.intro__asterisk`);
+    nextBtn.addEventListener(`click`, this.onNextBtnClick);
   }
 
-  onAsteriskClick() {
+  onNextBtnClick() {
 
   }
 }

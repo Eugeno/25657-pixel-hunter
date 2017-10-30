@@ -18,6 +18,7 @@ class StatsView extends AbstractView {
     this.totalSlowReward = -this.slowReward * this.slowAnswers;
     this.resultTotal = this.scores === -1 ? `FAIL` : this.scores[Answer.CORRECT] + (this.fastAnswers + this.slowAnswers) * Reward[Answer.CORRECT];
     this.lives = this.scores.LIVE / Reward.LIVE;
+    this.heading = this.scores === -1 ? `Это провал!` : `Победа!`;
   }
 
   getDetailedStat() {
@@ -68,7 +69,7 @@ class StatsView extends AbstractView {
   get template() {
     return `${headerTemplate(this.state)}
     <div class="result">
-      <h1>Победа!</h1>
+      <h1>${this.heading}</h1>
       <table class="result__table">
         ${this.getDetailedStat()}
       </table>

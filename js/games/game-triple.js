@@ -23,10 +23,10 @@ const getGameTriple = (state, question) => {
     gameTripleBlock.tick();
   }, 1000);
 
-  gameTripleBlock.onAnswer = (i) => {
+  gameTripleBlock.onAnswer = (answers) => {
     clearTimeout(gameTripleBlock.timer);
     let answer = Answer.CORRECT;
-    if (!i || question.data[i].type !== question.task.type) {
+    if (!answers || answers[0] !== question.task.type) {
       answer = Answer.WRONG;
     } else {
       if (MAX_ANSWER_TIME - gameTripleBlock.state.time < FAST_ANSWER_TIME) {

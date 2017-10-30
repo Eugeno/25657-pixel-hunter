@@ -23,12 +23,10 @@ const getGameSingle = (state, question) => {
     gameSingleBlock.tick();
   }, 1000);
 
-  gameSingleBlock.onAnswer = () => {
+  gameSingleBlock.onAnswer = (answers) => {
     clearTimeout(gameSingleBlock.timer);
-    const gameOptions = [...gameSingleBlock.element.querySelectorAll(`.game__option`)];
     let answer = Answer.CORRECT;
-    const hasAnswer = gameOptions[0].querySelector(`input[type="radio"]:checked`);
-    if (!hasAnswer || question.data[0].type !== gameOptions[0].querySelector(`input[type="radio"]:checked`).value) {
+    if (!answers || question.data[0].type !== answers[0]) {
       answer = Answer.WRONG;
     } else {
       if (MAX_ANSWER_TIME - gameSingleBlock.state.time < FAST_ANSWER_TIME) {

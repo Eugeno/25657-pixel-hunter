@@ -27,7 +27,12 @@ const getGameSingle = (state, question) => {
   gameSingleBlock.onAnswer = (answers) => {
     clearTimeout(timeouter);
     let answer = Answer.CORRECT;
-    if (!answers || question.data[0].type !== answers[0]) {
+    const isWrongAnswer = () => {
+      return question.data.some((t, i) => {
+        return t.type !== answers[i];
+      });
+    };
+    if (answers.length !== question.data.length || isWrongAnswer()) {
       answer = Answer.WRONG;
     } else {
       if (MAX_ANSWER_TIME - gameSingleBlock.state.time < FAST_ANSWER_TIME) {

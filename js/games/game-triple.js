@@ -27,7 +27,12 @@ const getGameTriple = (state, question) => {
   gameTripleBlock.onAnswer = (answers) => {
     clearTimeout(timeouter);
     let answer = Answer.CORRECT;
-    if (!answers || answers[0] !== question.task.type) {
+    const isWrongAnswer = () => {
+      return question.data.some((t, i) => {
+        return t.type !== answers[i];
+      });
+    };
+    if (answers.length !== question.data.length || isWrongAnswer()) {
       answer = Answer.WRONG;
     } else {
       if (MAX_ANSWER_TIME - gameTripleBlock.state.time < FAST_ANSWER_TIME) {

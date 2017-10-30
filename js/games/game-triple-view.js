@@ -37,9 +37,10 @@ ${footerTemplate}`;
     const form = el.querySelector(`form`);
     const gameOptions = [...form.querySelectorAll(`.game__option`)];
     const backBtn = el.querySelector(`.back`);
+    const answers = this.question.data.map((option) => option.type);
     gameOptions.forEach((option, i) => {
       option.addEventListener(`click`, () => {
-        const answers = [this.question.data[i].type];
+        answers[i] = this.question.task.type;
         this.onAnswer(answers);
       });
     });

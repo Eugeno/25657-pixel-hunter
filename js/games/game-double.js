@@ -27,7 +27,12 @@ const getGameDouble = (state, question) => {
   gameDoubleBlock.onAnswer = (answers) => {
     clearTimeout(timeouter);
     let answer = Answer.CORRECT;
-    if (state.time === 0 || answers.some((el, i) => question.data[i].type !== answers[i])) {
+    const isWrongAnswer = () => {
+      return question.data.some((t, i) => {
+        return t.type !== answers[i];
+      });
+    };
+    if (answers.length !== question.data.length || isWrongAnswer()) {
       answer = Answer.WRONG;
     } else {
       if (MAX_ANSWER_TIME - gameDoubleBlock.state.time < FAST_ANSWER_TIME) {

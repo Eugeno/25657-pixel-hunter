@@ -1,4 +1,6 @@
 const QUESTIONS_LENGTH = 10;
+const LIVES_LENGTH = 3;
+
 const AnswerTime = {
   MAX: 30,
   FAST: 10,
@@ -30,9 +32,6 @@ const countScores = (state) => {
   };
   const answers = state.answers;
   const lives = state.lives;
-  if (lives < 0) {
-    state.lives = 0;
-  }
   answers.forEach((a) => {
     reward[a] += Reward[a];
   });
@@ -50,7 +49,7 @@ const createTimer = (duration) => {
 };
 
 const initialState = {
-  lives: 3,
+  lives: LIVES_LENGTH,
   time: AnswerTime.MAX,
   answers: [],
   level: 0
@@ -219,4 +218,18 @@ const preloadImages = (sources, callback) => {
   });
 };
 
-export {QUESTIONS_LENGTH, AnswerTime, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages, questions, GameType};
+export {
+  QUESTIONS_LENGTH,
+  LIVES_LENGTH,
+  AnswerTime,
+  Answer,
+  Reward,
+  countScores,
+  createTimer,
+  initialState,
+  generateQuestions,
+  preloadImages,
+  loadableImages,
+  questions,
+  GameType
+};

@@ -3,7 +3,7 @@ import {QUESTIONS_LENGTH, AnswerTime, GameType, questions} from './data/game-dat
 import GameSingleView from './games/game-single-view';
 import GameDoubleView from './games/game-double-view';
 import GameTripleView from './games/game-triple-view';
-import getGame from './games/game';
+import gameScreen from './games/game';
 
 const getGameModule = (state) => {
   const GameModules = {
@@ -11,8 +11,9 @@ const getGameModule = (state) => {
     [GameType.DOUBLE]: GameDoubleView,
     [GameType.TRIPLE]: GameTripleView,
   };
-  const gameModule = new GameModules[questions[state.level].type](state, questions[state.level]);
-  getGame(state, questions[state.level], gameModule);
+  const nextQuestion = questions[state.level];
+  const gameModule = new GameModules[nextQuestion.type](state, nextQuestion);
+  gameScreen.init(state, nextQuestion, gameModule);
 };
 
 const getNextScreen = (state) => {

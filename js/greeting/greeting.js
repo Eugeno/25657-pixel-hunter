@@ -1,5 +1,5 @@
 import GreetingsView from './greeting-view';
-import renderBlock from '../render-block';
+import {changeView} from '../utilities';
 import getRules from '../rules/rules';
 
 const getGreeting = () => {
@@ -7,7 +7,7 @@ const getGreeting = () => {
   greetingsBlock.onNextBtnClick = () => {
     getRules();
   };
-  renderBlock(greetingsBlock);
+  changeView(greetingsBlock);
 };
 
 export default getGreeting;

@@ -1,4 +1,4 @@
-import renderBlock from '../render-block';
+import {changeView} from '../utilities';
 import repeatGame from '../repeat-game';
 import {AnswerTime, Answer, getNextState} from '../data/game-data';
 import {getNextScreen} from '../route-methods';
@@ -36,7 +36,7 @@ const getGame = (state, question, gameBlock) => {
     clearInterval(timer);
     repeatGame();
   };
-  renderBlock(gameBlock);
+  changeView(gameBlock);
 };
 
 export default getGame;

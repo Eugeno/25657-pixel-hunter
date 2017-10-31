@@ -1,5 +1,5 @@
 import RulesView from './rules-view';
-import renderBlock from '../render-block';
+import {changeView} from '../utilities';
 import {initialState} from '../data/game-data';
 import {getGameModule} from '../route-methods';
 import repeatGame from '../repeat-game';
@@ -12,7 +12,7 @@ const getRules = () => {
     getGameModule(nextState);
   };
   rulesBlock.onBackBtnClick = () => repeatGame();
-  renderBlock(rulesBlock);
+  changeView(rulesBlock);
 };
 
 export default getRules;

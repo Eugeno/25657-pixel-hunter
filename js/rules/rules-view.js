@@ -32,16 +32,16 @@ ${footerTemplate}`;
   bind() {
     const el = this.element;
     const input = el.querySelector(`.rules__input`);
-    const nextBtn = el.querySelector(`.rules__button`);
+    const startBtn = el.querySelector(`.rules__button`);
     const backBtn = el.querySelector(`.back`);
     input.addEventListener(`input`, ({target}) => {
-      nextBtn.disabled = !target.value.trim();
+      startBtn.disabled = !target.value.trim();
     });
-    nextBtn.addEventListener(`click`, this.onNextBtnClick);
-    backBtn.addEventListener(`click`, this.onBackBtnClick);
+    startBtn.addEventListener(`click`, () => this.onStart());
+    backBtn.addEventListener(`click`, () => this.onBackBtnClick());
   }
 
-  onNextBtnClick() {
+  onStart() {
 
   }
 

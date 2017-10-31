@@ -1,5 +1,5 @@
-import getGreeting from './greeting/greeting';
+import Application from './application';
 
-const repeatGame = () => getGreeting();
+const repeatGame = () => Application.showGreeting();
 
 export default repeatGame;

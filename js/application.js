@@ -1,6 +1,8 @@
 import introScreen from './intro/intro';
 import greetingScreen from './greeting/greeting';
-import getRules from './rules/rules';
+import rulesScreen from './rules/rules';
+import {initialState} from './data/game-data';
+import {getGameModule} from './route-methods';
 
 class Application {
   static showIntro() {
@@ -12,7 +14,13 @@ class Application {
   }
 
   static showRules() {
-    getRules();
+    rulesScreen.init();
+  }
+
+  static showGame(state = initialState) {
+    const nextState = Object.assign({}, state);
+    nextState.answers = state.answers.slice(0);
+    getGameModule(nextState);
   }
 }
 

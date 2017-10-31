@@ -9,9 +9,7 @@ class GreetingScreen {
 
   init() {
     changeView(this.view);
-    this.view.onNextBtnClick = () => {
-      Application.showRules();
-    };
+    this.view.onNextBtnClick = () => Application.showRules();
   }
 }
 

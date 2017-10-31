@@ -1,13 +1,18 @@
-import GreetingsView from './greeting-view';
+import Application from '../application';
+import GreetingView from './greeting-view';
 import {changeView} from '../utilities';
-import getRules from '../rules/rules';
 
-const getGreeting = () => {
-  const greetingsBlock = new GreetingsView();
-  greetingsBlock.onNextBtnClick = () => {
-    getRules();
-  };
-  changeView(greetingsBlock);
-};
+class GreetingScreen {
+  constructor() {
+    this.view = new GreetingView();
+  }
 
-export default getGreeting;
+  init() {
+    changeView(this.view);
+    this.view.onNextBtnClick = () => {
+      Application.showRules();
+    };
+  }
+}
+
+export default new GreetingScreen();

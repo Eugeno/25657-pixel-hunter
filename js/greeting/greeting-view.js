@@ -21,7 +21,7 @@ ${footerTemplate}`;
 
   bind() {
     const nextBtn = this.element.querySelector(`.greeting__continue`);
-    nextBtn.addEventListener(`click`, this.onNextBtnClick);
+    nextBtn.addEventListener(`click`, () => this.onNextBtnClick());
   }
 
   onNextBtnClick() {

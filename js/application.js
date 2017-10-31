@@ -1,6 +1,6 @@
 import introScreen from './intro/intro';
-
-import getGreeting from './greeting/greeting';
+import greetingScreen from './greeting/greeting';
+import getRules from './rules/rules';
 
 class Application {
   static showIntro() {
@@ -8,7 +8,11 @@ class Application {
   }
 
   static showGreeting() {
-    getGreeting();
+    greetingScreen.init();
+  }
+
+  static showRules() {
+    getRules();
   }
 }
 

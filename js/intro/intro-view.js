@@ -14,9 +14,7 @@ ${footerTemplate}`;
 
   bind() {
     const nextBtn = this.element.querySelector(`.intro__asterisk`);
-    nextBtn.addEventListener(`click`, () => {
-      this.onStart();
-    });
+    nextBtn.addEventListener(`click`, () => this.onStart());
   }
 
   onStart() {

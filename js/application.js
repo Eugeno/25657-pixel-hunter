@@ -47,7 +47,13 @@ class Application {
     const controller = routes[id];
     if (controller) {
       controller.init(loadState(data));
+    } else {
+      this.showIntro();
     }
+  }
+
+  static showIntro() {
+    location.hash = ControllerId.INTRO;
   }
 
   static showGreeting() {

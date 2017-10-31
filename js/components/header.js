@@ -1,3 +1,19 @@
+import {LIVES_LENGTH} from '../data/game-data';
+
+const getHearts = (lives) => {
+  if (lives > 0) {
+    return new Array(LIVES_LENGTH - lives)
+        .fill(`<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">`)
+        .join(``)
+        .concat(new Array(lives)
+            .fill(`<img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">`)
+            .join(``));
+  }
+  return new Array(LIVES_LENGTH)
+      .fill(`<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">`)
+      .join(``);
+};
+
 const headerTemplate = (state) => `<header class="header">
     <div class="header__back">
       <button class="back">
@@ -7,12 +23,7 @@ const headerTemplate = (state) => `<header class="header">
     </div>
     <h1 class="game__timer">${state.time}</h1>
     <div class="game__lives">
-    ${new Array(3 - state.lives)
-      .fill(`<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">`)
-      .join(``)}
-    ${new Array(state.lives)
-      .fill(`<img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">`)
-      .join(``)}
+      ${getHearts(state.lives)}
     </div>
   </header>`;
 

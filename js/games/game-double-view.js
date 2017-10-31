@@ -52,7 +52,7 @@ ${footerTemplate}`;
         this.onAnswer(answers);
       }
     });
-    backBtn.addEventListener(`click`, this.onBackBtnClick);
+    backBtn.addEventListener(`click`, () => this.onBackBtnClick());
   }
 
   onAnswer() {

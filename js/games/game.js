@@ -1,7 +1,7 @@
+import Application from '../application';
 import {changeView} from '../utilities';
 import repeatGame from '../repeat-game';
-import {AnswerTime, Answer, getNextState} from '../data/game-data';
-import {getNextScreen} from '../route-methods';
+import {QUESTIONS_LENGTH, AnswerTime, Answer} from '../data/game-data';
 
 class GameScreen {
   init(state, question, gameBlock) {
@@ -15,13 +15,13 @@ class GameScreen {
     this.view.onAnswer = (answers) => this.onAnswer(state, question, answers);
 
     this.view.onBackBtnClick = () => {
-      clearInterval(this.timer);
+      this.stopTimer();
       repeatGame();
     };
   }
 
   onAnswer(state, question, answers) {
-    clearInterval(this.timer);
+    this.stopTimer();
     let answer = Answer.CORRECT;
     const isWrongAnswer = () => question.data.some((t, i) => t.type !== answers[i]);
     if (!answers || isWrongAnswer()) {
@@ -33,8 +33,31 @@ class GameScreen {
         answer = Answer.SLOW;
       }
     }
-    const nextState = getNextState(state, answer);
-    getNextScreen(nextState);
+    this.getNextState(state, answer);
+  }
+
+  getNextState(state, answer) {
+    const nextState = Object.assign({}, state);
+    nextState.answers.push(answer);
+    nextState.level++;
+    if (answer === Answer.WRONG) {
+      nextState.lives--;
+    }
+    nextState.time = AnswerTime.MAX;
+    this.getNextScreen(nextState);
+  }
+
+  getNextScreen(state) {
+    const nextState = Object.assign({}, state);
+    nextState.time = AnswerTime.MAX;
+    if (nextState.level < QUESTIONS_LENGTH && nextState.lives >= 0) {
+      Application.showGameModule(nextState);
+    } else {
+      if (nextState.level !== QUESTIONS_LENGTH && nextState.lives < 0) {
+        nextState.lives = 0;
+      }
+      Application.showStats(nextState);
+    }
   }
 
   tick() {
@@ -44,6 +67,10 @@ class GameScreen {
     } else {
       this.view.timeExceed();
     }
+  }
+
+  stopTimer() {
+    clearTimeout(this.timer);
   }
 }
 

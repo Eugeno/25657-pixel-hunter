@@ -219,15 +219,4 @@ const preloadImages = (sources, callback) => {
   });
 };
 
-const getNextState = (state, answer) => {
-  const nextState = Object.assign({}, state);
-  nextState.answers.push(answer);
-  nextState.level++;
-  if (answer === Answer.WRONG) {
-    nextState.lives--;
-  }
-  nextState.time = AnswerTime.MAX;
-  return nextState;
-};
-
-export {QUESTIONS_LENGTH, AnswerTime, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages, questions, GameType, getNextState};
+export {QUESTIONS_LENGTH, AnswerTime, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages, questions, GameType};

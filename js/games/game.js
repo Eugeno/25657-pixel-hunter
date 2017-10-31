@@ -1,11 +1,20 @@
 import Application from '../application';
 import {changeView} from '../utilities';
 import repeatGame from '../repeat-game';
-import {QUESTIONS_LENGTH, AnswerTime, Answer} from '../data/game-data';
+import GameSingleView from './game-single-view';
+import GameDoubleView from './game-double-view';
+import GameTripleView from './game-triple-view';
+import {QUESTIONS_LENGTH, AnswerTime, Answer, GameType, questions} from '../data/game-data';
 
 class GameScreen {
-  init(state, question, gameBlock) {
-    this.view = gameBlock;
+  init(state) {
+    const GameModules = {
+      [GameType.SINGLE]: GameSingleView,
+      [GameType.DOUBLE]: GameDoubleView,
+      [GameType.TRIPLE]: GameTripleView,
+    };
+    const question = questions[state.level];
+    this.view = new GameModules[question.type](state, question);
     changeView(this.view);
 
     this.timer = setInterval(() => {

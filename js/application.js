@@ -2,11 +2,7 @@ import introScreen from './intro/intro';
 import greetingScreen from './greeting/greeting';
 import rulesScreen from './rules/rules';
 import gameScreen from './games/game';
-import GameSingleView from './games/game-single-view';
-import GameDoubleView from './games/game-double-view';
-import GameTripleView from './games/game-triple-view';
 import statsScreen from './stats/stats';
-import {initialState, GameType, questions} from './data/game-data';
 
 class Application {
   static showIntro() {
@@ -21,22 +17,12 @@ class Application {
     rulesScreen.init();
   }
 
-  static showGame(state = initialState) {
-    const nextState = Object.assign({}, state);
-    nextState.answers = state.answers.slice(0);
-    this.showGameModule(nextState);
-    // getGameModule(nextState);
+  static startGame(state) {
+    this.showGameModule(state);
   }
 
   static showGameModule(state) {
-    const GameModules = {
-      [GameType.SINGLE]: GameSingleView,
-      [GameType.DOUBLE]: GameDoubleView,
-      [GameType.TRIPLE]: GameTripleView,
-    };
-    const nextQuestion = questions[state.level];
-    const gameModule = new GameModules[nextQuestion.type](state, nextQuestion);
-    gameScreen.init(state, nextQuestion, gameModule);
+    gameScreen.init(state);
   }
 
   static showStats(state) {

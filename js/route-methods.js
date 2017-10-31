@@ -1,9 +1,9 @@
+import Application from './application';
 import {QUESTIONS_LENGTH, AnswerTime, GameType, questions} from './data/game-data';
 import GameSingleView from './games/game-single-view';
 import GameDoubleView from './games/game-double-view';
 import GameTripleView from './games/game-triple-view';
 import getGame from './games/game';
-import getStats from './stats/stats';
 
 const getGameModule = (state) => {
   const GameModules = {
@@ -24,7 +24,7 @@ const getNextScreen = (state) => {
     if (state.level !== QUESTIONS_LENGTH && nextState.lives < 0) {
       nextState.lives = 0;
     }
-    getStats(nextState);
+    Application.showStats(nextState);
   }
 };
 

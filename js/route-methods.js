@@ -21,7 +21,7 @@ const getNextScreen = (state) => {
   if (state.level < QUESTIONS_LENGTH && state.lives >= 0) {
     getGameModule(state);
   } else {
-    if (nextState.lives < 0) {
+    if (state.level !== QUESTIONS_LENGTH && nextState.lives < 0) {
       nextState.lives = 0;
     }
     getStats(nextState);

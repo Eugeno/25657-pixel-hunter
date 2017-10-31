@@ -8,16 +8,8 @@ class GameScreen {
     this.view = gameBlock;
     changeView(this.view);
 
-    const tick = () => {
-      this.view.state.time--;
-      if (this.view.state.time > 0) {
-        this.view.onTick();
-      } else {
-        this.view.timeExceed();
-      }
-    };
     const timer = setInterval(() => {
-      tick();
+      this.tick();
     }, 1000);
 
     this.view.onAnswer = (answers) => {
@@ -41,6 +33,15 @@ class GameScreen {
       clearInterval(timer);
       repeatGame();
     };
+  }
+
+  tick() {
+    this.view.state.time--;
+    if (this.view.state.time > 0) {
+      this.view.onTick();
+    } else {
+      this.view.timeExceed();
+    }
   }
 }
 

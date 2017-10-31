@@ -1,13 +1,18 @@
+import Application from '../application';
 import IntroView from './intro-view';
-import renderBlock from '../render-block';
-import getGreeting from '../greeting/greeting';
+import {changeView} from '../utilities';
 
-const getIntro = () => {
-  const introBlock = new IntroView();
-  introBlock.onNextBtnClick = () => {
-    getGreeting();
-  };
-  renderBlock(introBlock);
-};
+class IntroScreen {
+  constructor() {
+    this.view = new IntroView();
+  }
 
-export default getIntro;
+  init() {
+    changeView(this.view);
+    this.view.onStart = () => {
+      Application.showGreeting();
+    };
+  }
+}
+
+export default new IntroScreen();

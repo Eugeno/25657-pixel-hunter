@@ -1,18 +1,23 @@
+import Application from '../application';
 import RulesView from './rules-view';
-import renderBlock from '../render-block';
+import {changeView} from '../utilities';
 import {initialState} from '../data/game-data';
-import {getGameModule} from '../route-methods';
 import repeatGame from '../repeat-game';
 
-const getRules = () => {
-  const rulesBlock = new RulesView(initialState);
-  rulesBlock.onNextBtnClick = () => {
-    const nextState = Object.assign({}, initialState);
-    nextState.answers = initialState.answers.slice(0);
-    getGameModule(nextState);
-  };
-  rulesBlock.onBackBtnClick = () => repeatGame();
-  renderBlock(rulesBlock);
-};
+class RulesScreen {
+  constructor() {
+    this.view = new RulesView(initialState);
+  }
 
-export default getRules;
+  init() {
+    changeView(this.view);
+    this.view.onStart = () => {
+      const nextState = Object.assign({}, initialState);
+      nextState.answers = initialState.answers.slice(0);
+      Application.startGame(nextState);
+    };
+    this.view.onBackBtnClick = () => repeatGame();
+  }
+}
+
+export default new RulesScreen();

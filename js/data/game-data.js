@@ -30,11 +30,14 @@ const countScores = (state) => {
   };
   const answers = state.answers;
   const lives = state.lives;
+  if (lives < 0) {
+    state.lives = 0;
+  }
   answers.forEach((a) => {
     reward[a] += Reward[a];
   });
   reward.LIVE = lives * Reward.LIVE;
-  return answers.length === QUESTIONS_LENGTH ? reward : -1;
+  return (answers.length === QUESTIONS_LENGTH && lives >= 0) ? reward : -1;
 };
 
 const createTimer = (duration) => {
@@ -216,15 +219,4 @@ const preloadImages = (sources, callback) => {
   });
 };
 
-const getNextState = (state, answer) => {
-  const nextState = Object.assign({}, state);
-  nextState.answers.push(answer);
-  nextState.level++;
-  if (answer === Answer.WRONG) {
-    nextState.lives--;
-  }
-  nextState.time = AnswerTime.MAX;
-  return nextState;
-};
-
-export {QUESTIONS_LENGTH, AnswerTime, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages, questions, GameType, getNextState};
+export {QUESTIONS_LENGTH, AnswerTime, Answer, Reward, countScores, createTimer, initialState, generateQuestions, preloadImages, loadableImages, questions, GameType};

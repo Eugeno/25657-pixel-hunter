@@ -1,4 +1,4 @@
-import getElementFromTemplate from './get-element';
+import {createElement} from './utilities';
 
 class AbstractView {
   get template() {
@@ -14,7 +14,7 @@ class AbstractView {
   }
 
   render() {
-    return getElementFromTemplate(this.template);
+    return createElement(this.template);
   }
 
   bind() {

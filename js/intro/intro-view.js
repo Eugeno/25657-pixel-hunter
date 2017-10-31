@@ -14,10 +14,10 @@ ${footerTemplate}`;
 
   bind() {
     const nextBtn = this.element.querySelector(`.intro__asterisk`);
-    nextBtn.addEventListener(`click`, this.onNextBtnClick);
+    nextBtn.addEventListener(`click`, () => this.onStart());
   }
 
-  onNextBtnClick() {
+  onStart() {
 
   }
 }

@@ -4,6 +4,5 @@ import {generateQuestions, preloadImages, loadableImages} from './data/game-data
 generateQuestions();
 const imagesLoaded = () => {};
 preloadImages(loadableImages, imagesLoaded);
-// getIntro();
 
-Application.showIntro();
+Application.init();

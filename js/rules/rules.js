@@ -14,7 +14,7 @@ class RulesScreen {
     this.view.onStart = () => {
       const nextState = Object.assign({}, initialState);
       nextState.answers = initialState.answers.slice(0);
-      Application.startGame(nextState);
+      Application.showGameModule(nextState);
     };
     this.view.onBackBtnClick = () => repeatGame();
   }

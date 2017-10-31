@@ -20,6 +20,7 @@ const loadState = (data) => {
   try {
     return JSON.parse(atob(data));
   } catch (e) {
+    Application.showIntro();
     return ``;
   }
 };
@@ -46,7 +47,11 @@ class Application {
   static changeHash(id, data) {
     const controller = routes[id];
     if (controller) {
-      controller.init(loadState(data));
+      if (data) {
+        controller.init(loadState(data));
+      } else {
+        controller.init();
+      }
     } else {
       this.showIntro();
     }

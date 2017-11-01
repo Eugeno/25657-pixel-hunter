@@ -12,14 +12,14 @@ const AnswerTypesAdapter = {
 };
 
 const adapt = (data) => {
-  return data.map((question) => {
+  return data.map(({type, question, answers}) => {
     return {
-      type: QuestionTypesAdapter[question.type],
-      text: question.question,
-      data: question.answers.map((item) => {
+      type: QuestionTypesAdapter[type],
+      text: question,
+      data: answers.map(({image, type: imageType}) => {
         return {
-          src: item.image.url,
-          type: AnswerTypesAdapter[item.type]
+          src: image.url,
+          type: AnswerTypesAdapter[imageType]
         };
       })
     };

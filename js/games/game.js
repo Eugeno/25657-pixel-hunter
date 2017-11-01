@@ -46,22 +46,14 @@ class GameScreen {
         answer = Answer.SLOW;
       }
     }
-    this.getNextState(state, answer);
-  }
 
-  getNextState(state, answer) {
     const nextState = Object.assign({}, state);
     nextState.answers.push(answer);
     nextState.level++;
     if (answer === Answer.WRONG) {
       nextState.lives--;
     }
-    nextState.time = AnswerTime.MAX;
-    this.getNextScreen(nextState);
-  }
 
-  getNextScreen(state) {
-    const nextState = Object.assign({}, state);
     nextState.time = AnswerTime.MAX;
     if (nextState.level < QUESTIONS_LENGTH && nextState.lives >= 0) {
       Application.showGameModule(nextState);

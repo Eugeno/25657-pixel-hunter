@@ -5,6 +5,7 @@ import GameScreen from './games/game';
 import statsScreen from './stats/stats';
 import Loader from './loader';
 import {preloadImages} from './utilities';
+import {initialState} from './data/game-data';
 import adapt from './data/questions-adapter';
 
 const ControllerId = {
@@ -22,8 +23,7 @@ const loadState = (data) => {
   try {
     return JSON.parse(atob(data));
   } catch (e) {
-    Application.showGreeting();
-    return null;
+    return initialState;
   }
 };
 
@@ -38,8 +38,7 @@ class Application {
   }
 
   static init(questions) {
-    introScreen.hide();
-    this.routes = {
+    Application.routes = {
       [ControllerId.GREETING]: greetingScreen,
       [ControllerId.RULES]: rulesScreen,
       [ControllerId.GAME]: new GameScreen(questions),
@@ -49,14 +48,14 @@ class Application {
     const hashChangeHandler = () => {
       const hashValue = location.hash.replace(`#`, ``);
       const [id, data] = hashValue.split(`?`);
-      this.changeHash(id, data);
+      Application.changeHash(id, data);
     };
     window.onhashchange = hashChangeHandler;
     hashChangeHandler();
   }
 
   static changeHash(id, data) {
-    const controller = this.routes[id];
+    const controller = Application.routes[id];
     if (controller) {
       if (data) {
         controller.init(loadState(data));

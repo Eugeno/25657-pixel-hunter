@@ -10,10 +10,6 @@ class IntroScreen {
   show() {
     changeView(this.view);
   }
-
-  hide() {
-    Application.showGreeting();
-  }
 }
 
 export default new IntroScreen();

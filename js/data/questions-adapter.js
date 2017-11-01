@@ -12,19 +12,18 @@ const AnswerTypesAdapter = {
 };
 
 const adapt = (data) => {
-  const adapted = [];
-  data.forEach((q, i) => {
-    adapted[i] = {};
-    adapted[i].type = QuestionTypesAdapter[q.type];
-    adapted[i].data = [];
-    q.answers.forEach((p, j) => {
-      adapted[i].data[j] = {};
-      adapted[i].data[j].src = p.image.url;
-      adapted[i].data[j].type = AnswerTypesAdapter[p.type];
-    });
-    adapted[i].text = q.question;
+  return data.map((question) => {
+    return {
+      type: QuestionTypesAdapter[question.type],
+      text: question.question,
+      data: question.answers.map((item) => {
+        return {
+          src: item.image.url,
+          type: AnswerTypesAdapter[item.type]
+        };
+      })
+    };
   });
-  return adapted;
 };
 
 export default adapt;

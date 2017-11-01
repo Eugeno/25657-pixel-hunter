@@ -10,4 +10,16 @@ const changeView = (view) => {
   main.appendChild(view.element);
 };
 
-export {createElement, changeView};
+const preloadImages = (sources) => {
+  const images = [].concat(...sources.map((question) => question.data));
+  const promises = images.map((image) => {
+    return new Promise((resolve) => {
+      const img = document.createElement(`img`);
+      img.src = image.src;
+      img.onload = img.onerror = () => resolve();
+    });
+  });
+  return Promise.all(promises).then(() => sources);
+};
+
+export {createElement, changeView, preloadImages};

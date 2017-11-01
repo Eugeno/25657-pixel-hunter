@@ -3,7 +3,8 @@ import greetingScreen from './greeting/greeting';
 import rulesScreen from './rules/rules';
 import GameScreen from './games/game';
 import statsScreen from './stats/stats';
-import {Loader, preloadImages} from './loader';
+import Loader from './loader';
+import {preloadImages} from './utilities';
 import adapt from './data/questions-adapter';
 
 const ControllerId = {

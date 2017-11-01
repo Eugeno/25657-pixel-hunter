@@ -3,7 +3,7 @@ import greetingScreen from './greeting/greeting';
 import rulesScreen from './rules/rules';
 import GameScreen from './games/game';
 import statsScreen from './stats/stats';
-import {Loader} from './loader';
+import {Loader, preloadImages} from './loader';
 import adapt from './data/questions-adapter';
 
 const ControllerId = {
@@ -31,6 +31,7 @@ class Application {
     introScreen.show();
     Loader.loadData().
         then(adapt).
+        then((questions) => preloadImages(questions)).
         then((questions) => Application.init(questions)).
         catch(window.console.error);
   }

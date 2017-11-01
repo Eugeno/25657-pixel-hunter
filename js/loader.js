@@ -1,18 +1,23 @@
 const URL = `https://es.dump.academy/pixel-hunter/questions`;
 
-const preloadImages = (sources, callback) => {
+const preloadImages = (sources) => {
   let counter = 0;
+  let total = 0;
   const onLoad = () => {
     counter++;
-    if (counter === sources.length) {
-      callback();
+    if (counter === total) {
+      console.log(`Я всё!`);
     }
   };
-  sources.forEach((source) => {
-    const img = document.createElement(`img`);
-    img.onload = img.onerror = onLoad;
-    img.src = source;
+  sources.forEach((question) => {
+    total += question.data.length;
+    question.data.forEach((image) => {
+      const img = document.createElement(`img`);
+      img.onload = img.onerror = onLoad;
+      img.src = image.src;
+    });
   });
+  return sources;
 };
 
 class Loader {

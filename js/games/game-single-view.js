@@ -13,7 +13,7 @@ class GameSingleView extends AbstractView {
   get template() {
     return `${headerTemplate(this.state)}
   <div class="game">
-    <p class="game__task">Угадай, фото или рисунок?</p>
+    <p class="game__task">${this.question.text}</p>
     <form class="game__content game__content--wide">
       <div class="game__option">
         <img src="${this.question.data[0].src}" alt="Option 1" width="705">

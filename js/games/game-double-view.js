@@ -29,7 +29,7 @@ class GameDoubleView extends AbstractView {
   get template() {
     return `${headerTemplate(this.state)}
   <div class="game">
-    <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
+    <p class="game__task">${this.question.text}</p>
     <form class="game__content">  
       ${this.gameOptionsTemplate()}
     </form>

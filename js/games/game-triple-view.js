@@ -21,7 +21,7 @@ class GameTripleView extends AbstractView {
   get template() {
     return `${headerTemplate(this.state)}
   <div class="game">
-    <p class="game__task">Найдите ${this.question.task.text} среди изображений</p>
+    <p class="game__task">${this.question.text}</p>
     <form class="game__content game__content--triple">
       ${this.gameOptionsTemplate()}
     </form>
@@ -40,7 +40,9 @@ ${footerTemplate}`;
     const answers = this.question.data.map((option) => option.type);
     gameOptions.forEach((option, i) => {
       option.addEventListener(`click`, () => {
-        answers[i] = this.question.task.type;
+        if (answers[i] === answers.slice().sort()[1]) {
+          answers[i] = false;
+        }
         this.onAnswer(answers);
       });
     });

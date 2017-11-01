@@ -203,21 +203,6 @@ const generateQuestions = () => {
   }
 };
 
-const preloadImages = (sources, callback) => {
-  let counter = 0;
-  const onLoad = () => {
-    counter++;
-    if (counter === sources.length) {
-      callback();
-    }
-  };
-  sources.forEach((source) => {
-    const img = document.createElement(`img`);
-    img.onload = img.onerror = onLoad;
-    img.src = source;
-  });
-};
-
 export {
   QUESTIONS_LENGTH,
   LIVES_LENGTH,
@@ -228,7 +213,6 @@ export {
   createTimer,
   initialState,
   generateQuestions,
-  preloadImages,
   loadableImages,
   questions,
   GameType

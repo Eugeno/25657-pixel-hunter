@@ -7,11 +7,12 @@ class IntroScreen {
     this.view = new IntroView();
   }
 
-  init() {
+  show() {
     changeView(this.view);
-    this.view.onStart = () => {
-      Application.showGreeting();
-    };
+  }
+
+  hide() {
+    Application.showGreeting();
   }
 }
 

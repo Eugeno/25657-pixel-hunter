@@ -2,7 +2,7 @@ import AbstractView from '../abstract-view';
 import footerTemplate from '../components/footer';
 import statsTemplate from '../components/stats';
 import headerTemplate from '../components/header';
-import {Answer, countScores, Reward, initialState} from '../data/game-data';
+import {Answer, Reward, initialState, countScores} from '../data/game-data';
 
 class StatsView extends AbstractView {
   constructor(state) {

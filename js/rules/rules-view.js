@@ -23,7 +23,7 @@ class RulesView extends AbstractView {
     </p>
     <form class="rules__form">
       <input class="rules__input" type="text" placeholder="Ваше Имя">
-      <button class="rules__button continue" type="submit" disabled>Go!</button>
+      <button class="rules__button continue" type="button" disabled>Go!</button>
     </form>
   </div>
 ${footerTemplate}`;

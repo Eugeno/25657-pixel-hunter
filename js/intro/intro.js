@@ -1,4 +1,3 @@
-import Application from '../application';
 import IntroView from './intro-view';
 import {changeView} from '../utilities';
 
@@ -7,11 +6,8 @@ class IntroScreen {
     this.view = new IntroView();
   }
 
-  init() {
+  show() {
     changeView(this.view);
-    this.view.onStart = () => {
-      Application.showGreeting();
-    };
   }
 }
 

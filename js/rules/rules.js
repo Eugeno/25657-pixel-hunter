@@ -11,7 +11,6 @@ class RulesScreen {
   init() {
     changeView(this.view);
     this.view.onStart = () => {
-      event.preventDefault();
       const nextState = Object.assign({}, initialState);
       nextState.answers = initialState.answers.slice(0);
       Application.showGameModule(nextState);

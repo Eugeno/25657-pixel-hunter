@@ -1,4 +1,3 @@
-import Application from '../application';
 import IntroView from './intro-view';
 import {changeView} from '../utilities';
 

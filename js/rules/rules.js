@@ -2,7 +2,6 @@ import Application from '../application';
 import RulesView from './rules-view';
 import {changeView} from '../utilities';
 import {initialState} from '../data/game-data';
-import repeatGame from '../repeat-game';
 
 class RulesScreen {
   constructor() {
@@ -16,7 +15,7 @@ class RulesScreen {
       nextState.answers = initialState.answers.slice(0);
       Application.showGameModule(nextState);
     };
-    this.view.onBackBtnClick = () => repeatGame();
+    this.view.onBackBtnClick = () => Application.showGreeting();
   }
 }
 

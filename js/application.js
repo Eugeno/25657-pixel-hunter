@@ -23,7 +23,7 @@ const loadState = (data) => {
     return JSON.parse(atob(data));
   } catch (e) {
     Application.showGreeting();
-    return ``;
+    return null;
   }
 };
 
@@ -82,6 +82,10 @@ class Application {
 
   static showStats(state) {
     location.hash = `${ControllerId.STATS}?${saveState(state)}`;
+  }
+
+  static restart() {
+    this.showGreeting();
   }
 }
 

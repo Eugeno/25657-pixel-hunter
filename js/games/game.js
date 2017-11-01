@@ -1,6 +1,5 @@
 import Application from '../application';
 import {changeView} from '../utilities';
-import repeatGame from '../repeat-game';
 import GameSingleView from './game-single-view';
 import GameDoubleView from './game-double-view';
 import GameTripleView from './game-triple-view';
@@ -29,7 +28,7 @@ class GameScreen {
 
     this.view.onBackBtnClick = () => {
       this.stopTimer();
-      repeatGame();
+      Application.showGreeting();
     };
   }
 

@@ -2,6 +2,7 @@ import AbstractView from '../abstract-view';
 import footerTemplate from '../components/footer';
 import statsTemplate from '../components/stats';
 import headerTemplate from '../components/header';
+import {AnswerType} from '../data/game-data';
 
 class GameSingleView extends AbstractView {
   constructor(state, question) {
@@ -18,11 +19,11 @@ class GameSingleView extends AbstractView {
       <div class="game__option">
         <img src="${this.question.data[0].src}" alt="Option 1" width="705">
         <label class="game__answer game__answer--photo">
-          <input name="question1" type="radio" value="photo">
+          <input name="question1" type="radio" value="${AnswerType.PHOTO}">
           <span>Фото</span>
         </label>
         <label class="game__answer game__answer--wide game__answer--paint">
-          <input name="question1" type="radio" value="paint">
+          <input name="question1" type="radio" value="${AnswerType.PAINT}">
           <span>Рисунок</span>
         </label>
       </div>

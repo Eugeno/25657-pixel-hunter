@@ -61,6 +61,11 @@ const GameType = {
   TRIPLE: `triple`
 };
 
+const AnswerType = {
+  PHOTO: `photo`,
+  PAINT: `paint`
+};
+
 export {
   QUESTIONS_LENGTH,
   LIVES_LENGTH,
@@ -70,5 +75,6 @@ export {
   countScores,
   createTimer,
   initialState,
+  AnswerType,
   GameType
 };

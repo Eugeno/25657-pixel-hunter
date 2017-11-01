@@ -1,4 +1,4 @@
-import {GameType} from './game-data';
+import {GameType, AnswerType} from './game-data';
 
 const QuestionTypesAdapter = {
   "tinder-like": GameType.SINGLE,
@@ -7,8 +7,8 @@ const QuestionTypesAdapter = {
 };
 
 const AnswerTypesAdapter = {
-  "photo": `photo`,
-  "painting": `paint`
+  "photo": AnswerType.PHOTO,
+  "painting": AnswerType.PAINT
 };
 
 const adapt = (data) => {

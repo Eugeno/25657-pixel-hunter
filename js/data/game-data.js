@@ -7,11 +7,22 @@ const AnswerTime = {
   SLOW: 20
 };
 
+const AnswerType = {
+  PHOTO: `photo`,
+  PAINT: `paint`
+};
+
 const Answer = {
   CORRECT: `correct`,
   FAST: `fast`,
   SLOW: `slow`,
   WRONG: `wrong`
+};
+
+const GameType = {
+  SINGLE: `single`,
+  DOUBLE: `double`,
+  TRIPLE: `triple`
 };
 
 const Reward = {
@@ -20,6 +31,13 @@ const Reward = {
   [Answer.SLOW]: 50,
   [Answer.WRONG]: 0,
   LIVE: 50
+};
+
+const initialState = {
+  lives: LIVES_LENGTH,
+  time: AnswerTime.MAX,
+  answers: [],
+  level: 0
 };
 
 const countScores = (state) => {
@@ -48,33 +66,15 @@ const createTimer = (duration) => {
   };
 };
 
-const initialState = {
-  lives: LIVES_LENGTH,
-  time: AnswerTime.MAX,
-  answers: [],
-  level: 0
-};
-
-const GameType = {
-  SINGLE: `single`,
-  DOUBLE: `double`,
-  TRIPLE: `triple`
-};
-
-const AnswerType = {
-  PHOTO: `photo`,
-  PAINT: `paint`
-};
-
 export {
   QUESTIONS_LENGTH,
   LIVES_LENGTH,
   AnswerTime,
-  Answer,
-  Reward,
-  countScores,
-  createTimer,
-  initialState,
   AnswerType,
-  GameType
+  Answer,
+  GameType,
+  Reward,
+  initialState,
+  countScores,
+  createTimer
 };

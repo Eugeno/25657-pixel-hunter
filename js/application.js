@@ -57,11 +57,7 @@ class Application {
   static changeHash(id, data) {
     const controller = Application.routes[id];
     if (controller) {
-      if (data) {
-        controller.init(loadState(data));
-      } else {
-        controller.init();
-      }
+      controller.init(loadState(data));
     } else {
       this.showGreeting();
     }

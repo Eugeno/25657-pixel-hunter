@@ -1,7 +1,7 @@
 const URL = `https://es.dump.academy/pixel-hunter/questions`;
 
 const preloadImages = (sources) => {
-  const images = sources.map((question) => question.data.map((image) => image.src).join()).join().split(`,`);
+  const images = [].concat(...sources.map((question) => question.data.map((image) => image.src)));
   const promises = images.map((src) => {
     return new Promise((resolve) => {
       const img = document.createElement(`img`);
@@ -9,7 +9,7 @@ const preloadImages = (sources) => {
       img.onload = img.onerror = () => resolve();
     });
   });
-  return Promise.all(promises);
+  return Promise.all(promises).then(() => sources);
 };
 
 class Loader {

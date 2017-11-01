@@ -1,7 +1,9 @@
+import {GameType} from './game-data';
+
 const QuestionTypesAdapter = {
-  "tinder-like": `single`,
-  "two-of-two": `double`,
-  "one-of-three": `triple`
+  "tinder-like": GameType.SINGLE,
+  "two-of-two": GameType.DOUBLE,
+  "one-of-three": GameType.TRIPLE
 };
 
 const AnswerTypesAdapter = {

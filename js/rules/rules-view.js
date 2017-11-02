@@ -37,7 +37,7 @@ ${footerTemplate}`;
     input.addEventListener(`input`, ({target}) => {
       startBtn.disabled = !target.value.trim();
     });
-    startBtn.addEventListener(`click`, () => this.onStart());
+    startBtn.addEventListener(`click`, () => this.onStart(encodeURI(input.value)));
     backBtn.addEventListener(`click`, () => this.onBackBtnClick());
   }
 

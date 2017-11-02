@@ -11,6 +11,10 @@
   background-size: contain;
 }
 
+.greeting.fade {
+  opacity: 0;
+}
+
 .greeting__asterisk {
   font-size: 80px;
   color: $main-red-color;

@@ -11,6 +11,14 @@ class GreetingScreen {
     changeView(this.view);
     this.view.onNextBtnClick = () => Application.showRules();
   }
+
+  fadeOut() {
+    this.view.fadeOut();
+  }
+
+  fadeIn() {
+    this.view.fadeIn();
+  }
 }
 
 export default new GreetingScreen();

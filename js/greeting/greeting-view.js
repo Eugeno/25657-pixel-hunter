@@ -22,6 +22,15 @@ ${footerTemplate}`;
   bind() {
     const nextBtn = this.element.querySelector(`.greeting__continue`);
     nextBtn.addEventListener(`click`, () => this.onNextBtnClick());
+    this.greetingElement = this.element.querySelector(`.greeting`);
+  }
+
+  fadeOut() {
+    this.greetingElement.classList.add(`fade`);
+  }
+
+  fadeIn() {
+    this.greetingElement.classList.remove(`fade`);
   }
 
   onNextBtnClick() {

@@ -11,6 +11,20 @@ class GameDoubleView extends AbstractView {
     this.question = question;
   }
 
+  get template() {
+    return `${headerTemplate(this.state)}
+  <div class="game">
+    <p class="game__task">${this.question.text}</p>
+    <form class="game__content">  
+      ${this.gameOptionsTemplate()}
+    </form>
+    <div class="stats">
+      ${statsTemplate(this.state.answers)}
+    </div>
+  </div>
+${footerTemplate}`;
+  }
+
   gameOptionsTemplate() {
     return this.question.data.map((q, i) => {
       return `<div class="game__option">
@@ -25,20 +39,6 @@ class GameDoubleView extends AbstractView {
         </label>
       </div>`;
     }).join(``);
-  }
-
-  get template() {
-    return `${headerTemplate(this.state)}
-  <div class="game">
-    <p class="game__task">${this.question.text}</p>
-    <form class="game__content">  
-      ${this.gameOptionsTemplate()}
-    </form>
-    <div class="stats">
-      ${statsTemplate(this.state)}
-    </div>
-  </div>
-${footerTemplate}`;
   }
 
   bind() {
@@ -68,7 +68,7 @@ ${footerTemplate}`;
     this.element.querySelector(`.game__timer`).innerHTML = this.state.time;
   }
 
-  timeExceed() {
+  onTimeExceed() {
     this.onAnswer(null);
   }
 }

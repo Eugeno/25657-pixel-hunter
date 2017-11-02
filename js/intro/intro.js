@@ -1,5 +1,4 @@
 import IntroView from './intro-view';
-import {changeView} from '../utilities';
 
 class IntroScreen {
   constructor() {
@@ -7,7 +6,11 @@ class IntroScreen {
   }
 
   show() {
-    changeView(this.view);
+    this.view.show();
+  }
+
+  hide() {
+    this.view.hide();
   }
 }
 

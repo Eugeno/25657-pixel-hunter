@@ -29,11 +29,15 @@ const loadState = (data) => {
 
 class Application {
   static prepareData() {
+    greetingScreen.init();
+    greetingScreen.fadeOut();
     introScreen.show();
     Loader.loadData().
         then(adapt).
         then((questions) => preloadImages(questions)).
         then((questions) => Application.init(questions)).
+        then(() => greetingScreen.fadeIn()).
+        then(() => introScreen.hide()).
         catch(window.console.error);
   }
 
@@ -45,13 +49,11 @@ class Application {
       [ControllerId.STATS]: statsScreen,
     };
 
-    const hashChangeHandler = () => {
+    window.addEventListener(`hashchange`, () => {
       const hashValue = location.hash.replace(`#`, ``);
       const [id, data] = hashValue.split(`?`);
       Application.changeHash(id, data);
-    };
-    window.onhashchange = hashChangeHandler;
-    hashChangeHandler();
+    });
   }
 
   static changeHash(id, data) {
@@ -75,8 +77,11 @@ class Application {
     location.hash = `${ControllerId.GAME}?${saveState(state)}`;
   }
 
-  static showStats(state) {
-    location.hash = `${ControllerId.STATS}?${saveState(state)}`;
+  static finishGame(state) {
+    Loader.saveResults(state).then(() => {
+      statsScreen.saveName(state.name);
+      location.hash = ControllerId.STATS;
+    });
   }
 
   static restart() {

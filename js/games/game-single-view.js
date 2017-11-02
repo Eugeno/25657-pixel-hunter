@@ -29,7 +29,7 @@ class GameSingleView extends AbstractView {
       </div>
     </form>
     <div class="stats">
-      ${statsTemplate(this.state)}
+      ${statsTemplate(this.state.answers)}
     </div>
   </div>
 ${footerTemplate}`;
@@ -58,7 +58,7 @@ ${footerTemplate}`;
     this.element.querySelector(`.game__timer`).innerHTML = this.state.time;
   }
 
-  timeExceed() {
+  onTimeExceed() {
     this.onAnswer(null);
   }
 }

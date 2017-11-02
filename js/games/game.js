@@ -27,9 +27,26 @@ class GameScreen {
     this.view.onAnswer = (answers) => this.onAnswer(state, question, answers);
 
     this.view.onBackBtnClick = () => {
-      this.stopTimer();
-      Application.showGreeting();
+      // eslint-disable-next-line
+      const isRestart = confirm(`Текущая игра будет потеряна. Начать заново?`);
+      if (isRestart) {
+        this.stopTimer();
+        Application.showGreeting();
+      }
     };
+  }
+
+  tick() {
+    this.view.state.time--;
+    if (this.view.state.time > 0) {
+      this.view.onTick();
+    } else {
+      this.view.onTimeExceed();
+    }
+  }
+
+  stopTimer() {
+    clearTimeout(this.timer);
   }
 
   onAnswer(state, question, answers) {
@@ -60,21 +77,8 @@ class GameScreen {
       if (nextState.level !== QUESTIONS_LENGTH && nextState.lives < 0) {
         nextState.lives = 0;
       }
-      Application.showStats(nextState);
+      Application.finishGame(nextState);
     }
-  }
-
-  tick() {
-    this.view.state.time--;
-    if (this.view.state.time > 0) {
-      this.view.onTick();
-    } else {
-      this.view.timeExceed();
-    }
-  }
-
-  stopTimer() {
-    clearTimeout(this.timer);
   }
 }
 

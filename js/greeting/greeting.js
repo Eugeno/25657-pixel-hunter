@@ -13,11 +13,11 @@ class GreetingScreen {
   }
 
   fadeOut() {
-    this.view.greetingElement.classList.add(`fade`);
+    this.view.fadeOut();
   }
 
   fadeIn() {
-    this.view.greetingElement.classList.remove(`fade`);
+    this.view.fadeIn();
   }
 }
 

@@ -18,6 +18,19 @@ class IntroView extends AbstractView {
   onStart() {
 
   }
+
+  show() {
+    const main = document.querySelector(`main`);
+    this.element.classList.add(`intro-wrap`);
+    main.appendChild(this.element);
+  }
+
+  hide() {
+    this.element.classList.add(`fade`);
+    setTimeout(() => {
+      this.element.remove();
+    }, 500);
+  }
 }
 
 export default IntroView;

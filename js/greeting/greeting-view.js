@@ -28,6 +28,14 @@ ${footerTemplate}`;
   onNextBtnClick() {
 
   }
+
+  fadeOut() {
+    this.greetingElement.classList.add(`fade`);
+  }
+
+  fadeIn() {
+    this.greetingElement.classList.remove(`fade`);
+  }
 }
 
 export default GreetingView;

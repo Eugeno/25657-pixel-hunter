@@ -6,16 +6,11 @@ class IntroScreen {
   }
 
   show() {
-    const main = document.querySelector(`main`);
-    this.view.element.classList.add(`intro-wrap`);
-    main.appendChild(this.view.element);
+    this.view.show();
   }
 
   hide() {
-    this.view.element.classList.add(`fade`);
-    setTimeout(() => {
-      this.view.element.remove();
-    }, 500);
+    this.view.hide();
   }
 }
 

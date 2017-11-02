@@ -35,7 +35,7 @@ class GameDoubleView extends AbstractView {
       ${this.gameOptionsTemplate()}
     </form>
     <div class="stats">
-      ${statsTemplate(this.state)}
+      ${statsTemplate(this.state.answers)}
     </div>
   </div>
 ${footerTemplate}`;

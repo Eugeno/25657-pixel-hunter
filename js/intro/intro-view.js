@@ -27,6 +27,7 @@ class IntroView extends AbstractView {
 
   hide() {
     this.element.classList.add(`fade`);
+    // this.element.addEventListener(`transitionend`, alert(`dezkf`), false);
     setTimeout(() => {
       this.element.remove();
     }, 500);

@@ -29,7 +29,7 @@ class GameSingleView extends AbstractView {
       </div>
     </form>
     <div class="stats">
-      ${statsTemplate(this.state)}
+      ${statsTemplate(this.state.answers)}
     </div>
   </div>
 ${footerTemplate}`;

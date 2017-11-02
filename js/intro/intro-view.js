@@ -15,10 +15,6 @@ class IntroView extends AbstractView {
     nextBtn.addEventListener(`click`, () => this.onStart());
   }
 
-  onStart() {
-
-  }
-
   show() {
     const main = document.querySelector(`main`);
     this.element.classList.add(`intro-wrap`);
@@ -30,6 +26,10 @@ class IntroView extends AbstractView {
     setTimeout(() => {
       this.element.remove();
     }, 500);
+  }
+
+  onStart() {
+
   }
 }
 

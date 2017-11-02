@@ -36,6 +36,19 @@ class GameScreen {
     };
   }
 
+  tick() {
+    this.view.state.time--;
+    if (this.view.state.time > 0) {
+      this.view.onTick();
+    } else {
+      this.view.timeExceed();
+    }
+  }
+
+  stopTimer() {
+    clearTimeout(this.timer);
+  }
+
   onAnswer(state, question, answers) {
     this.stopTimer();
     let answer = Answer.CORRECT;
@@ -66,19 +79,6 @@ class GameScreen {
       }
       Application.finishGame(nextState);
     }
-  }
-
-  tick() {
-    this.view.state.time--;
-    if (this.view.state.time > 0) {
-      this.view.onTick();
-    } else {
-      this.view.timeExceed();
-    }
-  }
-
-  stopTimer() {
-    clearTimeout(this.timer);
   }
 }
 

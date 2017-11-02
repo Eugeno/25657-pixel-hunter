@@ -20,10 +20,6 @@ class StatsView extends AbstractView {
     this.scoresElement = el.querySelector(`.result`);
   }
 
-  onBackBtnClick() {
-
-  }
-
   printScores(data) {
     this.scoresElement.innerHTML = `<h1>${data[0].heading}</h1>
       ${this.getStatsTables(data)}`;
@@ -99,6 +95,10 @@ class StatsView extends AbstractView {
         </tr>
       </table>`;
     }).join(``);
+  }
+
+  onBackBtnClick() {
+
   }
 }
 

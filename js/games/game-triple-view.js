@@ -10,14 +10,6 @@ class GameTripleView extends AbstractView {
     this.question = question;
   }
 
-  gameOptionsTemplate() {
-    return this.question.data.map((q, i) => {
-      return `<div class="game__option">
-        <img src="${q.src}" alt="Option ${i + 1}" width="304">
-      </div>`;
-    }).join(``);
-  }
-
   get template() {
     return `${headerTemplate(this.state)}
   <div class="game">
@@ -30,6 +22,14 @@ class GameTripleView extends AbstractView {
     </div>
   </div>
 ${footerTemplate}`;
+  }
+
+  gameOptionsTemplate() {
+    return this.question.data.map((q, i) => {
+      return `<div class="game__option">
+        <img src="${q.src}" alt="Option ${i + 1}" width="304">
+      </div>`;
+    }).join(``);
   }
 
   bind() {
@@ -49,6 +49,10 @@ ${footerTemplate}`;
     backBtn.addEventListener(`click`, () => this.onBackBtnClick());
   }
 
+  timeExceed() {
+    this.onAnswer(null);
+  }
+
   onAnswer() {
 
   }
@@ -59,10 +63,6 @@ ${footerTemplate}`;
 
   onTick() {
     this.element.querySelector(`.game__timer`).innerHTML = this.state.time;
-  }
-
-  timeExceed() {
-    this.onAnswer(null);
   }
 }
 

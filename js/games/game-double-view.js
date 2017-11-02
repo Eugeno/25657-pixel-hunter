@@ -56,10 +56,6 @@ ${footerTemplate}`;
     backBtn.addEventListener(`click`, () => this.onBackBtnClick());
   }
 
-  timeExceed() {
-    this.onAnswer(null);
-  }
-
   onAnswer() {
 
   }
@@ -70,6 +66,10 @@ ${footerTemplate}`;
 
   onTick() {
     this.element.querySelector(`.game__timer`).innerHTML = this.state.time;
+  }
+
+  onTimeExceed() {
+    this.onAnswer(null);
   }
 }
 

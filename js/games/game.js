@@ -41,7 +41,7 @@ class GameScreen {
     if (this.view.state.time > 0) {
       this.view.onTick();
     } else {
-      this.view.timeExceed();
+      this.view.onTimeExceed();
     }
   }
 

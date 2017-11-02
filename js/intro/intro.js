@@ -1,5 +1,5 @@
 import IntroView from './intro-view';
-import {changeView} from '../utilities';
+import {addIntroView} from '../utilities';
 
 class IntroScreen {
   constructor() {
@@ -7,7 +7,14 @@ class IntroScreen {
   }
 
   show() {
-    changeView(this.view);
+    addIntroView(this.view);
+  }
+
+  hide() {
+    this.view.element.classList.add(`fade`);
+    setTimeout(() => {
+      this.view.element.remove();
+    }, 500);
   }
 }
 

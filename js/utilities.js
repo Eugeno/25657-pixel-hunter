@@ -10,6 +10,11 @@ const changeView = (view) => {
   main.appendChild(view.element);
 };
 
+const addIntroView = (view) => {
+  view.element.classList.add(`intro-wrap`);
+  main.appendChild(view.element);
+};
+
 const preloadImages = (sources) => {
   const images = [].concat(...sources.map((question) => question.data));
   const promises = images.map((image) => {
@@ -22,4 +27,4 @@ const preloadImages = (sources) => {
   return Promise.all(promises).then(() => sources);
 };
 
-export {createElement, changeView, preloadImages};
+export {createElement, changeView, addIntroView, preloadImages};

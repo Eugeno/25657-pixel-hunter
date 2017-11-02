@@ -1,5 +1,16 @@
 @import "colors";
 
+.intro-wrap {
+  position: absolute;
+  right: 0;
+  left: 0;
+  transition: opacity .5s ease-in-out;
+}
+
+.intro-wrap.fade {
+  opacity: 0;
+}
+
 .intro {
   width: 800px;
   height: 740px;
@@ -14,18 +25,25 @@
 
   font-size: 172px;
   color: $main-red-color;
-  cursor: pointer;
 
   position: relative;
   top: 220px;
   left: 30px;
 
-  &:hover {
-    color: $link-hover-color;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    color: $main-red-color;
   }
 
-  &:active {
+  50% {
     color: $link-active-color;
+  }
+
+  100% {
+    color: $main-red-color;
   }
 }
 

@@ -1,5 +1,4 @@
 import IntroView from './intro-view';
-import {addIntroView} from '../utilities';
 
 class IntroScreen {
   constructor() {
@@ -7,7 +6,9 @@ class IntroScreen {
   }
 
   show() {
-    addIntroView(this.view);
+    const main = document.querySelector(`main`);
+    this.view.element.classList.add(`intro-wrap`);
+    main.appendChild(this.view.element);
   }
 
   hide() {

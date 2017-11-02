@@ -27,6 +27,7 @@ class GameScreen {
     this.view.onAnswer = (answers) => this.onAnswer(state, question, answers);
 
     this.view.onBackBtnClick = () => {
+      // eslint-disable-next-line
       const isRestart = confirm(`Текущая игра будет потеряна. Начать заново?`);
       if (isRestart) {
         this.stopTimer();

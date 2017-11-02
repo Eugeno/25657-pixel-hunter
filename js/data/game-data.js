@@ -34,10 +34,10 @@ const Reward = {
 };
 
 const initialState = {
-  lives: LIVES_LENGTH,
-  time: AnswerTime.MAX,
   answers: [],
-  level: 0
+  level: 0,
+  lives: LIVES_LENGTH,
+  time: AnswerTime.MAX
 };
 
 const countScores = (state) => {

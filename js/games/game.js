@@ -60,7 +60,7 @@ class GameScreen {
       if (nextState.level !== QUESTIONS_LENGTH && nextState.lives < 0) {
         nextState.lives = 0;
       }
-      Application.showStats(nextState);
+      Application.finishGame(nextState);
     }
   }
 

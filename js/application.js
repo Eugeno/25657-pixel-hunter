@@ -75,8 +75,10 @@ class Application {
     location.hash = `${ControllerId.GAME}?${saveState(state)}`;
   }
 
-  static showStats(state) {
-    location.hash = `${ControllerId.STATS}?${saveState(state)}`;
+  static finishGame(state) {
+    Loader.saveResults(state).then(() => {
+      location.hash = ControllerId.STATS;
+    });
   }
 
   static restart() {

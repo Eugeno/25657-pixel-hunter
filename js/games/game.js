@@ -27,8 +27,11 @@ class GameScreen {
     this.view.onAnswer = (answers) => this.onAnswer(state, question, answers);
 
     this.view.onBackBtnClick = () => {
-      this.stopTimer();
-      Application.showGreeting();
+      const isRestart = confirm(`Текущая игра будет потеряна. Начать заново?`);
+      if (isRestart) {
+        this.stopTimer();
+        Application.showGreeting();
+      }
     };
   }
 

@@ -13,6 +13,7 @@ class RulesScreen {
     this.view.onStart = () => {
       const nextState = Object.assign({}, initialState);
       nextState.answers = initialState.answers.slice(0);
+      nextState.name = this.view.nameInput.value;
       Application.showGameModule(nextState);
     };
     this.view.onBackBtnClick = () => Application.showGreeting();

@@ -8,7 +8,11 @@ class StatsScreen {
     this.view = new StatsView();
     changeView(this.view);
     this.view.onBackBtnClick = () => Application.restart();
-    Loader.loadResults().then((data) => this.view.printScores(data));
+    Loader.loadResults(this.name).then((data) => this.view.printScores(data));
+  }
+
+  saveName(name) {
+    this.name = name;
   }
 }
 

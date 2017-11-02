@@ -37,7 +37,8 @@ const initialState = {
   answers: [],
   level: 0,
   lives: LIVES_LENGTH,
-  time: AnswerTime.MAX
+  time: AnswerTime.MAX,
+  name: ``
 };
 
 const countScores = (state) => {

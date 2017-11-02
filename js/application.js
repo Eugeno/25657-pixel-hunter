@@ -79,6 +79,7 @@ class Application {
 
   static finishGame(state) {
     Loader.saveResults(state).then(() => {
+      statsScreen.saveName(state.name);
       location.hash = ControllerId.STATS;
     });
   }

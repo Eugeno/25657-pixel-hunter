@@ -31,10 +31,10 @@ ${footerTemplate}`;
 
   bind() {
     const el = this.element;
-    const input = el.querySelector(`.rules__input`);
+    this.nameInput = el.querySelector(`.rules__input`);
     const startBtn = el.querySelector(`.rules__button`);
     const backBtn = el.querySelector(`.back`);
-    input.addEventListener(`input`, ({target}) => {
+    this.nameInput.addEventListener(`input`, ({target}) => {
       startBtn.disabled = !target.value.trim();
     });
     startBtn.addEventListener(`click`, () => this.onStart());

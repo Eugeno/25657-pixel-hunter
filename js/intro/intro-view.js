@@ -22,10 +22,18 @@ class IntroView extends AbstractView {
   }
 
   hide() {
-    this.element.classList.add(`fade`);
-    setTimeout(() => {
-      this.element.remove();
-    }, 500);
+    return new Promise((resolve) => {
+      this.element.addEventListener(`transitionend`, resolve, false);
+      this.element.classList.add(`fade`);
+    });
+  }
+
+  remove() {
+    this.element.remove();
+  }
+
+  showError(errorMessage) {
+    this.element.textContent = errorMessage;
   }
 
   onStart() {

@@ -19,7 +19,7 @@ const preloadImages = (sources) => {
       img.onload = img.onerror = () => resolve();
     });
   });
-  return Promise.all(promises).then(() => sources);
+  return Promise.all(promises);
 };
 
 export {createElement, changeView, preloadImages};

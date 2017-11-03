@@ -1,15 +1,17 @@
 const URL = `https://es.dump.academy/pixel-hunter/`;
 
 class Loader {
-  static loadData() {
-    return fetch(`${URL}questions`).then((result) => result.json());
+  static async loadData() {
+    const response = await fetch(`${URL}questions`);
+    return response.json();
   }
 
-  static loadResults(name) {
-    return fetch(`${URL}stats/${name}`).then((result) => result.json());
+  static async loadResults(name) {
+    const response = await fetch(`${URL}stats/${name}`);
+    return response.json();
   }
 
-  static saveResults(data) {
+  static async saveResults(data) {
     const requestSettings = {
       body: JSON.stringify(data),
       headers: {

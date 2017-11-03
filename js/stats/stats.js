@@ -11,7 +11,7 @@ const Results = {
 };
 
 class StatsScreen {
-  init() {
+  async init() {
     this.view = new StatsView();
     changeView(this.view);
     this.view.onBackBtnClick = () => Application.restart();
@@ -41,9 +41,9 @@ class StatsScreen {
       });
     };
 
-    Loader.loadResults(this.name).
-        then((data) => getResults(data)).
-        then((data) => this.view.printScores(data));
+    const data = await Loader.loadResults(this.name);
+    const results = await getResults(data);
+    this.view.printScores(results);
   }
 
   saveName(name) {

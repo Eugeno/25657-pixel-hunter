@@ -12,6 +12,10 @@ class IntroScreen {
   hide() {
     this.view.hide();
   }
+
+  showError(errorMessage) {
+    this.view.showError(errorMessage);
+  }
 }
 
 export default new IntroScreen();

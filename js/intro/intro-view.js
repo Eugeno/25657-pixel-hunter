@@ -28,6 +28,10 @@ class IntroView extends AbstractView {
     }, 500);
   }
 
+  showError(errorMessage) {
+    this.element.textContent = errorMessage;
+  }
+
   onStart() {
 
   }

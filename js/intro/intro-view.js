@@ -22,10 +22,8 @@ class IntroView extends AbstractView {
   }
 
   hide() {
+    this.element.addEventListener(`transitionend`, () => this.onHidden(), false);
     this.element.classList.add(`fade`);
-    setTimeout(() => {
-      this.element.remove();
-    }, 500);
   }
 
   showError(errorMessage) {
@@ -33,6 +31,10 @@ class IntroView extends AbstractView {
   }
 
   onStart() {
+
+  }
+
+  onHidden() {
 
   }
 }

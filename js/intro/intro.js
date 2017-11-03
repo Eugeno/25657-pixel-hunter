@@ -11,6 +11,9 @@ class IntroScreen {
 
   hide() {
     this.view.hide();
+    this.view.onHidden = () => {
+      this.view.element.remove();
+    };
   }
 
   showError(errorMessage) {

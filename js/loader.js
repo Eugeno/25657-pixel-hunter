@@ -11,7 +11,7 @@ class Loader {
     return response.json();
   }
 
-  static async saveResults(data) {
+  static saveResults(data) {
     const requestSettings = {
       body: JSON.stringify(data),
       headers: {

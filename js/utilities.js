@@ -10,7 +10,7 @@ const changeView = (view) => {
   main.appendChild(view.element);
 };
 
-async function preloadImages(sources) {
+const preloadImages = (sources) => {
   const images = [].concat(...sources.map((question) => question.data));
   const promises = images.map((image) => {
     return new Promise((resolve) => {
@@ -19,8 +19,7 @@ async function preloadImages(sources) {
       img.onload = img.onerror = () => resolve();
     });
   });
-  await Promise.all(promises);
-  return sources;
-}
+  return Promise.all(promises);
+};
 
 export {createElement, changeView, preloadImages};

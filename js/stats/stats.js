@@ -42,7 +42,7 @@ class StatsScreen {
     };
 
     const data = await Loader.loadResults(this.name);
-    const results = await getResults(data);
+    const results = getResults(data);
     this.view.printScores(results);
   }
 

@@ -35,7 +35,7 @@ class Application {
 
     try {
       const data = await Loader.loadData();
-      const questions = await adapt(data);
+      const questions = adapt(data);
       await preloadImages(questions);
       Application.init(questions);
       greetingScreen.fadeIn();

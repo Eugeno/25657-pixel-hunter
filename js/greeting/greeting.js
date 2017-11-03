@@ -12,12 +12,12 @@ class GreetingScreen {
     this.view.onNextBtnClick = () => Application.showRules();
   }
 
-  fadeOut() {
-    this.view.fadeOut();
+  hide() {
+    this.view.hide();
   }
 
-  fadeIn() {
-    this.view.fadeIn();
+  show() {
+    this.view.show();
   }
 }
 

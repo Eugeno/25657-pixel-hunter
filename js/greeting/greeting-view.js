@@ -25,12 +25,12 @@ ${footerTemplate}`;
     this.greetingElement = this.element.querySelector(`.greeting`);
   }
 
-  fadeOut() {
-    this.greetingElement.classList.add(`fade`);
+  hide() {
+    this.greetingElement.classList.add(`hidden`);
   }
 
-  fadeIn() {
-    this.greetingElement.classList.remove(`fade`);
+  show() {
+    this.greetingElement.classList.remove(`hidden`);
   }
 
   onNextBtnClick() {

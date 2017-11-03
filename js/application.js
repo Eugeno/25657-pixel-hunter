@@ -30,7 +30,7 @@ const loadState = (data) => {
 class Application {
   static async prepareData() {
     greetingScreen.init();
-    greetingScreen.fadeOut();
+    greetingScreen.hide();
     introScreen.show();
 
     try {
@@ -38,7 +38,7 @@ class Application {
       const questions = adapt(data);
       await preloadImages(questions);
       Application.init(questions);
-      greetingScreen.fadeIn();
+      greetingScreen.show();
       introScreen.hide();
     } catch (e) {
       introScreen.showError(e.message);

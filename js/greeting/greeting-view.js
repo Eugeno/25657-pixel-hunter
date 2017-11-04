@@ -4,7 +4,9 @@ import footerTemplate from '../components/footer';
 class GreetingView extends AbstractView {
   get template() {
     return `<div class="greeting central--blur">
-    <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
+    <div class="greeting__logo">
+      <img src="img/logo_big.png" alt="Pixel Hunter" width="201" height="89">
+    </div>
     <h1 class="greeting__asterisk">*</h1>
     <div class="greeting__challenge">
       <h3>Лучшие художники-фотореалисты бросают&nbsp;тебе&nbsp;вызов!</h3>
@@ -14,7 +16,9 @@ class GreetingView extends AbstractView {
         Фотореализм обманчив и коварен.<br>
         Помни, главное — смотреть очень внимательно.</p>
     </div>
-    <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
+    <div class="greeting__continue">
+      <span><img src="img/arrow_right.svg" alt="Next" width="64" height="64"></span>
+    </div>
   </div>
 ${footerTemplate}`;
   }

@@ -16,7 +16,8 @@ const preloadImages = (sources) => {
     return new Promise((resolve) => {
       const img = document.createElement(`img`);
       img.src = image.src;
-      img.onload = img.onerror = () => resolve();
+      img.onload = resolve;
+      img.onerror = resolve;
     });
   });
   return Promise.all(promises);

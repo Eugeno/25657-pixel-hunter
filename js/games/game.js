@@ -21,7 +21,7 @@ class GameScreen {
     changeView(this.view);
 
     this.timer = setInterval(() => {
-      this.tick();
+      this._updateTimer();
     }, 1000);
 
     this.view.onAnswer = (answers) => this.onAnswer(state, question, answers);
@@ -30,27 +30,27 @@ class GameScreen {
       // eslint-disable-next-line
       const isRestart = confirm(`Текущая игра будет потеряна. Начать заново?`);
       if (isRestart) {
-        this.stopTimer();
+        this._stopTimer();
         Application.showGreeting();
       }
     };
   }
 
-  tick() {
+  _updateTimer() {
     this.view.state.time--;
     if (this.view.state.time > 0) {
-      this.view.onTick();
+      this.view.onUpdateTimer();
     } else {
       this.view.onTimeExceed();
     }
   }
 
-  stopTimer() {
+  _stopTimer() {
     clearTimeout(this.timer);
   }
 
   onAnswer(state, question, answers) {
-    this.stopTimer();
+    this._stopTimer();
     let answer = Answer.CORRECT;
     const isWrongAnswer = () => question.data.some((t, i) => t.type !== answers[i]);
     if (!answers || isWrongAnswer()) {

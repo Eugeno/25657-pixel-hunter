@@ -56,11 +56,11 @@ class Application {
     window.addEventListener(`hashchange`, () => {
       const hashValue = location.hash.replace(`#`, ``);
       const [id, data] = hashValue.split(`?`);
-      Application.changeHash(id, data);
+      Application._changeHash(id, data);
     });
   }
 
-  static changeHash(id, data) {
+  static _changeHash(id, data) {
     const controller = Application.routes[id];
     if (controller) {
       controller.init(loadState(data));

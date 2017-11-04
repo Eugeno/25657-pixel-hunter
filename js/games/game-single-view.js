@@ -54,7 +54,7 @@ ${footerTemplate}`;
 
   }
 
-  onTick() {
+  onUpdateTimer() {
     this.element.querySelector(`.game__timer`).innerHTML = this.state.time;
   }
 

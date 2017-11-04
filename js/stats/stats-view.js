@@ -22,10 +22,10 @@ class StatsView extends AbstractView {
 
   printScores(data) {
     this.scoresElement.innerHTML = `<h1>${data[0].heading}</h1>
-      ${this.getStatsTables(data)}`;
+      ${this._getStatsTables(data)}`;
   }
 
-  getStatsTables(data) {
+  _getStatsTables(data) {
     const getSpeedBonus = (result) => {
       if (result.fastAnswers) {
         return `<tr>

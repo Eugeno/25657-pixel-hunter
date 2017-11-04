@@ -10,11 +10,6 @@ class IntroView extends AbstractView {
   </div>`;
   }
 
-  bind() {
-    const nextBtn = this.element.querySelector(`.intro__asterisk`);
-    nextBtn.addEventListener(`click`, () => this.onStart());
-  }
-
   show() {
     const main = document.querySelector(`main`);
     this.element.classList.add(`intro-wrap`);
@@ -23,7 +18,7 @@ class IntroView extends AbstractView {
 
   hide() {
     return new Promise((resolve) => {
-      this.element.addEventListener(`transitionend`, resolve, false);
+      this.element.addEventListener(`transitionend`, resolve);
       this.element.classList.add(`fade`);
     });
   }
@@ -34,10 +29,6 @@ class IntroView extends AbstractView {
 
   showError(errorMessage) {
     this.element.textContent = errorMessage;
-  }
-
-  onStart() {
-
   }
 }
 

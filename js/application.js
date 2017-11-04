@@ -39,7 +39,7 @@ class Application {
       await preloadImages(questions);
       Application.init(questions);
       greetingScreen.show();
-      introScreen.hide();
+      await introScreen.hide();
     } catch (e) {
       introScreen.showError(e.message);
     }

@@ -4,7 +4,8 @@ const LIVES_LENGTH = 3;
 const AnswerTime = {
   MAX: 30,
   FAST: 10,
-  SLOW: 20
+  SLOW: 20,
+  CRITICAL: 5
 };
 
 const AnswerType = {

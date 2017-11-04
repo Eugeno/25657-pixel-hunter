@@ -40,6 +40,9 @@ class GameScreen {
     this.view.state.time--;
     if (this.view.state.time > 0) {
       this.view.onUpdateTimer();
+      if (this.view.state.time === AnswerTime.CRITICAL) {
+        this.view.onCriticalTime();
+      }
     } else {
       this.view.onTimeExceed();
     }

@@ -58,6 +58,10 @@ ${footerTemplate}`;
     this.element.querySelector(`.game__timer`).innerHTML = this.state.time;
   }
 
+  onCriticalTime() {
+    this.element.querySelector(`.game__timer`).classList.add(`game__timer_pulse`);
+  }
+
   onTimeExceed() {
     this.onAnswer(null);
   }

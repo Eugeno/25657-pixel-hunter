@@ -28,20 +28,18 @@ const loadState = (data) => {
 };
 
 class Application {
-  static prepareData() {
+  static async prepareData() {
     greetingScreen.init();
     greetingScreen.hide();
     introScreen.show();
 
     try {
-      (async () => {
-        const data = await Loader.loadData();
-        const questions = adapt(data);
-        await preloadImages(questions);
-        Application.init(questions);
-        greetingScreen.show();
-        await introScreen.hide();
-      })();
+      const data = await Loader.loadData();
+      const questions = adapt(data);
+      await preloadImages(questions);
+      Application.init(questions);
+      greetingScreen.show();
+      await introScreen.hide();
     } catch (e) {
       introScreen.showError(e.message);
     }
@@ -83,12 +81,10 @@ class Application {
     location.hash = `${ControllerId.GAME}?${saveState(state)}`;
   }
 
-  static finishGame(state) {
-    (async () => {
-      await Loader.saveResults(state);
-      statsScreen.saveName(state.name);
-      location.hash = ControllerId.STATS;
-    })();
+  static async finishGame(state) {
+    await Loader.saveResults(state);
+    statsScreen.saveName(state.name);
+    location.hash = ControllerId.STATS;
   }
 
   static restart() {

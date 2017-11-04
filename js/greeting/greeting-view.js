@@ -26,15 +26,15 @@ ${footerTemplate}`;
   bind() {
     const nextBtn = this.element.querySelector(`.greeting__continue`);
     nextBtn.addEventListener(`click`, () => this.onNextBtnClick());
-    this.greetingElement = this.element.querySelector(`.greeting`);
+    this._greetingElement = this.element.querySelector(`.greeting`);
   }
 
   hide() {
-    this.greetingElement.classList.add(`hidden`);
+    this._greetingElement.classList.add(`hidden`);
   }
 
   show() {
-    this.greetingElement.classList.remove(`hidden`);
+    this._greetingElement.classList.remove(`hidden`);
   }
 
   onNextBtnClick() {

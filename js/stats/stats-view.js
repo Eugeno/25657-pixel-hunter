@@ -17,11 +17,11 @@ class StatsView extends AbstractView {
     const el = this.element;
     const backBtn = el.querySelector(`.back`);
     backBtn.addEventListener(`click`, () => this.onBackBtnClick());
-    this.scoresElement = el.querySelector(`.result`);
+    this._scoresElement = el.querySelector(`.result`);
   }
 
   printScores(data) {
-    this.scoresElement.innerHTML = `<h1>${data[0].heading}</h1>
+    this._scoresElement.innerHTML = `<h1>${data[0].heading}</h1>
       ${this._getStatsTables(data)}`;
   }
 

@@ -25,6 +25,10 @@ class StatsView extends AbstractView {
     this._scoresElement = el.querySelector(`.result`);
   }
 
+  onBackBtnClick() {
+
+  }
+
   static _getStatsTables(data) {
     const getSpeedBonus = (result) => {
       if (result.fastAnswers) {
@@ -95,10 +99,6 @@ class StatsView extends AbstractView {
         </tr>
       </table>`;
     }).join(``);
-  }
-
-  onBackBtnClick() {
-
   }
 }
 

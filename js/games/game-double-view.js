@@ -47,6 +47,7 @@ ${footerTemplate}`;
     const backBtn = el.querySelector(`.back`);
     const countChecked = () => form.querySelectorAll(`input[type="radio"]:checked`).length;
     const gameOptions = [...form.querySelectorAll(`.game__option`)];
+    this.timerElement = el.querySelector(`.game__timer`);
     form.addEventListener(`change`, () => {
       if (countChecked() === gameOptions.length) {
         const answers = gameOptions.map((option) => option.querySelector(`input[type="radio"]:checked`).value);
@@ -65,11 +66,11 @@ ${footerTemplate}`;
   }
 
   onUpdateTimer() {
-    this.element.querySelector(`.game__timer`).innerHTML = this.state.time;
+    this.timerElement.innerHTML = this.state.time;
   }
 
   onCriticalTime() {
-    this.element.querySelector(`.game__timer`).classList.add(`game__timer_pulse`);
+    this.timerElement.classList.add(`game__timer_pulse`);
   }
 
   onTimeExceed() {

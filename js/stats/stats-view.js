@@ -13,6 +13,11 @@ class StatsView extends AbstractView {
     ${footerTemplate}`;
   }
 
+  printScores(data) {
+    this._scoresElement.innerHTML = `<h1>${data[0].heading}</h1>
+      ${StatsView._getStatsTables(data)}`;
+  }
+
   bind() {
     const el = this.element;
     const backBtn = el.querySelector(`.back`);
@@ -20,12 +25,7 @@ class StatsView extends AbstractView {
     this._scoresElement = el.querySelector(`.result`);
   }
 
-  printScores(data) {
-    this._scoresElement.innerHTML = `<h1>${data[0].heading}</h1>
-      ${this._getStatsTables(data)}`;
-  }
-
-  _getStatsTables(data) {
+  static _getStatsTables(data) {
     const getSpeedBonus = (result) => {
       if (result.fastAnswers) {
         return `<tr>

@@ -38,6 +38,7 @@ ${footerTemplate}`;
     const gameOptions = [...form.querySelectorAll(`.game__option`)];
     const backBtn = el.querySelector(`.back`);
     const answers = this.question.data.map((option) => option.type);
+    this.timerElement = el.querySelector(`.game__timer`);
     gameOptions.forEach((option, i) => {
       option.addEventListener(`click`, () => {
         if (answers[i] === answers.slice().sort()[1]) {
@@ -58,11 +59,11 @@ ${footerTemplate}`;
   }
 
   onUpdateTimer() {
-    this.element.querySelector(`.game__timer`).innerHTML = this.state.time;
+    this.timerElement.innerHTML = this.state.time;
   }
 
   onCriticalTime() {
-    this.element.querySelector(`.game__timer`).classList.add(`game__timer_pulse`);
+    this.timerElement.classList.add(`game__timer_pulse`);
   }
 
   onTimeExceed() {

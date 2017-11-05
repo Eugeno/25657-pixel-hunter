@@ -39,6 +39,7 @@ ${footerTemplate}`;
     const el = this.element;
     const form = el.querySelector(`form`);
     const backBtn = el.querySelector(`.back`);
+    this.timerElement = el.querySelector(`.game__timer`);
     form.addEventListener(`change`, () => {
       const answers = [form.querySelector(`input[type="radio"]:checked`).value];
       this.onAnswer(answers);
@@ -55,11 +56,11 @@ ${footerTemplate}`;
   }
 
   onUpdateTimer() {
-    this.element.querySelector(`.game__timer`).innerHTML = this.state.time;
+    this.timerElement.innerHTML = this.state.time;
   }
 
   onCriticalTime() {
-    this.element.querySelector(`.game__timer`).classList.add(`game__timer_pulse`);
+    this.timerElement.classList.add(`game__timer_pulse`);
   }
 
   onTimeExceed() {
